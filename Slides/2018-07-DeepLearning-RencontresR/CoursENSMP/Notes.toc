@@ -1,0 +1,98 @@
+\contentsline {chapter}{Notations}{3}
+\contentsline {chapter}{Introduction}{5}
+\contentsline {chapter}{\numberline {1}Th\'eorie bay\'esienne de la d\'ecision}{9}
+\contentsline {section}{\numberline {1.1}Discrimination et d\'ecision bay\'esienne}{11}
+\contentsline {subsection}{\numberline {1.1.1}Minimisation du taux d'erreur}{12}
+\contentsline {subsection}{\numberline {1.1.2}Introduction du doute}{13}
+\contentsline {subsection}{\numberline {1.1.3}Traitement des donn\'ees aberrantes}{15}
+\contentsline {section}{\numberline {1.2}\'Evaluation des performances}{15}
+\contentsline {subsection}{\numberline {1.2.1}Proportion de mal class\'es}{15}
+\contentsline {subsection}{\numberline {1.2.2}Moyennage du risque}{16}
+\contentsline {subsection}{\numberline {1.2.3}Validation crois\'ee}{17}
+\contentsline {subsection}{\numberline {1.2.4}M\'ethode de r\'eechantillonage : bootstrap}{17}
+\contentsline {subsection}{\numberline {1.2.5}Matrices de confusion}{18}
+\contentsline {chapter}{\numberline {2}Approche statistique et mod\`eles param\'etriques}{19}
+\contentsline {section}{\numberline {2.1}La loi normale multidimensionnelle}{20}
+\contentsline {subsection}{\numberline {2.1.1}Homosc\'edasticit\'e}{22}
+\contentsline {subsection}{\numberline {2.1.2}H\'et\'erosc\'edasticit\'e}{23}
+\contentsline {subsection}{\numberline {2.1.3}Mod\`ele parcimonieux}{25}
+\contentsline {section}{\numberline {2.2}La loi de Student}{25}
+\contentsline {section}{\numberline {2.3}Estimation par maximum de vraisemblance}{26}
+\contentsline {subsection}{\numberline {2.3.1}Discrimination et maximum de vraisemblance}{26}
+\contentsline {subsection}{\numberline {2.3.2}Les param\`etres de la loi normale}{27}
+\contentsline {subsection}{\numberline {2.3.3}Les param\`etres de la loi de Student}{28}
+\contentsline {section}{\numberline {2.4}Choix de mod\`ele}{29}
+\contentsline {subsection}{\numberline {2.4.1}P\'enalisation de la vraisemblance}{29}
+\contentsline {subsection}{\numberline {2.4.2}S\'election par validation crois\'ee}{31}
+\contentsline {chapter}{\numberline {3}Approche statistique et m\'ethodes non param\'etriques}{33}
+\contentsline {section}{\numberline {3.1}Estimation non param\'etrique d'un densit\'e}{34}
+\contentsline {section}{\numberline {3.2}Fen\^etres de Parzen}{35}
+\contentsline {section}{\numberline {3.3}Estimation par les $k$ plus proches voisins}{37}
+\contentsline {section}{\numberline {3.4}Mod\`ele de m\'elange et algorithme EM}{38}
+\contentsline {subsection}{\numberline {3.4.1}Mod\`ele de m\'elange gaussien}{38}
+\contentsline {subsection}{\numberline {3.4.2}L'algorithme EM}{41}
+\contentsline {subsubsection}{Le principe d'information manquante}{41}
+\contentsline {subsubsection}{Application au mod\`ele de m\'elange}{45}
+\contentsline {chapter}{\numberline {4}Fonctions discriminantes et m\'ethodes g\'eom\'etriques}{47}
+\contentsline {section}{\numberline {4.1}Approche g\'eom\'etrique et m\'etriques de discrimination}{47}
+\contentsline {subsection}{\numberline {4.1.1}La r\`egle de Mahalonobis Fisher}{48}
+\contentsline {subsection}{\numberline {4.1.2}L'approche de Sebestyen}{49}
+\contentsline {section}{\numberline {4.2}R\'eseaux de neurones \`a couches}{50}
+\contentsline {subsection}{\numberline {4.2.1}Des origines}{50}
+\contentsline {subsection}{\numberline {4.2.2}R\'eseaux \`a couches}{52}
+\contentsline {subsection}{\numberline {4.2.3}Discrimination et r\'eseaux \`a couches}{54}
+\contentsline {subsection}{\numberline {4.2.4}Apprentissage}{57}
+\contentsline {subsection}{\numberline {4.2.5}Choix du nombre de neurones cach\'es}{59}
+\contentsline {chapter}{\numberline {5}Extraction et s\'election de caract\'eristiques}{61}
+\contentsline {section}{\numberline {5.1}Analyse factorielle discriminante}{62}
+\contentsline {subsection}{\numberline {5.1.1}Discriminant lin\'eaire de Fisher}{63}
+\contentsline {subsection}{\numberline {5.1.2}Cas g\'en\'eral}{65}
+\contentsline {section}{\numberline {5.2}Multidimensional scaling}{67}
+\contentsline {subsection}{\numberline {5.2.1}Projection de Sammon}{67}
+\contentsline {subsection}{\numberline {5.2.2}Projection de Kruskal}{68}
+\contentsline {section}{\numberline {5.3}S\'election de caract\'eristiques}{69}
+\contentsline {subsection}{\numberline {5.3.1}Crit\`eres de choix}{69}
+\contentsline {subsection}{\numberline {5.3.2}Proc\'edures de s\'election}{70}
+\contentsline {chapter}{\numberline {6}Classification automatique}{71}
+\contentsline {section}{\numberline {6.1}Partitions}{72}
+\contentsline {subsection}{\numberline {6.1.1}Crit\`eres et algorithmes}{73}
+\contentsline {subsection}{\numberline {6.1.2}Inertie intra-classe et partition}{73}
+\contentsline {subsubsection}{L'algorithme des centres mobiles}{74}
+\contentsline {subsubsection}{Une version adaptative des centres mobiles}{75}
+\contentsline {subsubsection}{Les nu\'ees dynamiques}{75}
+\contentsline {subsection}{\numberline {6.1.3}Mod\`eles de m\'elange et partitions}{76}
+\contentsline {subsubsection}{Approche m\'elange}{76}
+\contentsline {subsubsection}{Approche classification}{77}
+\contentsline {subsubsection}{Liens avec la classification floue}{79}
+\contentsline {section}{\numberline {6.2}Hi\'erarchies}{80}
+\contentsline {subsection}{\numberline {6.2.1}Classification ascendante hi\'erarchique}{81}
+\contentsline {subsubsection}{Crit\`eres d'agr\'egation}{81}
+\contentsline {subsubsection}{Crit\`ere d'inertie intra classe et m\'ethode de Ward}{82}
+\contentsline {subsection}{\numberline {6.2.2}Classification descendante hi\'erarchique}{82}
+\contentsline {chapter}{\numberline {7}Donn\'ees spatiales et reconnaissance des formes}{83}
+\contentsline {section}{\numberline {7.1}Modifications des donn\'ees}{85}
+\contentsline {subsection}{\numberline {7.1.1}Utilisation des variables spatiales}{85}
+\contentsline {subsection}{\numberline {7.1.2}Transformation des variables}{85}
+\contentsline {subsection}{\numberline {7.1.3}Utilisation de la matrice des distances spatiales}{85}
+\contentsline {section}{\numberline {7.2}Classification hi\'erarchique contrainte}{86}
+\contentsline {section}{\numberline {7.3}Discrimination lin\'eaire et corr\'elation spatiale}{87}
+\contentsline {section}{\numberline {7.4}Approche globale}{88}
+\contentsline {section}{\numberline {7.5}S\'eries spatiales : mod\`eles markoviens}{90}
+\contentsline {subsubsection}{Champs al\'eatoires de Markov}{90}
+\contentsline {subsection}{\numberline {7.5.1}Un mod\`ele binaire}{93}
+\contentsline {subsection}{\numberline {7.5.2}Le mod\`ele de Strauss (1977)}{94}
+\contentsline {subsection}{\numberline {7.5.3}Des mod\`eles gaussiens}{94}
+\contentsline {subsection}{\numberline {7.5.4}Application \`a la segmentation}{95}
+\contentsline {subsection}{\numberline {7.5.5}Minimisation du risque conditionnel et simulation}{96}
+\contentsline {subsubsection}{Algorithme de M\'etropolis}{96}
+\contentsline {subsubsection}{Dynamique d'\'echange des spins}{97}
+\contentsline {subsubsection}{\'Echantillonneur de Gibbs}{98}
+\contentsline {subsubsection}{Recuit simul\'e et estimateur MAP}{98}
+\contentsline {subsubsection}{Algorithme ICM}{98}
+\contentsline {subsubsection}{Estimateur MPM}{99}
+\contentsline {subsection}{\numberline {7.5.6}Estimation supervis\'ee}{99}
+\contentsline {subsubsection}{Vraisemblance}{99}
+\contentsline {subsubsection}{Pseudo-vraisemblance}{100}
+\contentsline {subsubsection}{Gradient stochastique}{100}
+\contentsline {subsection}{\numberline {7.5.7}Estimation non supervis\'ee}{101}
+\contentsline {chapter}{Bibliographie}{102}

@@ -1,0 +1,780 @@
+\chapter{Fonctions discriminantes et m\'ethodes g\'eom\'etriques}
+
+Dans les chapitres pr\'ec\'edents, les fonctions discriminantes \'etaient obtenues
+par l'interm\'ediaire des densit\'es de classes. Une autre alternative,
+baptis\'ee discrimination logistique \cite{Ripley1996}, et non d\'evelopp\'ee
+dans ces notes,  consiste \`a estimer  directement les param\`etres des lois 
+{\em a posteriori} qui sont alors utilis\'ees comme fonctions $d_k()$.
+Dans ce chapitre, nous pr\'esentons deux  approches ``non statistique''
+qui permettent de d\'efinir des fonctions discriminantes :
+\begin{itemize}
+\item  les m\'ethodes g\'eom\'etriques, 
+\item  les r\'eseaux de neurones \`a couches. 
+\end{itemize}   
+
+\section{Approche g\'eom\'etrique et m\'etriques de discrimination}
+
+Les m\'ethodes g\'eom\'etriques consid\`erent les $N$ vecteurs forme
+de l'ensemble d'apprentissage comme un nuage de $\R^d$ partag\'e
+en $K$ sous nuages de centres de gravit\'e $\bm_1$, $\cdots$, $\bm_K$. 
+
+L'id\'ee de base consiste \`a d\'efinir les fonctions discriminantes
+\`a partir de distances dans l'espace des param\`etres. Cela
+revient \`a sp\'ecifier une fonction de similitude entre un
+nouvel individu, qui est consid\'er\'e comme un point dans $\R^d$, 
+et un sous nuage donn\'e. Le nouvel individu est affect\'e \`a la classe
+avec laquelle il est le plus similaire.  Les questions suivantes emm\`ergent :
+\begin{itemize}
+\item
+Comment combiner les distances entre les individus d'un nuage donn\'e
+\`a  un nouvel individu pour obtenir une fonction de similitude (fonction discriminante) ?
+\item
+Quelle type de distance prendre en compte  ?
+\end{itemize}   
+Commen\c{c}ons par envisager la deuxi\`eme question. Si la distance
+euclidienne est utilis\'ee, cela revient \`a accorder la m\^eme 
+importance \`a chacune des variables.  Il semble pourtant raisonnable
+de penser que toutes les variables ne poss\`edent pas le m\^eme pouvoir
+discriminant et qu'il est plus judicieux de travailler sur des variables
+transform\'ees. Si l'on consid\`ere l'ensemble
+des transformations lin\'eaires possibles sur les variables, alors
+cela revient \`a se limiter aux m\'etriques d\'efinies par une 
+forme quadratique
+$$
+\delta^2(\x,\y)= (\x-\y)^t M (\x-\y).
+$$    
+
+En pratique, l'approche g\'eom\'etrique repose donc sur le choix {\em a priori}
+des fonctions discriminantes, combinaison de distances, et sur la
+recherche d'une m\'etrique optimale au sens d'un certain crit\`ere. 
+
+
+%
+% Presentation de l'approche Sebestyen...
+%
+\subsection{La r\`egle de Mahalonobis Fisher}
+
+Une approche populaire consiste \`a d\'efinir les fonctions 
+discriminantes en utilisant les distances aux centres de gravit\'e des classes.
+Ainsi le vecteur forme $\x$ est affect\'e \`a la classe $k$ si
+$$
+k= arg \min_{\ell} (\x-\bm_{\ell})^t M (\x-\bm_{\ell})
+$$
+La m\'etrique $M$ peut par exemple \^etre choisie de mani\`ere
+\`a ce que les individus composant les classes soient le 
+moins dispers\'es possible autour de leurs centres de gravit\'e 
+$\bm_k$. Traduit en terme de crit\`ere, cette derni\`ere
+exigence peut s'exprimer comme la minimisation
+d'une inertie $I(M)$ :
+$$
+\left \{ \begin{array}{l}
+M= arg \min_Q   \sum_{k=1}^{K} \sum_{i=1}^{n_k} \frac{1}{N}(\x_{i,k}-\bm_k)^t Q 
+(\x_{i,k}-\bm_k), \\
+|M|=1\\
+\end{array}
+\right .
+$$
+Cette expression peut se mettre sous la forme :
+$$
+\left \{ \begin{array}{l}
+M= arg \min_Q   trace[W Q], \\
+|M|=1\\
+\end{array}
+\right.
+$$
+avec $W=\sum_{k=1}^{K} \sum_{i=1}^{n_k} \frac{1}{N}(\x_{i,k}-\bm_k)(\x_{i,k}-
+\bm_k)^t$. Notons que $W$ est un estimateur de la matrice de covariance suppos\'ee
+commune \`a toutes les classes.
+Supposons que la matrice $W$ est inversible (ce qui est tr\`es souvent le cas).
+Comme $W$ et $M$ sont sym\'etriques d\'efinies positives, les valeurs propres
+$\lambda_1,\cdots,\lambda_d$ de la matrices $WM$ sont toutes strictement positives.
+Remarquons que $trace[WM]=\sum_{i=1}^d \lambda_i$ et $|WM|=\prod_{i=1}^d 
+\lambda_i$.
+Comme $|M|=1$, on en d\'eduit que le produit des valeurs propres est constant et
+\'egal au d\'eterminant de $W$ (car $|WM|=|W|\cdot|M|$). Le probl\`eme de minimisation
+prend alors la forme suivante :
+$$
+\left \{ \begin{array}{l}
+\min \sum_{i=1}^d \lambda_i, \\
+\prod_{i=1}^d \lambda_i=|W|.\\
+\end{array}
+\right.
+$$ 
+En \'ecrivant le lagrangien, un calcul de gradient donne 
+$$
+\lambda_1=\cdots=\lambda_d=|W|^{1/d}=\lambda.
+$$ 
+La d\'ecomposition de la matrice $WM$ sur sa base de vecteurs propres $U$ am\`ene
+\begin{eqnarray*}
+WM & = & U^t \lambda \cdot I U,\\
+   & = & \lambda \cdot I.
+\end{eqnarray*}
+d'o\`u l'on d\'eduit que $M=\lambda \cdot W^{-1}$. 
+
+La r\`egle de d\'ecision obtenue est la r\`egle de Mahalonobis Fisher : un vecteur
+forme $\x$ est affect\'e \`a la classe la plus proche au sens de la distance  : 
+$$
+\delta(\x,\bm_k)=[(\x - \bmu_k)^t W^{-1} (\x - \bmu_k)]^{\frac{1}{2}}.
+$$ 
+
+Comme nous l'avons d\'ej\`a mentionn\'e dans le second chapitre, cette 
+r\`egle de d\'ecision est lin\'eaire et s\'epare les classes voisines par
+des hyperplans. 
+
+
+
+\subsection{L'approche de Sebestyen}
+
+Un autre exemple d'approche g\'eom\'etrique a \'et\'e publi\'e par Sebestyen en 1962 
+\cite{Romeder1973}. La fonction discriminante propos\'e est bas\'ee sur la somme
+des distances de l'individu $\x$ \`a classer \`a tous les individus d'un 
+sous-nuage donn\'e. Ainsi $\x$ sera affect\'e \`a la classe $k$ si :
+$$
+k=arg \min_{\ell} \frac{1}{n_k} \sum_{i=1}^{n_k} (\x - \x_{i,k})^t M_k (\x - \x_{i,k}).
+$$ 
+
+Une  m\'etrique $M_k$, par classe, est choisie de mani\`ere \`a minimiser
+la distance moyenne entre les individus d'un sous nuage (groupe, classe) :
+$$
+\left \{ \begin{array}{l}
+M_k= arg \min_Q \frac{1}{n_k(n_k-1)}  \sum_{i=1}^{n_k} \sum_{j=1}^{n_k} (\x_{i,k}-
+\x_{j,k})^t Q (\x_{i,k}-\x_{j,k}), \\
+|M_k|=1\\
+\end{array}
+\right .
+$$
+La r\`egle de d\'ecision obtenue affecte $\x$ \`a la classe $k$, si :
+$$
+k=arg \min_{\ell}  (\x - \bm_{\ell})^t \bSigma_\ell^{-1} (\x - \bm_{\ell}),
+$$
+o\`u $\bSigma_k$ est la matrice de covariance estim\'ee de la classe $k$. 
+
+Remarquons que cette r\`egle est exactement la m\^eme que celle obtenue dans le 
+cas gaussien sous hypoth\`ese d' h\'et\'erosc\'edasticit\'e, lorsque les 
+proportions des classes sont toutes \'egales et que les matrices de covariance
+ont m\^eme d\'eterminant (c'est \`a dire occupent un m\^eme volume dans l'espace).
+
+
+\section{R\'eseaux de neurones \`a couches}
+
+Historiquement, la premi\`ere mod\'elisation du neurone a \'et\'e sugg\'er\'ee
+dans les ann\'ees quarante par Mac Culloch et Pitts \cite{Davalo1992}.
+Au d\'ebut des ann\'ees soixante, \citeasnoun{Rosenblatt1958} pr\'esentait
+un mod\`ele tr\`es simple de r\'eseau de neurones inspir\'e
+du syst\`eme visuel : le perceptron. Ce mod\`ele suscita beaucoup d'enthousiasme,
+jusqu'\`a la publication d'un livre de \citeasnoun{Minsky1969}, qui d\'emontra
+les  limites du mod\`eles. La renaissance des r\'eseaux de neurones (de type perceptron)
+est \`a attribuer aux id\'ees novatrices de \citeasnoun{Rumelhart1986}.
+
+Il existe une grande vari\'et\'e de r\'eseaux de neurones. Cette section est
+uniquement consacr\'ee aux r\'eseaux multicouches. D'un point de vue math\'ematique, 
+un r\'eseau de neurones \`a couches, est une fonction tr\`es flexible $\bd()$ de 
+$\R^d$ dans $\R^K$, qui est g\'en\'eralement d\'efinie  par de nombreux  param\`etres 
+$\bw=\{w_{ij}\}$. Un r\'eseau de neurones peut  \^etre utilis\'e  pour faire de
+la r\'egression non lin\'eaire, mais aussi pour d\'efinir un classifieur (qui est bien une 
+fonction de $\R^d$ dans $\R^K$). 
+
+
+\subsection{Des origines}
+Le neurone formel propos\'e par  Mac Culloch et Pitts est  une unit\'e
+qui en fonction de la somme pond\'er\'ee de  signaux d'entr\'ee transmet une
+r\'eponse binaire. C'est une fonction seuil de $\R^d$ dans ${0,1}$ de la forme :
+$$
+y_j(t)=\II_{\left [ \sum_{i} w_{ij} \cdot y_i(t-1)>b_j \right ]}
+$$
+o\`u   
+\begin{itemize}
+\item $y_j(t)$ est la sortie du neurone $j$ au temps $t$. D'un 
+point de vue biologique, c'est la valeur transmise par l'axone du neurone ; 
+\item $w_{ij}$ est le poids de la connexion qui va du neurone $i$ vers le neurone $j$. 
+Cette valeur est donc une caract\'eristique de la dendrite qui transmet le signal 
+vers le neurone $j$.
+\item les $y_i(t)$ sont les signaux d'entr\'ee (qui peuvent provenir d'autre neurones) au 
+temps 
+$t$ qui sont transmis par l'interm\'ediaire
+des dendrites.
+\item $b_j$, est le seuil au del\`a duquel le neurone sera activ\'e.
+\end{itemize}
+
+Ce mod\`ele, tr\`es simplifi\'e de neurone, est la la base du perceptron
+de \citeasnoun{Rosenblatt1958}. Avant de pr\'esenter sous un ``angle
+connexioniste'' le perceptron,
+qui poss\`ede essentiellement un int\'er\^et historique,  commen\c{c}ons 
+par une digression sur les fonctions discriminantes lin\'eaires. L'approche
+lin\'eaire du probl\`eme de classement, dans le cadre des fonctions discriminantes
+consid\`ere que celles ci  sont des combinaisons lin\'eaires
+des vecteurs formes \`a classer :
+$$
+d_k(\x)= \bw^t \cdot \x + w_0.
+$$ 
+Si l'on se limite \`a deux classes, deux fonctions discriminantes 
+sont \`a d\'efinir, en fonction de l'ensemble d'apprentissage ${\cal F}$ :
+$$
+\left \{ \begin{array}{l}
+d_1(\x)= \bw_1^t \cdot \x + w_{01} \\
+d_2(\x)= \bw_2^t \cdot \x + w_{02} \\
+\end{array}
+\right .
+$$
+Un vecteur forme est class\'e dans la premi\`ere classe si :
+\begin{eqnarray*}
+d_1(\x) & {>} &  d_2(\x),\\
+(\bw_1^t-\bw_2^t)\x +(w_{01}-w_{02}) & {>} & 0.
+\end{eqnarray*}
+Une astuce d'\'ecriture couramment utilis\'ee consiste \`a changer la 
+dimension et le signe des vecteurs formes :
+$$
+\begin{array}{l c l c}
+
+\y = \left [ 
+\begin{array}{l}
+1\\
+\x\\
+\end{array}
+\right ]
+
+&
+
+\mbox{si $\x \in {\cal C}_1$ et,}
+
+&
+\y = \left [ 
+\begin{array}{l}
+-1\\
+-\x\\
+\end{array}
+\right ]
+
+&
+\mbox{sinon}
+
+\end{array}
+$$
+
+Si l'on note,
+$$
+\ba = \left [ 
+\begin{array}{l}
+w_{01}-w_{02}\\
+\bw_1-\bw_2\\
+\end{array}
+\right ] ,
+$$
+alors on peut dire qu'un vecteur forme $\x$ de l'ensemble d'apprentissage 
+est bien class\'e si  :
+$$
+\ba^t \y > 0.
+$$
+Comment d\'efinir les composantes du vecteur $\ba$ pour obtenir un bon 
+classifieur ? Une approche naturelle consiste \`a :
+\begin{itemize}
+\item 
+poser un crit\`ere qui d\'efinisse  formellement, ce qu'est un ``bon'' vecteur $\ba$ ;
+\item
+choisir une m\'ethode d'optimisation qui permette de trouver un optimum (souvent local du 
+crit\`ere).
+\end{itemize}
+Le crit\`ere le plus \'evident est bien s\^ur le nombre 
+de vecteurs forme mal class\'e de l'ensemble 
+d'apprentissage. Malheureusement, ce crit\`ere n'est pas continu par rapport
+au vecteur $\ba$ et pose des probl\`eme d'optimisation. De nombreux
+autres crit\`eres, qui ont de meilleures propri\'et\'es,  ont \'et\'e propos\'es.
+Citons par exemple le crit\`ere des moindres carr\'es :
+$$
+E_s(\ba)=\sum_{\y : \  \ba^t \y \leq  b }  (\ba^t \y- b)^2
+$$
+o\`u $b$ est un seuil permettant d'\'eviter la solution $\ba=0$, qui ne 
+poss\`ede aucun sens pour le probl\`eme de classement. Notons que la somme
+est effectu\'ee uniquement sur les vecteurs mal class\'es ($\y : \  \ba^t \y \leq  b$).
+
+Le crit\`ere du perceptron  s'exprime comme :
+$$
+E_p(\ba)=\sum_{\y : \  \ba^t \y \leq  b }  (b-\ba^t \y).
+$$
+La minimisation de ce crit\`ere peut se faire par une simple descente de gradient :
+\begin{eqnarray*}
+\ba_{k+1} & = & \ba_k - \rho_k \nabla^t E_p(\ba_k)\\ 
+          & = & \ba_k + \rho_k \sum_{\y : \  \ba^t \y \leq  b } \y
+\end{eqnarray*}
+o\`u $\rho_k$ est le pas \`a l'\'etape $k$. Dans la terminologie connexioniste,
+ce type d'algorithme est dit ``batch'' car une seule modification des param\`etres
+prend en compte tous les vecteurs forme de l'ensemble d'apprentissage.
+
+L'algorithme initial propos\'e par Rosenblatt minimise
+le crit\`ere pour la pr\'esentation
+d'un seul vecteur forme \`a la fois et prend la forme :
+$$
+\ba_{k+1}= \ba_k + \rho_k \II_{\left [ \y : \  \ba^t \y \leq  b \right ] } \y
+$$
+Intuitivement, cette r\`egle se comprend facilement :  le vecteur poids $\ba$
+est modifi\'e seulement lorsqu'un vecteur forme mal class\'e est pr\'esent\'e. 
+Cette derni\`ere forme d'optimisation, parfois qualifi\'ee de ``on-line'', est
+tr\`es courante dans le domaine des r\'eseaux de neurones, et se justifie
+dans le cadre de la th\'eorie de l'approximation stochastique. \citeasnoun{Ripley1996}
+cite trois raisons qui motivent l'utilisation d'algorithmes ``on-line'' :
+\begin{itemize}
+\item d'un point de vue biologique, il semble plus ``naturel'' d'apprendre
+un peu \`a chaque exp\'erience nouvelle ; 
+\item d'un point calculatoire, ce type d'algorithme peut converger plus rapidement qu'une
+version ``batch'' ;
+\item enfin, l'introduction de bruit, par l'interm\'ediaire du choix al\'eatoire des
+vecteurs forme, \'evite peut \^etre de tomber dans des mimima locaux. 
+\end{itemize}
+
+Mais quel est le rapport entre les fonctions  discriminantes lin\'eaires et 
+les r\'eseaux de neurones ?  Si l'on se limite (comme dans la discussion pr\'ec\'edente) \`a la 
+consid\'eration de deux classes, une fonction discriminante lin\'eaire peut se mettre
+sous la forme d'un r\'eseau comportant un seul neurone \`a seuil binaire comme
+le montre la figure \ref{fig:perceptron}. Le calcul du vecteur $\ba$ optimal peut
+s'interpr\'eter comme un ``apprentissage'' \`a discriminer entre les vecteurs forme
+de deux classes distinctes. \`A la pr\'esentation
+d'un vecteur forme $\x$, le neurone r\'epond $1$ si le vecteur forme est class\'e
+dans la premi\`ere classe et $0$ sinon.  
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[hbtp]
+\begin{center}
+
+\leavevmode
+\newcounter{cms}
+\setlength{\unitlength}{1mm}
+\mbox
+{
+\begin{picture}(100,50)(0,0)
+\put(50,25){\circle{15}}
+\put(57.5,25){\vector(1,0){30}}
+\put(75,30){\makebox(0,0){$d_j(\y)=\II{\left [ \ba^t  \y > b   \right ]}$}}
+\put(50,22.5){\line(0,1){5}}
+\put(45,22.5){\line(1,0){5}}
+\put(50,27.5){\line(1,0){5}}
+%\put(15,40){\makebox(0,0){$+1$}}
+\put(20,40){\vector(2,-1){23.5}}
+\put(10,25){\makebox(0,0){$\y = \left [ 
+\begin{array}{l}
++1\\
+\\
+x_1\\
+\\
+\vdots\\
+\\
+x_d\\
+\end{array}
+\right ]$}}
+\put(20,30){\vector(4,-1){23.5}}
+\put(20,10){\vector(2,1){23.5}}
+\end{picture} 
+}
+
+\end{center}
+\caption{Repr\'esentation neuronale d'une fonction discriminante lin\'eaire}
+\label{fig:perceptron}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+Les limitations du perceptron r\'esident essentiellement dans son
+caract\`ere de s\'eparateur lin\'eaire. \cite{Rumelhart1986} ont
+propos\'e un type de r\'eseau plus complexe d\'epassant cette
+limitation : les r\'eseaux de neurones \`a couches.
+
+\subsection{R\'eseaux \`a couches}
+
+L'id\'ee \`a la base des r\'eseaux multicouches est l'utilisation
+d'une fonction d'activation d\'erivable pour mod\'eliser le neurone. 
+Les fonctions principalement utilis\'ees sont :
+\begin{itemize}
+\item la fonction lin\'eaire $d_j(x_i)=a \cdot x_j$,
+\item la fonction logistique $d_j(x_j)=e^{x_j}/(1+e^{x_j})$,
+\item et la tangente hyperbolique $d_j(x_j)=tanh(x_j)$.
+\end{itemize}
+o\`u $x_j$ est la somme pond\'er\'ee des entr\'ees $y_i$ (\`a ne pas confondre avec $\x$
+un vecteur forme) :
+$$
+x_j=\sum_{i \rightarrow j} w_{ij}\cdot y_i.
+$$
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[hbtp]
+\begin{center}
+
+\leavevmode
+
+\setlength{\unitlength}{1mm}
+\mbox
+{
+\begin{picture}(100,50)(0,0)
+\put(50,25){\circle{15}}
+\put(46,25){\makebox(0,0){$x_j$}}
+\put(50,17.5){\line(0,1){15}}
+\put(53,25){\makebox(0,0){$y_j$}}
+\put(57.5,25){\vector(1,0){30}}
+\put(75,30){\makebox(0,0){$y_j=d_j(x_j)$}}
+\put(15,30){\makebox(0,0){$y_i$}}
+\put(30,29){\makebox(0,0){$w_{ij}$}}
+\put(20,40){\vector(2,-1){23.5}}
+\put(20,30){\vector(4,-1){23.5}}
+\put(20,10){\vector(2,1){23.5}}
+\end{picture} 
+}
+
+\end{center}
+\caption{Un neurone \`a fonction d'activation d\'erivable}
+\label{fig:neurone}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+Un r\'eseau multicouches est d\'efini comme un ensemble
+de neurones qui peuvent \^etre num\'erot\'es de mani\`ere
+\`a ce que les connexions aillent toujours d'un neurone  $i$ 
+vers un neurone $j$ avec $i<j$. En pratique les neurones sont
+regroup\'es en couches. Les neurones d'une couche donn\'ee  communiquent 
+seulement avec les couches d'ordre sup\'erieur. Le r\'eseau comporte
+\begin{itemize}
+\item
+une couche d'entr\'ee (qui ne sert \`a rien, sinon \`a transmettre
+le signal d'entr\'ee vers les couches sup\'erieures) comportant
+$d$ neurones. La fonction d'activation des ``neurones'' de cette
+couche est la plupart du temps une fonction lin\'eaire de pente un.  
+\item
+une couche de sortie comportant $K$ neurones,
+\item
+un certain nombre de couches interm\'ediaires, dites couches cach\'ees.
+\end{itemize}
+Une r\'eseau de neurones peut donc \^etre consid\'er\'e comme une
+fonction de $\R^d$ dans $\R^K$, qui \`a un vecteur $\x$ associe
+un vecteur $\bd(\x)=(d_k(\x))$. Dans ces notes nous nous limiterons
+au type de r\'eseau le plus courant, comportant trois couches
+(c'est \`a dire une seule couche cach\'ee) o\`u chaque sortie $y_k$
+est de la forme 
+$$
+y_k=d_k \left (  \alpha_k + \sum_{j \rightarrow k} w_{jk} \cdot d_j(\alpha_j + \sum_{i 
+\rightarrow j} w_{ij} \cdot x_i)  \right ),
+$$
+o\`u $i \rightarrow j$ d\'enote l'ensemble des neurones $i$ qui sont connect\'e au neurone 
+$j$.  
+Au m\^eme titre que dans la section pr\'ec\'edente, il est avantageux d'un point
+de vue notation, d'augmenter la dimension du probl\`eme en ajoutant une composante
+unit\'e \`a chaque entr\'ee de neurone (voir figure \ref{fig:mlfn}). Cette astuce 
+permet de ce d\'ebarrasser des terme de biais $\alpha_i$ et la sortie $y_k$ 
+prend alors la forme (figure \ref{fig:mlfn}) :
+$$
+y_k=d_k \left ( \sum_{j \rightarrow k} w_{jk} \cdot d_j( \sum_{i \rightarrow j} w_{ij} 
+\cdot x_i)  \right ).
+$$
+
+
+\begin{figure}[hbtp]
+\begin{center}
+\leavevmode
+%---------------------------------------------------------------
+\epsfxsize=\textwidth
+\divide\epsfxsize by 100
+\multiply\epsfxsize by 45
+\epsffile{/home/soleil/ambroise/figures/mlfn.ps}\\
+%---------------------------------------------------------------
+\caption{R\'eseau de neurone avec une seule couche cach\'ee}
+\label{fig:mlfn}
+\end{center}
+\end{figure}
+
+
+
+
+Ce genre de r\'eseau est suffisamment g\'en\'eral pour pouvoir approximer n'importe
+quelle fonction continue de $\R^d$ dans $\R^K$, de fa\c{c}on aussi pr\'ecise
+que l'on veut.
+
+\subsection{Discrimination et r\'eseaux \`a couches}
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+Un r\'eseau de neurones est une fonction $\bd()$ d\'efinie par de nombreux
+param\`etres $\bw=\{w_{ij}\}$, qui sont les poids de connexions. Dans le
+cadre de la discrimination, l'objectif consiste \`a ajuster les param\`etres
+$\bw$ de mani\`ere \`a transformer les $K$ sorties du r\'eseau en fonctions
+discriminantes  $d_k(\x)$, qui d\'efiniront un classifieur. Rappelons qu'un   
+classifieur affecte le vecteur forme $\x$ \`a la classe $k$  si :
+$$
+d_k(\x)>d_\ell(\x), \ \forall \ell \neq k.
+$$  
+Il est possible de construire une fonction $\z \in \R^K$ qui d\'efinisse
+un classifieur id\'eal pour l'ensemble d'apprentissage  
+${\cal F}=\{(\x_1,c(\x_1)),\cdots,(\x_N,c(\x_N))\}$. Consid\'erons
+par exemple  $\z(\x_i)=(z_k(\x_i),k=1,...,K)$ avec $z_k(\x_i) \in \{0,1\}$,
+$\sum_{k=1}^K  z_k(\x_i)=1$, et $z_k(\x_i)=1$ signifiant que $\x_i$ appartient
+\`a la classe $k$.
+ L'id\'ee originale de \citeasnoun{Rumelhart1986} consiste
+\`a choisir le vecteur $\bw$, de mani\`ere \`a minimiser le carr\'e
+de l'erreur entre $\bd()$ et $\z$ sur l'ensemble d'apprentissage :
+$$
+E(\bw)=\sum_{i=1}^N \left( \z(\x_i) - \bd(\x_i ; \bw) \right)^2
+$$
+La minimisation de ce crit\`ere rend aussi proche que
+possible, au sens des moindres carr\'es, le r\'eseau de neurones $\bd()$
+de la fonction cible $\z$. 
+\begin{ex}
+Soit un probl\`eme de discrimination \`a deux classes. 
+Si $\x_i$ un vecteur forme de l'ensemble d'apprentissage appartient 
+\`a la classe 2, alors la fonction cible $\z()$
+vaudra en  $\x_i$
+$$
+\z(\x_i)= \left [  \begin{array}{c} 0  \\  1 \end{array}\right ]
+$$ 
+et la sortie du r\'eseaux sera de la forme
+$$
+\bd(\x_i;\bw)= \left [  \begin{array}{c} d_1(\x_i)  \\  d_2(\x_i) \end{array}\right ]
+$$
+\end{ex}
+
+La litt\'erature connexioniste propose de nombreux crit\`eres d'erreur
+qui poss\`edent chacun certains avantages. Citons par exemple 
+celui  de \citeasnoun{Kalman1991} :
+$$
+E(\bw)=\sum_{i=1}^N \sum_{k=1}^K \frac{\left( \z_k(\x_i) - d_k(\x_i ; \bw) \right)^2}{1-
+d_k(\x_i ; \bw)^2}.
+$$
+Les auteurs arguent que la minimisation de l'erreur quadratique, par un algorithme 
+d'optimisation
+classique peut aboutir \`a des minima locaux d\^us \`a la saturation des fonctions d'activation
+des neurones de sortie. En effet si, les poids des neurones de sortie sont tr\`es grands, 
+alors leur fonction d'activation vaut un, et la fonction d'erreur est excessivement plate. 
+Le crit\`ere pr\'ec\'edent a pour but d'\'eviter ces zones dangereuses, en faisant cro\^{\i}tre
+l'erreur de mani\`ere tr\`es importante \`a l'approche de la saturation. 
+
+Notons qu'une  autre solution tr\`es utilis\'ee et efficace pour lutter contre la 
+saturation (de toutes les unit\'es cette fois-ci) consiste \`a optimiser un crit\`ere
+p\'enalis\'e :
+$$
+E_p(\bw)= E(\bw) + \lambda \sum w_{ij}^2.
+$$
+Avant d'utiliser ce type de crit\`ere, il faut s'assurer que les entr\'ees et les
+sorties de chaque neurone sont \`a la m\^eme \'echelle. Ainsi une normalisation
+des vecteurs forme constitue dans ce cas  une \'etape indispensable.
+
+Citons enfin, l'entropie crois\'ee qui est un crit\`ere tr\`es utilis\'e dans les applications 
+de type discrimination :
+$$
+E(\bw)=\sum_{i=1}^N \sum_{k=1}^K \left 
+[z_k(\x_i)\log\frac{z_k(\x_i)}{d_k(\x_i;\bw)}+(1- z_k(\x_i))
+\log\frac{1-z_k(\x_i)}{1-d_k(\x_i;\bw)}   \right ]
+$$
+Remarquons que cet dernier crit\`ere suppose que la fonction cible et les sortie du r\'eseaux
+sont comprises entre $0$ et $1$.
+  
+
+
+
+
+\subsection{Apprentissage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Une fois un crit\`ere d'erreur d\'efini reste \`a l'optimiser. L'id\'ee premi\`ere
+de \citeasnoun{Rumelhart1986} consistait \`a utiliser une descente de gradient :
+$$
+w_{ij}^ {q+1} = w_{ij}^ {q} - \nu \cdot \frac{\partial E}{\partial w_{ij}}
+$$ 
+L'application de cette technique n\'ecessite donc le calcul explicite 
+des d\'eriv\'ees partielles du crit\`ere d'erreur $E(\bw)$ par rapport \`a chacun
+des param\`etres $w_{ij}$ du r\'eseau. 
+
+Rappelons que la fonction d'activation de chaque neurone $j$ est une fonction
+d\'erivable de la somme pond\'er\'ees $x_j$ des entr\'ees $y_i$ :
+$$
+y_j=d_j \left( \sum_{i \rightarrow j} w_{ij} y_i \right ) = d_j(x_j).
+$$ 
+
+\begin{figure}[hbtp]
+\begin{center}
+
+\leavevmode
+
+\setlength{\unitlength}{1mm}
+\mbox
+{
+\begin{picture}(100,50)(0,0)
+% neurone central
+\put(50,25){\circle{15}}
+\put(46,25){\makebox(0,0){$x_j$}}
+\put(50,17.5){\line(0,1){15}}
+\put(53,25){\makebox(0,0){$y_j$}}
+% liaisons neurone central vers  couche superieure
+\put(56,29){\vector(2,1){21.5}}
+\put(56,21){\vector(2,-1){21.5}}
+\put(57.5,25){\vector(1,0){20.5}}
+\put(70,27){\makebox(0,0){$w_{jk}$}}
+% neurone couche superieure
+\put(85,25){\circle{15}}
+\put(85,17.5){\line(0,1){15}}
+\put(81,25){\makebox(0,0){$x_k$}}
+% liasions couche inf vers centre
+\put(30,27){\makebox(0,0){$w_{ij}$}}
+\put(20,40){\vector(2,-1){23.5}}
+\put(22,25){\vector(1,0){21.5}}
+\put(20,10){\vector(2,1){23.5}}
+% neurones couche inf
+\put(15,25){\circle{15}}
+\put(15,17.5){\line(0,1){15}}
+\put(18,25){\makebox(0,0){$y_i$}}
+\end{picture} 
+}
+
+\end{center}
+\caption{Notations utiles au calcul du gradient}
+\label{fig:gradient}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Un rappel technique de la r\`egle de diff\'erentiation des fonctions compos\'ees
+n'est peut \^etre pas inutile pour comprendre la suite de cette section.
+Consid\'erons les trois fonctions suivantes suppos\'ees continues et partiellement
+d\'erivables par rapport \`a toutes leurs variables  :
+\begin{eqnarray*}
+u &=& g_1(x,y)\\
+v &=& g_2(x,y)\\
+h &=& f(u,v)
+\end{eqnarray*}
+Les d\'eriv\'ees partielles de $h$ par rapport \`a $x$ et $y$ s'expriment alors 
+\begin{eqnarray}
+\label{eq :deriv}
+\frac{\partial h}{\partial x} &=&\frac{\partial h}{\partial u}\frac{\partial u}{\partial x} + 
+                                 \frac{\partial h}{\partial v}\frac{\partial v}{\partial x}, \\
+ & & \\
+\frac{\partial h}{\partial y} &=& \frac{\partial h}{\partial u}\frac{\partial u}{\partial y} + 
+                                 \frac{\partial h}{\partial v}\frac{\partial v}{\partial y}.
+\end{eqnarray}
+
+L'id\'ee \`a la base du calcul du gradient de la fonction d'erreur $E$ par rapport
+aux poids $w_{ij}$,
+consiste \`a exprimer la d\'eriv\'ee de $E$ par rapport \`a des variables
+de plus en plus proche de la couche de sortie. Notons que le crit\`ere $E$,
+est une somme sur l'ensemble d'apprentissage  des erreurs $E_p$ commises pour
+ chaque vecteur forme $\x_p$. On a donc 
+$$
+\frac{\partial E}{\partial w_{ij}} =\sum_p \frac{\partial E_p}{\partial w_{ij}}
+$$
+ En appliquant la  r\`egle de
+d\'erivation pr\'ec\'edente au calcul qui nous int\'eresse, on obtient
+$$
+\frac{\partial E_P}{\partial w_{ij}} =
+\frac{\partial E_P}{\partial x_{j}} \cdot \frac{\partial x_j}{\partial w_{ij}}=
+y_i \cdot \frac{\partial E_P}{\partial x_{j}}=
+y_i \cdot \delta_j
+$$
+
+En r\'ep\'etant l'op\'eration sur $\delta_j$, il vient
+$$
+\delta_j= \frac{\partial E_P}{\partial x_{j}}=  \frac{\partial E_P}{\partial y_{j}} \cdot 
+                                              \frac{\partial y_j}{\partial x_{j}}
+                                           =  \frac{\partial E_P}{\partial y_{j}} \cdot
+                                               d_j'(x_j).   
+$$
+
+Deux cas sont alors \`a distinguer :
+\begin{itemize}
+\item 
+si le neurone $j$ appartient \`a la couche de sortie alors la quantit\'e
+$\frac{\partial E_P}{\partial y_{j}}$ est calculable. Consid\'erons par exemple
+des neurones logistiques et une fonction d'erreur  quadratique : 
+$$
+\delta_j=2(y_j-z_j) \cdot yj \cdot (1-y_j)
+$$
+avec $z_j$ la j\ieme coordonn\'ee de la fonction cible $\z(\x_p)$.
+\item 
+si le neurone $j$ fait partie de la couche cach\'ee, alors il faut continuer \`a
+d\'evelopper les $\delta_j$ de mani\`ere \`a les exprimer en fonction
+de variables relatives \`a la couche de sortie :
+$$
+\frac{\partial E_P}{\partial y_{j}}= \sum_{k : \  \ j \rightarrow k} \frac{\partial x_{k}}{\partial y_{j}} \cdot 
+                                                               \frac{\partial E_P}{\partial x_{k}}
+                                 =  \sum_{k : \  \ j \rightarrow k} w_{jk} \cdot \delta_k, 
+$$
+Pour comprendre cette \'egalit\'e, remarquons qu'une modification de $y_j$ va
+ \^etre r\'epercut\'ee sur $E_P$ par l'interm\'ediaire
+de tous les neurones $k$ auquel le neurone $j$ transmet sa sortie $y_j$.
+Remarquons que dans le cas
+o\`u le r\'eseau consid\'er\'e comporte plus d'une couche cach\'ee, les calculs pr\'ec\'edents
+doivent \^ etre r\'eit\'er\'es afin de remonter aux quantit\'es
+$\delta$ relatives \`a la couche de sortie.
+\end{itemize}
+L'algorithme de descente de gradient pr\'ec\'edent est connu sous le nom de 
+de r\'etropropagation du gradient. Chaque it\'eration n\'ecessite deux \'etapes :
+\begin{itemize}
+\item une passe avant qui d\'etermine les sorties de chaque neurone en fonction
+de vecteurs forme pr\'esent\'es \`a la couche d'entr\'ee ; 
+\item une passe arri\`ere, o\`u les $\delta$ sont propag\'es de la couche de sortie vers 
+la couche d'entr\'ee, de mani\`ere \`a pouvoir calculer les diff\'erentes composantes du 
+gradient.
+\end{itemize}
+De nombreuses autres techniques d'optimisation sont employ\'ees
+pour ajuster les poids des r\'eseaux multicouches. Notons que les algorithmes
+neuronaux modifient souvent les param\`etres du r\'eseau en fonction de l'erreur 
+commise pour un seul vecteur forme (algorithme ``on-line'').
+
+Ces algorithmes d'optimisation posent plusieurs probl\`emes :
+\begin{itemize}
+\item o\`u commencer ? En effet le r\'esultat obtenu par l'algorithme
+d'optimisation d\'epend du point de d\'epart, c'est-\`a-dire de
+l'initialisation des vecteurs poids du r\'eseau.
+\item o\`u s'arr\^eter ? Ce probl\`eme est li\'e \`a celui de la complexit\'e
+du r\'eseau. En effet, si un r\'eseau  est d\'efini par de nombreux
+param\`etres, l'agorithme d'optimisation utilis\'e est suceptible 
+d'obtenir de tr\`es petites erreurs sur l'ensemble d'apprentissage. Ce ph\'enom\`ene
+n'est en g\'en\'eral pas souhaitable, car  il r\'esulte de 
+l'hyper-sp\'ecialisation du r\'esau pour un ensemble d'apprentissage donn\'e, ce qui
+entraine une mauvaise capacit\'e \`a g\'en\'eraliser.  
+\end{itemize} 
+
+Le premier probl\`eme est en g\'en\'eral r\'esolu en initialisant les poids de connexions
+au hasard, tout en \'evitant  les valeurs trop grandes qui posent
+des probl\`eme de saturation.
+ 
+Le second probl\`eme peut \^etre trait\'e de trois mani\`eres diff\'erentes :
+\begin{itemize}
+\item une solution consiste simplement \`a  stopper l'apprentissage
+avant que l'erreur en g\'en\'eralisation se d\'egrade (``early stopping'') ;
+une technique r\'epandue utilise un ensemble de validation. L'apprentissage,
+qui diminue l'erreur commise sur l'ensemble d'apprentissage, est alors stopp\'e
+lorsque l'erreur augmente sur cet ensemble de validation.
+\item il est aussi possible d'utiliser la r\'egularisation, qui limite
+d'office la complexit\'e du r\'eseau ;
+\item ou enfin de recourir \`a un mod\`ele plus simple, au quel cas l'on se ram\`ene
+\`a un probl\`eme de choix de mod\`ele.
+\end{itemize}
+
+\subsection{Choix du nombre de neurones cach\'es}
+
+Dans le cadre que nous nous sommes fix\'es (une seule couche cach\'ee) le nombre 
+de neurones de la couche d'entr\'ee est identique \`a la dimension des vecteurs formes,
+et le nombre de neurones de la couche de sortie correspond au nombre de classes.
+Par contre les connexions entre les diff\'erents neurones, ainsi
+que le nombre de neurones cach\'es restent des param\`etres \`a choisir.
+
+Ce dernier probl\`eme constitue typiquement un probl\`eme de choix
+de mod\`ele. Les techniques usuelles peuvent \^etre envisag\'ees : 
+comparaison de mod\`eles deux \`a deux en utilisant 
+une validation crois\'ee, ou bien des crit\`eres de complexit\'es comme
+AIC. Une d\'emarche r\'epandue consiste \`a comparer deux r\'eseaux 
+totalement connect\'es qui diff\`erent par le nombre de neurones de la couche
+cach\'ee.  Les constructions incr\'ementales, qui partent d'un
+petit r\'eseau et ajoutent une nouvelle unit\'e \`a chaque \'etape semblent \^etre
+les plus efficaces, ou du moins les plus populaires.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,2879 @@
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.12.17)  26 NOV 2012 09:43
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**Notes
+(./Notes.tex
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, dumylang, nohyphenation, ge
+rman-x-2009-06-19, ngerman-x-2009-06-19, afrikaans, ancientgreek, ibycus, arabi
+c, armenian, basque, bulgarian, catalan, pinyin, coptic, croatian, czech, danis
+h, dutch, ukenglish, usenglishmax, esperanto, estonian, ethiopic, farsi, finnis
+h, french, galician, german, ngerman, swissgerman, monogreek, greek, hungarian,
+ icelandic, assamese, bengali, gujarati, hindi, kannada, malayalam, marathi, or
+iya, panjabi, tamil, telugu, indonesian, interlingua, irish, italian, kurmanji,
+ lao, latin, latvian, lithuanian, mongolian, mongolianlmc, bokmal, nynorsk, pol
+ish, portuguese, romanian, russian, sanskrit, serbian, serbianc, slovak, sloven
+ian, spanish, swedish, turkish, turkmen, ukrainian, uppersorbian, welsh, loaded
+.
+(/usr/local/texlive/2011/texmf-dist/tex/latex/base/latex209.def
+File: latex209.def 1998/05/13 v0.52 Standard LaTeX file
+
+
+          Entering LaTeX 2.09 COMPATIBILITY MODE
+ *************************************************************
+    !!WARNING!!    !!WARNING!!    !!WARNING!!    !!WARNING!!   
+ 
+ This mode attempts to provide an emulation of the LaTeX 2.09
+ author environment so that OLD documents can be successfully
+ processed. It should NOT be used for NEW documents!
+ 
+ New documents should use Standard LaTeX conventions and start
+ with the \documentclass command.
+ 
+ Compatibility mode is UNLIKELY TO WORK with LaTeX 2.09 style
+ files that change any internal macros, especially not with
+ those that change the FONT SELECTION or OUTPUT ROUTINES.
+ 
+ Therefore such style files MUST BE UPDATED to use
+          Current Standard LaTeX: LaTeX2e.
+ If you suspect that you may be using such a style file, which
+ is probably very, very old by now, then you should attempt to
+ get it updated by sending a copy of this error message to the
+ author of that file.
+ *************************************************************
+
+\footheight=\dimen102
+\@maxsep=\dimen103
+\@dblmaxsep=\dimen104
+\@cla=\count79
+\@clb=\count80
+\mscount=\count81
+(/usr/local/texlive/2011/texmf-dist/tex/latex/base/tracefnt.sty
+Package: tracefnt 1997/05/29 v3.0j Standard LaTeX package (font tracing)
+\tracingfonts=\count82
+LaTeX Info: Redefining \selectfont on input line 101.
+)
+\symbold=\mathgroup4
+\symsans=\mathgroup5
+\symtypewriter=\mathgroup6
+\symitalic=\mathgroup7
+\symsmallcaps=\mathgroup8
+\symslanted=\mathgroup9
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 293.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 294.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 295.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 301.
+LaTeX Info: Redefining \em on input line 311.
+
+(/usr/local/texlive/2011/texmf-dist/tex/latex/base/latexsym.sty
+Package: latexsym 1998/08/17 v2.2e Standard LaTeX package (lasy symbols)
+\symlasy=\mathgroup10
+LaTeX Font Info:    Overwriting symbol font `lasy' in version `bold'
+(Font)                  U/lasy/m/n --> U/lasy/b/n on input line 47.
+)
+LaTeX Font Info:    Redeclaring math delimiter \lgroup on input line 375.
+LaTeX Font Info:    Redeclaring math delimiter \rgroup on input line 377.
+LaTeX Font Info:    Redeclaring math delimiter \bracevert on input line 379.
+)
+(/usr/local/texlive/2011/texmf-dist/tex/latex/base/book.cls
+Document Class: book 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/local/texlive/2011/texmf-dist/tex/latex/base/bk12.clo
+File: bk12.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count83
+\c@chapter=\count84
+\c@section=\count85
+\c@subsection=\count86
+\c@subsubsection=\count87
+\c@paragraph=\count88
+\c@subparagraph=\count89
+\c@figure=\count90
+\c@table=\count91
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+Compatibility mode: definition of \rm ignored.
+Compatibility mode: definition of \sf ignored.
+Compatibility mode: definition of \tt ignored.
+Compatibility mode: definition of \bf ignored.
+Compatibility mode: definition of \it ignored.
+Compatibility mode: definition of \sl ignored.
+Compatibility mode: definition of \sc ignored.
+LaTeX Info: Redefining \cal on input line 592.
+LaTeX Info: Redefining \mit on input line 593.
+\bibindent=\dimen105
+)
+(/usr/local/texlive/2011/texmf-dist/tex/generic/epsf/epsf.sty
+This is `epsf.tex' v2.7.4 <14 February 2011>
+\epsffilein=\read1
+\epsfframemargin=\dimen106
+\epsfframethickness=\dimen107
+\epsfrsize=\dimen108
+\epsftmp=\dimen109
+\epsftsize=\dimen110
+\epsfxsize=\dimen111
+\epsfysize=\dimen112
+\pspoints=\dimen113
+) (./MyStyle.sty
+(/usr/local/texlive/2011/texmf-dist/tex/generic/dvips/rotate.sty
+\@rotdimen=\dimen114
+\@rotbox=\box26
+)
+(/usr/local/texlive/2011/texmf-dist/tex/latex/fancybox/fancybox.sty
+Compatibility mode: package `MyStyle' requested, but `fancybox' provided.
+Package: fancybox 2010/05/15 1.4
+
+Style option: `fancybox' v1.4 <2010/05/15> (tvz)
+\@fancybox=\box27
+\shadowsize=\dimen115
+\@Sbox=\box28
+\do@VerbBox=\toks14
+\the@fancyput=\toks15
+\this@fancyput=\toks16
+\EndVerbatimTokens=\toks17
+\Verbatim@Outfile=\write3
+\Verbatim@Infile=\read2
+)
+\c@exemple=\count92
+\c@defi=\count93
+\c@th=\count94
+) (./harvard.sty harvard bibliography,) (./notation.tex) (./Notes.aux)
+\openout1 = `Notes.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+
+(/home/soleil/ambroise/figures/logo.ps
+! Could not open file /home/soleil/ambroise/figures/logo.ps, ignoring it.
+\epsfgetbb ...Could not open file #1, ignoring it}
+                                                  \else {\chardef \other = 1...
+l.55 ...ile{/home/soleil/ambroise/figures/logo.ps}
+                                                  
+? 
+)
+[0
+
+
+{/Users/tom/Library/texlive/2011/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+Non-PDF special ignored!] (./Notes.toc)
+\tf@toc=\write4
+\openout4 = `Notes.toc'.
+
+ (./Notations.tex [1
+
+]
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 1.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 1.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 1.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 1.
+
+(/usr/local/texlive/2011/texmf-dist/tex/latex/base/ulasy.fd
+File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
+)
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[2
+
+]
+Overfull \hbox (24.0pt too wide) in alignment at lines 11--18
+[][]
+ []
+
+LaTeX Font Info:    Font shape `U/lasy/b/n' in size <8> not available
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 40.
+LaTeX Font Info:    Font shape `U/lasy/b/n' in size <6> not available
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 40.
+
+Overfull \hbox (24.0pt too wide) in alignment at lines 28--45
+[][]
+ []
+
+) (./Introduction.tex [3]
+Overfull \vbox (2.35pt too high) has occurred while \output is active []
+
+ [4
+
+]
+
+LaTeX Warning: Citation `Galton1892' on page 5 undefined on input line 11.
+
+
+LaTeX Warning: Citation `Fisher1936' on page 5 undefined on input line 11.
+
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 27.
+(/usr/local/texlive/2011/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 27.
+
+Overfull \hbox (8.59557pt too wide) in paragraph at lines 43--50
+\OT1/cmr/m/n/12 Souvent deux d^^Secisions suppl^^Sementaires sont in-tro-duites
+ : le doute et le re-jet d'individus
+ []
+
+[5]
+
+LaTeX Warning: Citation `Romeder1973' on page 6 undefined on input line 86.
+
+
+LaTeX Warning: Citation `Romeder1973' on page 6 undefined on input line 92.
+
+
+LaTeX Warning: Citation `Ripley1996' on page 6 undefined on input line 108.
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[6]) (./Chapitre1.tex
+Overfull \hbox (2.61108pt too wide) has occurred while \output is active
+[] $[]$
+ []
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[7]
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[8
+
+]
+Chapter 1.
+
+LaTeX Warning: Citation `Neyman1928' undefined on input line 2.
+
+[9]
+Overfull \hbox (16.90439pt too wide) in paragraph at lines 76--82
+\OT1/cmr/m/n/12 la valeur prise par une fonc-tion $\OML/cmm/m/it/12 z$ \OT1/cmr
+/m/n/12 dont on conna^^^Pt les valeurs en $\OML/cmm/m/it/12 N$ \OT1/cmr/m/n/12 
+points $\OML/cmm/m/it/12 z\OT1/cmr/m/n/12 ([][])\OML/cmm/m/it/12 ; [] ; z\OT1/c
+mr/m/n/12 ([][])$.
+ []
+
+
+LaTeX Warning: Citation `Wald1939' on page 10 undefined on input line 92.
+
+
+LaTeX Warning: Citation `Chow1957' on page 10 undefined on input line 93.
+
+
+Overfull \hbox (115.8566pt too wide) in paragraph at lines 99--104
+\OT1/cmr/m/n/12 Dans le con-texte de la dis-crim-i-na-tion, on dis-pose d'un en
+-sem-ble d'observations $\OMS/cmsy/m/n/12 f\OT1/cmr/m/n/12 ([][]\OML/cmm/m/it/1
+2 ; c\OT1/cmr/m/n/12 ([][]))\OML/cmm/m/it/12 ; [] ; \OT1/cmr/m/n/12 ([][]\OML/c
+mm/m/it/12 ; c\OT1/cmr/m/n/12 ([][]))\OMS/cmsy/m/n/12 g$\OT1/cmr/m/n/12 ,
+ []
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[10]
+Overfull \hbox (2.61108pt too wide) has occurred while \output is active
+[] $[]$
+ []
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[11]
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[12]
+Overfull \hbox (2.61108pt too wide) has occurred while \output is active
+[] $[]$
+ []
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[13]
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[14]
+Overfull \hbox (2.61108pt too wide) has occurred while \output is active
+[] $[]$
+ []
+
+
+Overfull \vbox (3.93332pt too high) has occurred while \output is active []
+
+
+[15]
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[16]
+Overfull \hbox (35.52191pt too wide) in paragraph at lines 473--482
+\OT1/cmr/m/n/12 d'apprentissage : de nou-veaux en-sem-bles d'apprentissage $\OM
+S/cmsy/m/n/12 F[]$ \OT1/cmr/m/n/12 de taille $\OML/cmm/m/it/12 N$ \OT1/cmr/m/n/
+12 sont r^^Seechantillonn^^Ses
+ []
+
+
+Overfull \hbox (2.61108pt too wide) has occurred while \output is active
+[] $[]$
+ []
+
+
+Overfull \vbox (3.93332pt too high) has occurred while \output is active []
+
+
+[17]
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 516.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 516.
+) (./Chapitre2.tex
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[18]
+Chapter 2.
+
+LaTeX Warning: Citation `Flury1994' undefined on input line 2.
+
+
+Overfull \hbox (6.68958pt too wide) in paragraph at lines 32--43
+\OT1/cmr/m/n/12 utilis^^Ses en re-con-nais-sance statis-tique des formes. La se
+c-onde sec-tion ex-pose l'estimation
+ []
+
+[19
+
+]
+! Undefined control sequence.
+l.51 ...rmale en dimension 2 \`a la fin du 19\ieme
+                                                   si\`ecle et l'extension
+? 
+! Undefined control sequence.
+l.53 du 20\ieme
+                si\`ecle.
+? 
+! Undefined control sequence.
+l.86 la $k$\ieme
+                 classe. En effet plus $\lambda_k$ est grand plus la classe ...
+
+? 
+
+Overfull \hbox (33.86131pt too wide) in paragraph at lines 96--100
+[]$[][]$ \OT1/cmr/m/n/12 est la ma-trice des vecteurs pro-pres, qui sont les ax
+es prin-ci-paux de l'hyperellipso^^?^^Pde.
+ []
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[20]
+(/home/soleil/ambroise/figures/gauspar.eps
+! Could not open file /home/soleil/ambroise/figures/gauspar.eps, ignoring it.
+\epsfgetbb ...Could not open file #1, ignoring it}
+                                                  \else {\chardef \other = 1...
+l.110 ...home/soleil/ambroise/figures/gauspar.eps}
+                                                  
+? 
+)
+
+Overfull \hbox (2.61108pt too wide) has occurred while \output is active
+[] $[]$
+ []
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[21
+Non-PDF special ignored!]
+
+LaTeX Warning: Citation `Mahalanobis1936' on page 22 undefined on input line 14
+5.
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[22]
+
+LaTeX Warning: Citation `Ripley1996' on page 23 undefined on input line 188.
+
+
+LaTeX Warning: Citation `Celeux1995' on page 23 undefined on input line 291.
+
+
+Overfull \hbox (2.61108pt too wide) has occurred while \output is active
+[] $[]$
+ []
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[23]
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[24]
+! Undefined control sequence.
+l.302 \bSigma_k= \lambda_k \cdot \Abold
+                                       _k
+? 
+! Undefined control sequence.
+l.304 avec  $\det(\Abold
+                        _k)=1$. Cette hypoth\`ese fournit 4 mod\`eles
+? 
+
+LaTeX Warning: Citation `Ripley1996' on page 25 undefined on input line 327.
+
+
+Overfull \hbox (2.61108pt too wide) has occurred while \output is active
+[] $[]$
+ []
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[25]
+
+LaTeX Warning: Citation `Fisher1912' on page 26 undefined on input line 350.
+
+
+Overfull \hbox (35.88855pt too wide) in paragraph at lines 368--372
+[]\OT1/cmr/m/n/12 L'estimateur du max-i-mum de vraisem-blance $[]$ de $\OML/cmm
+/m/it/12 ^^R$ \OT1/cmr/m/n/12 est tel que $[] = \OML/cmm/m/it/12 arg [][] `\OT1
+/cmr/m/n/12 (\OML/cmm/m/it/12 ^^R\OT1/cmr/m/n/12 ; \OMS/cmsy/m/n/12 X\OT1/cmr/m
+/n/12 )$.
+ []
+
+
+Overfull \hbox (1.50209pt too wide) in paragraph at lines 368--372
+\OT1/cmr/m/n/12 Il est sou-vent plus avan-tageux de max-imiser la log-vraisembl
+ance $\OML/cmm/m/it/12 L\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 ^^R\OT1/cmr/m/n/12 ; 
+\OMS/cmsy/m/n/12 X\OT1/cmr/m/n/12 ) = [] \OML/cmm/m/it/12 `\OT1/cmr/m/n/12 (\OM
+L/cmm/m/it/12 ^^R\OT1/cmr/m/n/12 ; \OMS/cmsy/m/n/12 X\OT1/cmr/m/n/12 )$
+ []
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[26]
+Overfull \hbox (2.61108pt too wide) has occurred while \output is active
+[] $[]$
+ []
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[27]
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[28]
+Overfull \hbox (1.74147pt too wide) in paragraph at lines 528--542
+\OT1/cmr/m/n/12 Comment choisir en-tre plusieurs mod^^Reles de diff^^Serentes c
+om-plexit^^Ses lorsque la m^^Sethode
+ []
+
+
+Overfull \hbox (1.02342pt too wide) in paragraph at lines 528--542
+\OT1/cmr/m/n/12 est qu'un mod^^Rele tr^^Res com-pliqu^^Se, ajust^^Se en util-is
+ant un pe-tit en-sem-ble d'apprentissage,
+ []
+
+
+Overfull \hbox (2.61108pt too wide) has occurred while \output is active
+[] $[]$
+ []
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[29]
+
+LaTeX Warning: Citation `Ripley1996' on page 30 undefined on input line 581.
+
+LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 588.
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[30]
+Overfull \hbox (2.61108pt too wide) has occurred while \output is active
+[] $[]$
+ []
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[31]) (./Chapitre3.tex
+
+LaTeX Warning: Citation `Dempster1977' undefined on input line 1.
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[32]
+Chapter 3.
+[33
+
+]
+
+LaTeX Warning: Citation `Fix1951' on page 34 undefined on input line 50.
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[34]
+
+LaTeX Warning: Citation `Fix1951' on page 35 undefined on input line 95.
+
+
+LaTeX Warning: Citation `Rosenblatt1956' on page 35 undefined on input line 96.
+
+
+
+LaTeX Warning: Citation `Parzen1962' on page 35 undefined on input line 97.
+
+(/home/soleil/ambroise/figures/Modelnoyau.ps
+! Could not open file /home/soleil/ambroise/figures/Modelnoyau.ps, ignoring it.
+
+\epsfgetbb ...Could not open file #1, ignoring it}
+                                                  \else {\chardef \other = 1...
+l.152 ...me/soleil/ambroise/figures/Modelnoyau.ps}
+                                                  
+? 
+)
+(/home/soleil/ambroise/figures/Modelgauss.ps
+! Could not open file /home/soleil/ambroise/figures/Modelgauss.ps, ignoring it.
+
+\epsfgetbb ...Could not open file #1, ignoring it}
+                                                  \else {\chardef \other = 1...
+l.158 ...me/soleil/ambroise/figures/Modelgauss.ps}
+                                                  \\
+? 
+)
+
+Overfull \hbox (9.11723pt too wide) in paragraph at lines 144--163
+ [] 
+ []
+
+
+Overfull \hbox (2.61108pt too wide) has occurred while \output is active
+[] $[]$
+ []
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[35]
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[36
+Non-PDF special ignored!
+Non-PDF special ignored!]
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <17.28> on input line 192.
+
+Overfull \hbox (5.16644pt too wide) in paragraph at lines 194--202
+\OT1/cmr/m/n/12 Dans la sec-tion pr^^Sec^^Sedente, nous avons re-marqu^^Se, qu'
+un probl^^Reme ma-jeur de l'approche
+ []
+
+
+Overfull \hbox (2.61108pt too wide) has occurred while \output is active
+[] $[]$
+ []
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[37]
+
+LaTeX Warning: Citation `Cover1967' on page 38 undefined on input line 228.
+
+
+LaTeX Warning: Citation `Hellman1970' on page 38 undefined on input line 251.
+
+
+LaTeX Warning: Citation `Pearson1894' on page 38 undefined on input line 277.
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[38]
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 337.
+
+(/home/soleil/ambroise/figures/3gauss.ps
+! Could not open file /home/soleil/ambroise/figures/3gauss.ps, ignoring it.
+\epsfgetbb ...Could not open file #1, ignoring it}
+                                                  \else {\chardef \other = 1...
+l.352 ...{/home/soleil/ambroise/figures/3gauss.ps}
+                                                  
+? 
+)
+(/home/soleil/ambroise/figures/mixture.ps
+! Could not open file /home/soleil/ambroise/figures/mixture.ps, ignoring it.
+\epsfgetbb ...Could not open file #1, ignoring it}
+                                                  \else {\chardef \other = 1...
+l.358 .../home/soleil/ambroise/figures/mixture.ps}
+                                                  \\
+? 
+)
+
+Overfull \hbox (2.61108pt too wide) has occurred while \output is active
+[] $[]$
+ []
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[39]
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[40
+Non-PDF special ignored!
+Non-PDF special ignored!]
+
+LaTeX Warning: Citation `Redner1984' on page 41 undefined on input line 408.
+
+
+Overfull \hbox (2.61108pt too wide) has occurred while \output is active
+[] $[]$
+ []
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[41]
+Overfull \hbox (5.12292pt too wide) in paragraph at lines 446--449
+[]\OT1/cmr/m/n/12 Le but de l'algorithme est de cal-culer l'estimateur du m.v. 
+du vecteur de param^^Retres
+ []
+
+
+Overfull \hbox (6.4165pt too wide) in paragraph at lines 450--453
+[]\OT1/cmr/m/n/12 En pra-tique $[]$ n'est pas ob-serv^^Se et con-tient des donn
+^^Sees man-quantes, des param^^Retres
+ []
+
+
+Overfull \hbox (1.69795pt too wide) in paragraph at lines 450--453
+\OT1/cmr/m/n/12 in-con-nus, des donn^^Sees in-ob-serv-ables (e.g. le sexe des f
+l^^Setans dans l'exemple pr^^Sec^^Sedent). 
+ []
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[42]
+
+LaTeX Warning: Citation `Redner1984' on page 43 undefined on input line 532.
+
+
+LaTeX Warning: Citation `Redner1984' on page 43 undefined on input line 534.
+
+
+Overfull \hbox (2.61108pt too wide) has occurred while \output is active
+[] $[]$
+ []
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[43]
+
+LaTeX Warning: Citation `Redner1984' on page 44 undefined on input line 587.
+
+
+LaTeX Warning: Citation `Xu1995' on page 44 undefined on input line 589.
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[44]
+
+LaTeX Warning: Citation `Day1969' on page 45 undefined on input line 645.
+
+
+LaTeX Warning: Citation `Wolfe1970' on page 45 undefined on input line 647.
+
+
+LaTeX Warning: Citation `Bezdeck1974' on page 45 undefined on input line 654.
+
+! Undefined control sequence.
+l.676 ...gnifie que $\x_i$ provient de la $k$\ieme
+                                                   composante.
+? 
+
+Overfull \hbox (2.61108pt too wide) has occurred while \output is active
+[] $[]$
+ []
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[45]) (./Chapitre4.tex
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[46]
+Chapter 4.
+
+LaTeX Warning: Citation `Ripley1996' on page 47 undefined on input line 5.
+
+
+Overfull \hbox (39.82858pt too wide) in paragraph at lines 3--10
+\OT1/cmr/m/n/12 Dans les chapitres pr^^Sec^^Sedents, les fonc-tions dis-crim-i-
+nantes ^^Setaient obtenues par l'interm^^Sediaire
+ []
+
+
+Overfull \hbox (22.16077pt too wide) in paragraph at lines 17--20
+\OT1/cmr/m/n/12 Les m^^Sethodes g^^Seom^^Setriques con-sid^^Rerent les $\OML/cm
+m/m/it/12 N$ \OT1/cmr/m/n/12 vecteurs forme de l'ensemble d'apprentissage
+ []
+
+[47
+
+]
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[48]
+Overfull \hbox (0.89287pt too wide) in paragraph at lines 120--123
+[]\OT1/cmr/m/n/12 Comme nous l'avons d^^Sej^^Ra men-tionn^^Se dans le sec-ond c
+hapitre, cette r^^Regle de d^^Secision
+ []
+
+
+LaTeX Warning: Citation `Romeder1973' on page 49 undefined on input line 129.
+
+
+LaTeX Warning: Citation `Davalo1992' on page 49 undefined on input line 161.
+
+
+LaTeX Warning: Citation `Rosenblatt1958' on page 49 undefined on input line 162
+.
+
+
+LaTeX Warning: Citation `Minsky1969' on page 49 undefined on input line 165.
+
+
+LaTeX Warning: Citation `Rumelhart1986' on page 49 undefined on input line 167.
+
+
+
+Overfull \hbox (2.61108pt too wide) has occurred while \output is active
+[] $[]$
+ []
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[49]
+! Undefined control sequence.
+<recently read> \bd 
+                    
+l.171 ...es, est une fonction tr\`es flexible $\bd
+                                                  ()$ de
+? 
+
+LaTeX Warning: Citation `Rosenblatt1958' on page 50 undefined on input line 200
+.
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[50]
+Overfull \hbox (2.61108pt too wide) has occurred while \output is active
+[] $[]$
+ []
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[51]
+Overfull \hbox (1.54149pt too wide) in paragraph at lines 303--306
+[]\OT1/cmr/m/n/12 L'algorithme ini-tial pro-pos^^Se par Rosen-blatt min-imise l
+e crit^^Rere pour la pr^^Sesentation
+ []
+
+
+LaTeX Warning: Citation `Ripley1996' on page 52 undefined on input line 313.
+
+\c@cms=\count95
+
+LaTeX Warning: \oval, \circle, or \line size unavailable on input line 368.
+
+
+LaTeX Warning: Citation `Rumelhart1986' on page 52 undefined on input line 381.
+
+
+
+Overfull \hbox (20.57184pt too wide) in paragraph at lines 380--384
+[]\OT1/cmr/m/n/12 Les lim-i-ta-tions du per-cep-tron r^^Sesident es-sen-tielle-
+ment dans son car-act^^Rere de s^^Separateur
+ []
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[52]
+
+LaTeX Warning: \oval, \circle, or \line size unavailable on input line 423.
+
+
+Overfull \hbox (2.61108pt too wide) has occurred while \output is active
+[] $[]$
+ []
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[53]
+! Undefined control sequence.
+<recently read> \bd 
+                    
+l.451 un vecteur $\bd
+                     (\x)=(d_k(\x))$. Dans ces notes nous nous limiterons
+? 
+(/home/soleil/ambroise/figures/mlfn.ps
+! Could not open file /home/soleil/ambroise/figures/mlfn.ps, ignoring it.
+\epsfgetbb ...Could not open file #1, ignoring it}
+                                                  \else {\chardef \other = 1...
+l.479 ...le{/home/soleil/ambroise/figures/mlfn.ps}
+                                                  \\
+? 
+)
+! Undefined control sequence.
+<recently read> \bd 
+                    
+l.495 ...\'eseau de neurones est une fonction $\bd
+                                                  ()$ d\'efinie par de nombreux
+
+? 
+
+LaTeX Warning: Citation `Rumelhart1986' on page 54 undefined on input line 510.
+
+
+! Undefined control sequence.
+<recently read> \bd 
+                    
+l.512 de l'erreur entre $\bd
+                            ()$ et $\z$ sur l'ensemble d'apprentissage :
+? 
+! Undefined control sequence.
+l.514 E(\bw)=\sum_{i=1}^N \left( \z(\x_i) - \bd
+                                               (\x_i ; \bw) \right)^2
+? 
+! Undefined control sequence.
+<recently read> \bd 
+                    
+l.517 ...es carr\'es, le r\'eseau de neurones $\bd
+                                                  ()$
+? 
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[54]
+Overfull \hbox (2.61108pt too wide) has occurred while \output is active
+[] $[]$
+ []
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[55
+Non-PDF special ignored!]
+! Undefined control sequence.
+l.529 \bd
+         (\x_i;\bw)= \left [  \begin{array}{c} d_1(\x_i)  \\  d_2(\x_i) \end...
+
+? 
+
+LaTeX Warning: Citation `Kalman1991' on page 56 undefined on input line 535.
+
+
+LaTeX Warning: Citation `Rumelhart1986' on page 56 undefined on input line 576.
+
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[56]
+
+LaTeX Warning: \oval, \circle, or \line size unavailable on input line 623.
+
+
+LaTeX Warning: \oval, \circle, or \line size unavailable on input line 623.
+
+
+LaTeX Warning: \oval, \circle, or \line size unavailable on input line 623.
+
+
+Overfull \hbox (2.61108pt too wide) has occurred while \output is active
+[] $[]$
+ []
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[57]
+! Undefined control sequence.
+l.684 avec $z_j$ la j\ieme
+                           coordonn\'ee de la fonction cible $\z(\x_p)$.
+? 
+
+Overfull \hbox (31.40784pt too wide) in paragraph at lines 702--704
+\OT1/cmr/m/n/12 L'algorithme de de-scente de gra-di-ent pr^^Sec^^Sedent est con
+nu sous le nom de de r^^Setropropagation
+ []
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[58]
+Overfull \hbox (16.29826pt too wide) in paragraph at lines 721--728
+\OT1/cmr/m/n/12 utilis^^Se est su-cep-ti-ble d'obtenir de tr^^Res pe-tites er-r
+eurs sur l'ensemble d'apprentissage.
+ []
+
+
+Overfull \hbox (23.47874pt too wide) in paragraph at lines 721--728
+\OT1/cmr/m/n/12 Ce ph^^Senom^^Rene n'est en g^^Sen^^Seral pas souhaitable, car 
+il r^^Sesulte de l'hyper-sp^^Secialisation
+ []
+
+) (./Chapitre5.tex
+
+LaTeX Warning: Citation `Gallinari1988' undefined on input line 1.
+
+
+Overfull \hbox (2.61108pt too wide) has occurred while \output is active
+[] $[]$
+ []
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[59]
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[60]
+Chapter 5.
+
+Overfull \hbox (2.5859pt too wide) in paragraph at lines 23--32
+\OT1/cmr/m/n/12 Utilis^^Sees comme pr^^Setraitement des donn^^Sees, ces deux ap
+-proches, ex-trac-tion et s^^Selection
+ []
+
+
+Overfull \hbox (3.6345pt too wide) in paragraph at lines 42--45
+[]\OT1/cmr/m/n/12 quelques m^^Sethodes de po-si-tion-nement mul-ti-di-men-sione
+l (``mul-ti-di-men-sional scal-
+ []
+
+[61
+
+]
+
+LaTeX Warning: Citation `Fisher1936' on page 62 undefined on input line 57.
+
+
+LaTeX Warning: Citation `Rao1948' on page 62 undefined on input line 59.
+
+! Undefined control sequence.
+<recently read> \bS 
+                    
+l.75 la matrice d'inertie intra-classe $\bS
+                                           _W$ ($W$ comme ``within'')
+? 
+! Undefined control sequence.
+l.78 \bS
+        _W &=&  \sum_{k=1}^K \sum_{i=1}^{n_k} (\x_{i,k}-\bm_k)(\x_{i,k}-\bm_...
+
+? 
+! Undefined control sequence.
+<recently read> \bS 
+                    
+l.81 la matrice d'inertie inter-classe $\bS
+                                           _B$ ($B$ comme ``between'') est
+? 
+! Undefined control sequence.
+l.84 \bS
+        _B & = & \sum_{k=1}^K n_k \cdot (\bm_k - \bm)(\bm_k - \bm)^t ,
+? 
+! Undefined control sequence.
+<recently read> \bS 
+                    
+l.87 et enfin la matrice d'inertie totale $\bS
+                                              _T$ s'\'ecrit :
+? 
+! Undefined control sequence.
+l.89 \bS
+        _T &=& \sum_{k=1}^K \sum_{i=1}^{n_k} (\x_{i,k}-\bm) (\x_{i,k}-\bm)^t \\
+
+? 
+! Undefined control sequence.
+l.93    &=& \bS
+               _W + \bS_B.
+? 
+! Undefined control sequence.
+l.93    &=& \bS_W + \bS
+                       _B.
+? 
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[62]
+Overfull \hbox (12.56647pt too wide) in paragraph at lines 161--163
+[]\OT1/cmr/m/n/12 La recherche du vecteur $[]$ peut donc ^etre for-mul^^Se comm
+e un probl^^Reme d'optimisation
+ []
+
+! Undefined control sequence.
+l.165 \bw = arg \max_{\boldv
+                            }  J(\boldv)  \\
+? 
+! Undefined control sequence.
+l.165 \bw = arg \max_{\boldv}  J(\boldv
+                                       )  \\
+? 
+! Undefined control sequence.
+l.174 \bw = arg \max_{\boldv
+                            } \frac{\boldv^t(\bm_1-\bm_2)(\bm_1-\bm_2)^t \bo...
+
+? 
+! Undefined control sequence.
+<argument> \boldv 
+                  ^t(\bm _1-\bm _2)(\bm _1-\bm _2)^t \boldv 
+l.174 ...1-\bm_2)^t \boldv}{\boldv^t \bS_W \boldv}
+                                                    \\
+? 
+! Undefined control sequence.
+<argument> ... _1-\bm _2)(\bm _1-\bm _2)^t \boldv 
+                                                  
+l.174 ...1-\bm_2)^t \boldv}{\boldv^t \bS_W \boldv}
+                                                    \\
+? 
+! Undefined control sequence.
+<argument> \boldv 
+                  ^t \bS _W \boldv 
+l.174 ...1-\bm_2)^t \boldv}{\boldv^t \bS_W \boldv}
+                                                    \\
+? 
+! Undefined control sequence.
+<argument> \boldv ^t \bS 
+                         _W \boldv 
+l.174 ...1-\bm_2)^t \boldv}{\boldv^t \bS_W \boldv}
+                                                    \\
+? r
+OK, entering \nonstopmode...
+! Undefined control sequence.
+<argument> \boldv ^t \bS _W \boldv 
+                                   
+l.174 ...1-\bm_2)^t \boldv}{\boldv^t \bS_W \boldv}
+                                                    \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (2.61108pt too wide) has occurred while \output is active
+[] $[]$
+ []
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[63]
+! Undefined control sequence.
+l.182 \bS
+         _B= \frac{n_1 n_2}{N^2} (\bm_1-\bm_2)(\bm_1-\bm_2)^t.
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.192 \bS
+         _B = \frac{n_1}{N} \bm_1 \bm_1^t +  \frac{n_2}{N} \bm_2 \bm_2^t -
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<recently read> \bS 
+                    
+l.195 \bS
+         _B = \frac{n_1}{N} \bm_1 \bm_1^t +  \frac{n_2}{N} \bm_2 \bm_2^t -
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: Reference `eq:SBFisher' on page 64 undefined on input line 200.
+
+! Undefined control sequence.
+l.204 \bw = arg \max_{\boldv
+                            } \frac{\boldv^t \bS_B  \boldv}{\boldv^t \bS_W \...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> \boldv 
+                  ^t \bS _B \boldv 
+l.204 ...v^t \bS_B  \boldv}{\boldv^t \bS_W \boldv}
+                                                    \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> \boldv ^t \bS 
+                         _B \boldv 
+l.204 ...v^t \bS_B  \boldv}{\boldv^t \bS_W \boldv}
+                                                    \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> \boldv ^t \bS _B \boldv 
+                                   
+l.204 ...v^t \bS_B  \boldv}{\boldv^t \bS_W \boldv}
+                                                    \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> \boldv 
+                  ^t \bS _W \boldv 
+l.204 ...v^t \bS_B  \boldv}{\boldv^t \bS_W \boldv}
+                                                    \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> \boldv ^t \bS 
+                         _W \boldv 
+l.204 ...v^t \bS_B  \boldv}{\boldv^t \bS_W \boldv}
+                                                    \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> \boldv ^t \bS _W \boldv 
+                                   
+l.204 ...v^t \bS_B  \boldv}{\boldv^t \bS_W \boldv}
+                                                    \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.211 \lambda_{max} \cdot \bw^t \bS
+                                   _W \bw & = &  \bw^t \bS_B \bw \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.211 ...x} \cdot \bw^t \bS_W \bw & = &  \bw^t \bS
+                                                  _B \bw \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.212 \lambda_{max} \cdot \bS
+                             _W \bw& = &  \bS_B \bw
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.212 \lambda_{max} \cdot \bS_W \bw& = &  \bS
+                                             _B \bw
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<recently read> \bS 
+                    
+l.214 Si la matrice $\bS
+                        _W$ est inversible, r\'esoudre
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<recently read> \bS 
+                    
+l.217 $\bS
+          _W^{-1}\bS_B$ :
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.217 $\bS_W^{-1}\bS
+                    _B$ :
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Double subscript.
+l.217 $\bS_W^{-1}\bS_
+                     B$ :
+I treat `x_1_2' essentially like `x_1{}_2'.
+
+! Undefined control sequence.
+l.219  \lambda_{max} \cdot \bw = \bS
+                                    _W^{-1}\bS_B \cdot \bw .
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.219  \lambda_{max} \cdot \bw = \bS_W^{-1}\bS
+                                              _B \cdot \bw .
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Double subscript.
+l.219  \lambda_{max} \cdot \bw = \bS_W^{-1}\bS_
+                                               B \cdot \bw .
+I treat `x_1_2' essentially like `x_1{}_2'.
+
+! Undefined control sequence.
+<recently read> \bS 
+                    
+l.221 Remarquons que la matrice $\bS
+                                    _B$ est de rang 1, ce qui implique
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.226 \bw= \alpha  \bS
+                      _W^{-1} (\bm_1-\bm_2).
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[64]
+! Undefined control sequence.
+<recently read> \bW 
+                    
+l.246 ...ens\'e sous la forme d'une matrice   $\bW
+                                                  $ de dimension $d$ par $p$
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.255 ...\frac{1}{n_k} \sum_{i=1}{n_k} \y_{ik}=\bW
+                                                  ^t \bm_k,
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.260 \tilde{\bm}  =\bW
+                       ^t \bm,
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.265 \tilde{\bS
+                }_W &=& \sum_{k=1}^K \sum_{i=1}^{n_k} (\y_{ik}-\tilde{\bm}_k...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.266              & =& \bW
+                           ^t \bS_W \bW,
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.266              & =& \bW^t \bS
+                                 _W \bW,
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.266              & =& \bW^t \bS_W \bW
+                                       ,
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.271 \tilde{\bS
+                }_B & = & \sum_{k=1}^K n_k \cdot (\tilde{\bm}_k - \tilde{\bm...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.272       &= &   \bW
+                      ^t \bS_B \bW,
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.272       &= &   \bW^t \bS
+                            _B \bW,
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.272       &= &   \bW^t \bS_B \bW
+                                  ,
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<recently read> \bW 
+                    
+l.277 ...vecteur $\bw_k$ composant la matrice $\bW
+                                                  $, il est possible
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.282 \bw_1 = arg \max_{\boldv
+                              } \frac{\boldv^t \bS_B  \boldv}{\boldv^t \bS_W...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> \boldv 
+                  ^t \bS _B \boldv 
+l.282 ...v^t \bS_B  \boldv}{\boldv^t \bS_W \boldv}
+                                                    \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> \boldv ^t \bS 
+                         _B \boldv 
+l.282 ...v^t \bS_B  \boldv}{\boldv^t \bS_W \boldv}
+                                                    \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> \boldv ^t \bS _B \boldv 
+                                   
+l.282 ...v^t \bS_B  \boldv}{\boldv^t \bS_W \boldv}
+                                                    \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> \boldv 
+                  ^t \bS _W \boldv 
+l.282 ...v^t \bS_B  \boldv}{\boldv^t \bS_W \boldv}
+                                                    \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> \boldv ^t \bS 
+                         _W \boldv 
+l.282 ...v^t \bS_B  \boldv}{\boldv^t \bS_W \boldv}
+                                                    \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> \boldv ^t \bS _W \boldv 
+                                   
+l.282 ...v^t \bS_B  \boldv}{\boldv^t \bS_W \boldv}
+                                                    \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<recently read> \bS 
+                    
+l.288 \'etait le vecteur propre de $\bS
+                                       _W^{-1}\bS_B$ associ\'e \`a la plus
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.288 \'etait le vecteur propre de $\bS_W^{-1}\bS
+                                                 _B$ associ\'e \`a la plus
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Double subscript.
+l.288 \'etait le vecteur propre de $\bS_W^{-1}\bS_
+                                                  B$ associ\'e \`a la plus
+I treat `x_1_2' essentially like `x_1{}_2'.
+
+! Undefined control sequence.
+<recently read> \bS 
+                    
+l.294 rang maximum de la matrice $\bS
+                                     _W^{-1}\bS_B$. Remarquons que les vecteurs
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.294 rang maximum de la matrice $\bS_W^{-1}\bS
+                                               _B$. Remarquons que les vecteurs
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Double subscript.
+l.294 rang maximum de la matrice $\bS_W^{-1}\bS_
+                                                B$. Remarquons que les vecteurs
+I treat `x_1_2' essentially like `x_1{}_2'.
+
+! Undefined control sequence.
+<recently read> \bS 
+                    
+l.295 propres ainsi trouv\'es sont $\bS
+                                       _W$ orthogonaux :
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (2.61108pt too wide) has occurred while \output is active
+[] $[]$
+ []
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[65]
+! Undefined control sequence.
+l.297 \bw_\ell^t \cdot \bS
+                          _W \cdot \bw_k = 0
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> \bw _k^t \bS 
+                        _B \bw _k
+l.306 ...bw_k^t \bS_B  \bw_k}{\bw_k^t \bS_W \bw_k}
+                                                   \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Double subscript.
+<argument> \bw _k^t \bS _
+                         B \bw _k
+l.306 ...bw_k^t \bS_B  \bw_k}{\bw_k^t \bS_W \bw_k}
+                                                   \\
+I treat `x_1_2' essentially like `x_1{}_2'.
+
+! Undefined control sequence.
+<argument> \bw _k^t \bS 
+                        _W \bw _k
+l.306 ...bw_k^t \bS_B  \bw_k}{\bw_k^t \bS_W \bw_k}
+                                                   \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Double subscript.
+<argument> \bw _k^t \bS _
+                         W \bw _k
+l.306 ...bw_k^t \bS_B  \bw_k}{\bw_k^t \bS_W \bw_k}
+                                                   \\
+I treat `x_1_2' essentially like `x_1{}_2'.
+
+! Undefined control sequence.
+l.307     & = & \bw_k^t  \bS
+                            _W^{-1}\bS_B \bw_k \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Double subscript.
+l.307     & = & \bw_k^t  \bS_
+                             W^{-1}\bS_B \bw_k \\
+I treat `x_1_2' essentially like `x_1{}_2'.
+
+! Undefined control sequence.
+l.307     & = & \bw_k^t  \bS_W^{-1}\bS
+                                      _B \bw_k \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Double subscript.
+l.307     & = & \bw_k^t  \bS_W^{-1}\bS_
+                                       B \bw_k \\
+I treat `x_1_2' essentially like `x_1{}_2'.
+
+! Undefined control sequence.
+l.308     & = & trace \left [ \bw_k  \bw_k^t  \bS
+                                                 _W^{-1}\bS_B  \right ]
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Double subscript.
+l.308     & = & trace \left [ \bw_k  \bw_k^t  \bS_
+                                                  W^{-1}\bS_B  \right ]
+I treat `x_1_2' essentially like `x_1{}_2'.
+
+! Undefined control sequence.
+l.308 ...ace \left [ \bw_k  \bw_k^t  \bS_W^{-1}\bS
+                                                  _B  \right ]
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Double subscript.
+l.308 ...ce \left [ \bw_k  \bw_k^t  \bS_W^{-1}\bS_
+                                                  B  \right ]
+I treat `x_1_2' essentially like `x_1{}_2'.
+
+! Undefined control sequence.
+<recently read> \bW 
+                    
+l.314 $\bW
+          $ est donc solution de :
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.317 ...k=1}^p  trace \left [ \bw_k  \bw_k^t  \bS
+                                                  _W^{-1}\bS_B  \right ] = \...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Double subscript.
+l.317 ...=1}^p  trace \left [ \bw_k  \bw_k^t  \bS_
+                                                  W^{-1}\bS_B  \right ] = \m...
+I treat `x_1_2' essentially like `x_1{}_2'.
+
+! Undefined control sequence.
+l.317 ...ace \left [ \bw_k  \bw_k^t  \bS_W^{-1}\bS
+                                                  _B  \right ] = \max trace ...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Double subscript.
+l.317 ...ce \left [ \bw_k  \bw_k^t  \bS_W^{-1}\bS_
+                                                  B  \right ] = \max trace \...
+I treat `x_1_2' essentially like `x_1{}_2'.
+
+! Undefined control sequence.
+l.317 ...}\bS_B  \right ] = \max trace \left [ \bW
+                                                  ^t \bS_W^{-1}\bS_B \bW \ri...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.317 ...  \right ] = \max trace \left [ \bW^t \bS
+                                                  _W^{-1}\bS_B \bW \right ] ...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Double superscript.
+l.317 ...right ] = \max trace \left [ \bW^t \bS_W^
+                                                  {-1}\bS_B \bW \right ]    ...
+I treat `x^1^2' essentially like `x^1{}^2'.
+
+! Undefined control sequence.
+l.317 ... = \max trace \left [ \bW^t \bS_W^{-1}\bS
+                                                  _B \bW \right ]         \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.317 ...x trace \left [ \bW^t \bS_W^{-1}\bS_B \bW
+                                                   \right ]         \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<recently read> \bW 
+                    
+l.318 \bW
+         ^t \cdot \bS_W \cdot \bW=I
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.318 \bW^t \cdot \bS
+                     _W \cdot \bW=I
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.318 \bW^t \cdot \bS_W \cdot \bW
+                                 =I
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<recently read> \bW 
+                    
+l.325 ...t possible de montrer que la matrice $\bW
+                                                  $ est aussi
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> det\left ( \tilde {\bS 
+                                  }_B \right )
+l.329 ...ht )}{det \left (\tilde{\bS}_W \right ) }
+                                                  =\frac{det\left ( \bW^t \b...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> det \left (\tilde {\bS 
+                                  }_W \right ) 
+l.329 ...ht )}{det \left (\tilde{\bS}_W \right ) }
+                                                  =\frac{det\left ( \bW^t \b...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> det\left ( \bW 
+                          ^t \bS _B \bW \right )
+l.329 ...ht )}{det\left (\bW^t \bS_W \bW \right )}
+                                                  \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> det\left ( \bW ^t \bS 
+                                 _B \bW \right )
+l.329 ...ht )}{det\left (\bW^t \bS_W \bW \right )}
+                                                  \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> det\left ( \bW ^t \bS _B \bW 
+                                        \right )
+l.329 ...ht )}{det\left (\bW^t \bS_W \bW \right )}
+                                                  \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> det\left (\bW 
+                         ^t \bS _W \bW \right )
+l.329 ...ht )}{det\left (\bW^t \bS_W \bW \right )}
+                                                  \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> det\left (\bW ^t \bS 
+                                _W \bW \right )
+l.329 ...ht )}{det\left (\bW^t \bS_W \bW \right )}
+                                                  \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> det\left (\bW ^t \bS _W \bW 
+                                       \right )
+l.329 ...ht )}{det\left (\bW^t \bS_W \bW \right )}
+                                                  \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<recently read> \bW 
+                    
+l.330 \bW
+         ^t \bS_W \bW=I
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.330 \bW^t \bS
+               _W \bW=I
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.330 \bW^t \bS_W \bW
+                     =I
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.337 de leur moyenne ($det(\tilde{\bS
+                                      }_W)$ petit), et que les vecteurs moye...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<recently read> \bW 
+                    
+l.342 ...efaut d'admettre plusieurs solutions $\bW
+                                                  $ dont la solution
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<recently read> \bW 
+                    
+l.344 non singuli\`ere de $\bW
+                              $ laisse les crit\`eres invariants.
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<recently read> \bW 
+                    
+l.346 Notons que la matrice $\bW
+                                $ peut \^etre trouver de deux autre mani\`er...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> \bw ^t \bS 
+                      _B \bw 
+l.349 ...} \frac{\bw^t \bS_B \bw}{\bw^t \bS_W \bw}
+                                                   =
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> \bw ^t \bS 
+                      _W \bw 
+l.349 ...} \frac{\bw^t \bS_B \bw}{\bw^t \bS_W \bw}
+                                                   =
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> \bw ^t \bS 
+                      _T \bw 
+l.350 ...} \frac{\bw^t \bS_T \bw}{\bw^t \bS_W \bw}
+                                                   =
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> \bw ^t \bS 
+                      _W \bw 
+l.350 ...} \frac{\bw^t \bS_T \bw}{\bw^t \bS_W \bw}
+                                                   =
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> \bw ^t \bS 
+                      _B \bw 
+l.351 ...} \frac{\bw^t \bS_B \bw}{\bw^t \bS_T \bw}
+                                                  .
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> \bw ^t \bS 
+                      _T \bw 
+l.351 ...} \frac{\bw^t \bS_B \bw}{\bw^t \bS_T \bw}
+                                                  .
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<recently read> \bW 
+                    
+l.354 ...t\`eres, on trouve la m\^eme matrice $\bW
+                                                  $. Il s'ensuit
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.355 que les matrices  $(\bS
+                             _W^{-1}\cdot \bS_B)$, $(\bS_W^{-1}\cdot \bS_T)$ et
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.355 que les matrices  $(\bS_W^{-1}\cdot \bS
+                                             _B)$, $(\bS_W^{-1}\cdot \bS_T)$ et
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.355 ...atrices  $(\bS_W^{-1}\cdot \bS_B)$, $(\bS
+                                                  _W^{-1}\cdot \bS_T)$ et
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.355 ...^{-1}\cdot \bS_B)$, $(\bS_W^{-1}\cdot \bS
+                                                  _T)$ et
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.356 $(\bS
+           _T^{-1}\cdot \bS_B)$ ont m\^eme vecteurs propres.
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.356 $(\bS_T^{-1}\cdot \bS
+                           _B)$ ont m\^eme vecteurs propres.
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[66]
+
+LaTeX Warning: Citation `Sammon1969' on page 67 undefined on input line 466.
+
+
+LaTeX Warning: Citation `Kruskal1964' on page 67 undefined on input line 468.
+
+
+Overfull \hbox (2.61108pt too wide) has occurred while \output is active
+[] $[]$
+ []
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[67]
+
+LaTeX Warning: Citation `Sammon1969' on page 68 undefined on input line 486.
+
+
+LaTeX Warning: Citation `Kruskal1964' on page 68 undefined on input line 526.
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[68]
+! Undefined control sequence.
+l.582 $C_1=trace \left [  \bS
+                             _{Wq}^{-1} \bS_{Bq} \right ]=\sum_{i=1}^q \lamb...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.582 $C_1=trace \left [  \bS_{Wq}^{-1} \bS
+                                           _{Bq} \right ]=\sum_{i=1}^q \lamb...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Double subscript.
+l.582 $C_1=trace \left [  \bS_{Wq}^{-1} \bS_
+                                            {Bq} \right ]=\sum_{i=1}^q \lamb...
+I treat `x_1_2' essentially like `x_1{}_2'.
+
+! Undefined control sequence.
+<argument> |\bS 
+                _{Wq}|
+l.588 $C_2=\frac{|\bS_{Wq}|}{|\bS_{Tq}|}
+                                        =\prod_{i=1}^{q} \frac{1}{1+\lambda_...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> |\bS 
+                _{Tq}|
+l.588 $C_2=\frac{|\bS_{Wq}|}{|\bS_{Tq}|}
+                                        =\prod_{i=1}^{q} \frac{1}{1+\lambda_...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (2.61108pt too wide) has occurred while \output is active
+[] $[]$
+ []
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[69]) (./Chapitre6.tex
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[70]
+Chapter 6.
+
+Overfull \hbox (2.19841pt too wide) in paragraph at lines 3--17
+\OT1/cmr/m/n/12 de classes dont cer-tains ob-jets sont con-nus, alors que la cl
+as-si-fi-ca-tion tente de d^^Secouvrir
+ []
+
+
+LaTeX Warning: Citation `Sutcliffe1994' on page 71 undefined on input line 33.
+
+[71
+
+]
+! Undefined control sequence.
+l.87 la somme de la $i$\ieme
+                             ligne est \'egale \`a 1 (un \'el\'ement appartient
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.88 ...se) et la somme des valeurs de la $k$\ieme
+                                                   colonne vaut
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: Citation `Zadeh1965' on page 72 undefined on input line 95.
+
+
+LaTeX Warning: Citation `Ruspini1969' on page 72 undefined on input line 98.
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[72]
+Overfull \hbox (10.09277pt too wide) in paragraph at lines 138--142
+[]\OT1/cmr/m/n/12 Mais le nom-bre de par-ti-tions pos-si-bles, m^eme pour un pr
+obl^^Reme de taille raisonnable,
+ []
+
+
+LaTeX Warning: Citation `Gordon1980' on page 73 undefined on input line 160.
+
+! Undefined control sequence.
+l.168     & = & trace(\bS
+                         _W)
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (2.61108pt too wide) has occurred while \output is active
+[] $[]$
+ []
+
+
+Overfull \vbox (2.35pt too high) has occurred while \output is active []
+
+ [73]
+
+LaTeX Warning: Citation `Edwards1965' on page 74 undefined on input line 186.
+
+
+LaTeX Warning: Citation `Lloyd1957' on page 74 undefined on input line 186.
+
+
+Overfull \hbox (13.25343pt too wide) in paragraph at lines 195--197
+[]\OT1/cmr/m/n/12 ^^Setant donn^^Se $[] = \OMS/cmsy/m/n/12 f\OML/cmm/m/it/12 c[
+]\OMS/cmsy/m/n/12 g$\OT1/cmr/m/n/12 , min-imiser $\OML/cmm/m/it/12 I[]$ \OT1/cm
+r/m/n/12 par rap-port aux pro-to-types $[][]\OML/cmm/m/it/12 ; [] ; [][]$\OT1/c
+mr/m/n/12 . 
+ []
+
+
+LaTeX Warning: Citation `Selim1984' on page 74 undefined on input line 209.
+
+
+LaTeX Warning: Citation `Diday1971' on page 74 undefined on input line 216.
+
+
+LaTeX Warning: Citation `Bezdeck1974' on page 74 undefined on input line 217.
+
+
+LaTeX Warning: Citation `Fisher1958' on page 74 undefined on input line 219.
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[74]
+
+LaTeX Warning: Citation `Macqueen1967' on page 75 undefined on input line 229.
+
+
+Overfull \hbox (8.56085pt too wide) in paragraph at lines 256--261
+[]\OT1/cmr/m/n/12 Les al-go-rithmes adap-tat-ifs sont par-ti-c-uli^^Rerement ad
+^^Sequats lorsque toutes les donn^^Sees
+ []
+
+
+LaTeX Warning: Citation `Diday1971' on page 75 undefined on input line 264.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 284--290
+
+ []
+
+
+Overfull \hbox (2.61108pt too wide) has occurred while \output is active
+[] $[]$
+ []
+
+
+Overfull \vbox (2.35pt too high) has occurred while \output is active []
+
+ [75]
+Overfull \hbox (3.99146pt too wide) in paragraph at lines 291--297
+[]\OT1/cmr/m/n/12 L'approche prob-a-biliste de la recherche de par-ti-tions fai
+t l'hypoth^^Rese que l'ensemble
+ []
+
+
+Overfull \hbox (3.0489pt too wide) in paragraph at lines 291--297
+\OT1/cmr/m/n/12 des donn^^Sees $[] = ([][]\OML/cmm/m/it/12 ; :::; [][]\OT1/cmr/
+m/n/12 )$ est la r^^Sealisation d'un ^^Sechantillon de $\OML/cmm/m/it/12 N$ \OT
+1/cmr/m/n/12 vari-ables al^^Seatoires
+ []
+
+! Undefined control sequence.
+l.343 $k$\ieme
+               composante est donn\'ee par :
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[76]
+
+LaTeX Warning: Citation `Scott1971' on page 77 undefined on input line 356.
+
+
+LaTeX Warning: Citation `Schroeder1976' on page 77 undefined on input line 357.
+
+
+
+LaTeX Warning: Citation `Symons1981' on page 77 undefined on input line 384.
+
+! Undefined control sequence.
+l.390 ...)$ et $n_k$ est l'effectif de la $k$\ieme
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (2.61108pt too wide) has occurred while \output is active
+[] $[]$
+ []
+
+
+Overfull \vbox (2.35pt too high) has occurred while \output is active []
+
+ [77]
+
+LaTeX Warning: Citation `Celeux1992a' on page 78 undefined on input line 406.
+
+
+Overfull \hbox (19.0399pt too wide) in paragraph at lines 404--407
+[]\OT1/cmr/m/n/12 Ces deux crit^^Reres peu-vent ^etre max-imis^^Ses par une ver
+-sion clas-si-fi-ca-toire de l'algorithme
+ []
+
+
+LaTeX Warning: Reference `eq:tkxi' on page 78 undefined on input line 411.
+
+
+LaTeX Warning: Citation `Celeux1992a' on page 78 undefined on input line 425.
+
+! Undefined control sequence.
+l.452 ...     & = & -\frac{1}{2 \lambda} trace(\bS
+                                                  _W) + Cst,
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: Reference `sec:algo' on page 78 undefined on input line 455.
+
+
+LaTeX Warning: Citation `Celeux1992b' on page 78 undefined on input line 457.
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[78]
+
+LaTeX Warning: Citation `Hathaway1986' on page 79 undefined on input line 475.
+
+
+LaTeX Warning: Citation `Celeux1994' on page 79 undefined on input line 475.
+
+! Undefined control sequence.
+l.494 pour la $q$\ieme
+                       it\'eration il est possible d'optimiser  alternativement
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (2.61108pt too wide) has occurred while \output is active
+[] $[]$
+ []
+
+
+Overfull \vbox (2.35pt too high) has occurred while \output is active []
+
+ [79]
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[80]
+Overfull \hbox (2.61108pt too wide) has occurred while \output is active
+[] $[]$
+ []
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[81]
+
+LaTeX Warning: Citation `Ward1963' on page 82 undefined on input line 660.
+
+! Undefined control sequence.
+l.672 I_W  & = & trace(\bS
+                          _W),\\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+) (./Chapitre7.tex
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[82]
+Chapter 7.
+
+Overfull \hbox (9.24834pt too wide) in paragraph at lines 26--33
+\OT1/cmr/m/n/12 sur les m^^Sethodes de clas-si-fi-ca-tion ou de classe-ment qui
+ int^^Segr^^Rent la no-tion de d^^Sependance
+ []
+
+[83
+
+]
+
+LaTeX Warning: Citation `Ripley1982' on page 84 undefined on input line 52.
+
+
+Overfull \hbox (17.43854pt too wide) in paragraph at lines 99--103
+[]\OT1/cmr/m/n/12 Les pro-ces-sus g^^Sen^^Serateurs de vari-ables r^^Segionalis
+^^Sees, qui mod^^Selisent des ph^^Senom^^Renes
+ []
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[84]
+
+LaTeX Warning: Citation `Cliff1981' on page 85 undefined on input line 109.
+
+
+LaTeX Warning: Citation `Ripley1981' on page 85 undefined on input line 110.
+
+
+LaTeX Warning: Citation `Berry1966' on page 85 undefined on input line 127.
+
+
+LaTeX Warning: Citation `Jain1991' on page 85 undefined on input line 128.
+
+
+LaTeX Warning: Citation `Oliver1989' on page 85 undefined on input line 128.
+
+
+LaTeX Warning: Citation `Oliver1989' on page 85 undefined on input line 157.
+
+
+Overfull \hbox (9.13402pt too wide) in paragraph at lines 157--166
+\OT1/cmr/m/n/12 mod-i-fier les dis-tances ou dis-sim-i-larit^^Ses $\OML/cmm/m/i
+t/12 d[]$ \OT1/cmr/m/n/12 cal-cul^^Sees avec les vari-ables non g^^Seographique
+s.
+ []
+
+
+Overfull \hbox (2.61108pt too wide) has occurred while \output is active
+[] $[]$
+ []
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[85]
+
+LaTeX Warning: Citation `Oliver1989' on page 86 undefined on input line 167.
+
+
+LaTeX Warning: Citation `Legendre1987' on page 86 undefined on input line 205.
+
+
+LaTeX Warning: Citation `Lebart1978' on page 86 undefined on input line 205.
+
+
+LaTeX Warning: Citation `Openshaw1977' on page 86 undefined on input line 205.
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[86]
+
+LaTeX Warning: Citation `Lebart1978' on page 87 undefined on input line 229.
+
+
+Overfull \hbox (9.90111pt too wide) in paragraph at lines 252--255
+\OT1/cmr/m/n/12 classes les plus proches r^^Seduit de beau-coup l'espace de rec
+herche et acc^^Sel^^Rere la proc^^Sedure. 
+ []
+
+
+LaTeX Warning: Citation `Switzer1980' on page 87 undefined on input line 271.
+
+
+LaTeX Warning: Citation `Mardia1984' on page 87 undefined on input line 274.
+
+
+Overfull \hbox (2.61108pt too wide) has occurred while \output is active
+[] $[]$
+ []
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[87]
+LaTeX Font Warning: Command \boldmath invalid in math mode on input line 312.
+LaTeX Font Warning: Command \mathversion invalid in math mode on input line 312
+.
+LaTeX Font Warning: Command \boldmath invalid in math mode on input line 314.
+LaTeX Font Warning: Command \mathversion invalid in math mode on input line 314
+.
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[88]
+
+LaTeX Warning: Reference `eq:relation' on page 89 undefined on input line 378.
+
+
+LaTeX Warning: Citation `Marroquin1987' on page 89 undefined on input line 407.
+
+
+
+Overfull \hbox (2.61108pt too wide) has occurred while \output is active
+[] $[]$
+ []
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[89]
+
+LaTeX Warning: Citation `Ord1982' on page 90 undefined on input line 457.
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[90]
+
+LaTeX Warning: Citation `Geman1984' on page 91 undefined on input line 503.
+
+
+Overfull \hbox (2.61108pt too wide) has occurred while \output is active
+[] $[]$
+ []
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[91]
+Overfull \hbox (35.71497pt too wide) detected at line 598
+\OML/cmm/m/it/12 E\OT1/cmr/m/n/12 ([]) = [] \OML/cmm/m/it/12 x[]G[]\OT1/cmr/m/n
+/12 (\OML/cmm/m/it/12 x[]\OT1/cmr/m/n/12 ) + [] [] \OML/cmm/m/it/12 x[]x[]G[]\O
+T1/cmr/m/n/12 (\OML/cmm/m/it/12 x[]; x[]\OT1/cmr/m/n/12 ) + [] + \OML/cmm/m/it/
+12 x[]x[] [] x[]G[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 x[]x[] [] x[]\OT1/cmr/m/n/
+12 )\OML/cmm/m/it/12 ;
+ []
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[92]
+
+LaTeX Warning: Citation `Besag1974' on page 93 undefined on input line 613.
+
+
+LaTeX Warning: Citation `Billoire1992' on page 93 undefined on input line 633.
+
+
+Overfull \hbox (2.61108pt too wide) has occurred while \output is active
+[] $[]$
+ []
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[93]
+
+LaTeX Warning: Citation `Besag1974' on page 94 undefined on input line 689.
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[94]
+Overfull \hbox (2.61108pt too wide) has occurred while \output is active
+[] $[]$
+ []
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[95]
+
+LaTeX Warning: Citation `Geman1984' on page 96 undefined on input line 813.
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[96]
+
+LaTeX Warning: Citation `Besag1974' on page 97 undefined on input line 894.
+
+
+LaTeX Warning: Citation `Cross1983' on page 97 undefined on input line 922.
+
+
+LaTeX Warning: Citation `Geman1984' on page 97 undefined on input line 943.
+
+
+Overfull \hbox (2.61108pt too wide) has occurred while \output is active
+[] $[]$
+ []
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[97]
+
+LaTeX Warning: Citation `Besag1986' on page 98 undefined on input line 984.
+
+
+Overfull \hbox (1.97792pt too wide) in paragraph at lines 991--996
+\OT1/cmr/m/n/12 et de faire cro^^^Ptre $\OML/cmm/m/it/12 P\OT1/cmr/m/n/12 ([][]
+\OMS/cmsy/m/n/12 j[]\OT1/cmr/m/n/12 )$ ^^Ra chaque it^^Seration. Le prin-ci-pal
+ in-conv^^Senient de l'algorithme
+ []
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[98]
+
+LaTeX Warning: Citation `Marroquin1993' on page 99 undefined on input line 1002
+.
+
+
+Overfull \hbox (5.38841pt too wide) in paragraph at lines 1017--1021
+\OT1/cmr/m/n/12 Les r^^Sealisation de la loi \OT1/cmr/m/it/12 a pos-te-ri-ori \
+OT1/cmr/m/n/12 peu-vent ^etre obtenue en util-isant un ^^Sechantillonneur
+ []
+
+
+Overfull \hbox (2.61108pt too wide) has occurred while \output is active
+[] $[]$
+ []
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[99]
+
+LaTeX Warning: Citation `Besag1974' on page 100 undefined on input line 1073.
+
+
+LaTeX Warning: Citation `Derin1989' on page 100 undefined on input line 1086.
+
+
+Overfull \hbox (19.92612pt too wide) in paragraph at lines 1085--1090
+\OT1/cmr/m/n/12 l'obtention d'un $\OML/cmm/m/it/12 ^^L[]$ \OT1/cmr/m/n/12 n^^Se
+cessite sou-vent l'utilisation d'algorithmes d'optimisation num^^Serique. 
+ []
+
+
+LaTeX Warning: Citation `Younes1988' on page 100 undefined on input line 1093.
+
+
+Overfull \hbox (10.7448pt too wide) in paragraph at lines 1093--1096
+\OT1/cmr/m/n/12 blance de $\OML/cmm/m/it/12 ^^L$\OT1/cmr/m/n/12 . Soit $[][]$ l
+'image seg-ment^^See disponible. Une con-di-tion n^^Secessaire d'optimalit^^Se
+ []
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[100]
+Overfull \hbox (1.73491pt too wide) in paragraph at lines 1144--1147
+[]\OT1/cmr/m/n/12 estimation de $(\OML/cmm/m/it/12 ^^L[]; \OT1/cmr/m/n/12 ^^H[]
+)$ en util-isant l'image ob-serv^^See et une ou plusieurs
+ []
+
+
+LaTeX Warning: Citation `Chalmond1989' on page 101 undefined on input line 1152
+.
+
+
+LaTeX Warning: Citation `Besag1986' on page 101 undefined on input line 1152.
+
+
+LaTeX Warning: Citation `Geman1984' on page 101 undefined on input line 1152.
+
+
+LaTeX Warning: Citation `Derin1989' on page 101 undefined on input line 1152.
+
+
+LaTeX Warning: Citation `Pieczinsky1994' on page 101 undefined on input line 11
+52.
+
+
+LaTeX Warning: Citation `Chalmond1989' on page 101 undefined on input line 1156
+.
+
+
+Overfull \hbox (2.61108pt too wide) has occurred while \output is active
+[] $[]$
+ []
+
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[101]
+Overfull \hbox (2.77426pt too wide) in paragraph at lines 1208--1217
+\OT1/cmr/m/n/12 Chalmond cal-cule di-recte-ment les prob-a-bilit^^Ses $\OML/cmm
+/m/it/12 P[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 c[] \OT1/cmr/m/n/12 = 1\OMS/cmsy/
+m/n/12 j[][]\OT1/cmr/m/n/12 )$. D'apr^^Res
+ []
+
+)
+No file Notes.bbl.
+
+Overfull \vbox (2.41666pt too high) has occurred while \output is active []
+
+
+[102] (./Notes.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right o
+n input line 91.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 974 strings out of 493633
+ 11365 string characters out of 3143376
+ 69695 words of memory out of 3000000
+ 4240 multiletter control sequences out of 15000+200000
+ 23659 words of font info for 86 fonts, out of 3000000 for 9000
+ 831 hyphenation exceptions out of 8191
+ 27i,16n,21p,413b,274s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pf
+b></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
+></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
+</usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></
+usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></u
+sr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></us
+r/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr
+/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/l
+ocal/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/loc
+al/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local
+/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/local
+/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb></usr/l
+ocal/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/loc
+al/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local
+/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/te
+xlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texli
+ve/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/
+2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2
+011/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/201
+1/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2011/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2011/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2011/tex
+mf-dist/fonts/type1/public/amsfonts/latxfont/lcircle1.pfb></usr/local/texlive/2
+011/texmf-dist/fonts/type1/public/amsfonts/latxfont/line10.pfb>
+Output written on Notes.pdf (103 pages, 538343 bytes).
+PDF statistics:
+ 434 PDF objects out of 1000 (max. 8388607)
+ 301 compressed objects within 4 object streams
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+

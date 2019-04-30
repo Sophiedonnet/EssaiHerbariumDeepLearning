@@ -1,0 +1,676 @@
+\chapter{Approche statistique et mod\`eles param\'etriques}
+\nocite{Flury1994}
+Dans le chapitre pr\'ec\'edent nous avons vu que la r\`egle de Bayes
+qui permet de d\'efinir un classifieur optimal au sens de la
+minimisation conjointe des probabilit\'es d'erreur et de doute,
+n\'ecessite la connaissance des loi {\em a posteriori}
+$\pi(\x | k)$. Malheureusement dans les probl\`emes r\'eels de 
+reconnaissance des formes, le mod\`ele probabiliste que suivent
+les donn\'ees est inconnu. 
+
+Dans le cadre de l'approche statistique (``sampling paradigm''), les
+densit\'es consid\'er\'ees sont les densit\'es conditionnelles 
+aux classes $f_k(\x | \theta_k)$. En effet, la connaissance de ces densit\'es
+conjointement aux proportions des classes $p_k$,  suffit \`a appliquer
+la r\`egle de Bayes car :
+$$
+p_k \cdot f_k(\x|\theta_k) \propto \pi(k | \x).
+$$
+Une proc\'edure possible pour d\'efinir le classifieur consiste \`a
+consid\'erer que les densit\'es conditionnelles aux classes appartiennent
+\`a une famille de densit\'es d\'efinies par peu de param\`etres. Cette
+approche param\'etrique comporte alors deux \'etapes :
+\begin{enumerate}
+\item le choix d'un mod\`ele ;
+\item l'estimation des param\`etres de ce mod\`ele.
+\end{enumerate}
+Cette d\'emarche revient \`a approximer les densit\'es {\em a posteriori} par
+$$
+\hat{\pi}(k| \x)=\frac{\hat{p}_k \cdot f_k(\x | \hat{\theta}_k)}{\sum_{\ell=1}^{K} \hat{p}_k \cdot f_\ell(\x | \hat{\theta}_\ell)}.
+$$  
+
+Ce chapitre pr\'esente dans une premi\`ere partie quelques  mod\`eles 
+couramment utilis\'es en reconnaissance statistique des formes.
+La seconde section  expose l'estimation par maximum de 
+vraisemblance des param\`etres des densit\'es de classe. L'estimation
+par maximum de vraisemblance n'est naturellement pas la seule 
+solution existante, qui permet de r\'esoudre les probl\`emes 
+d'estimation rencontr\'es en discrimination, mais elle a le 
+m\'erite d'\^etre relativement simple. Le lecteur int\'eress\'e
+pourra consulter l'excellent livre de B. Ripley(1996) pour une introduction
+\`a d'autres approches.   Enfin,
+la derni\`ere section envisage la d\'elicate question du choix de  mod\`ele.
+
+\section{La loi normale multidimensionnelle}
+
+% presentation de la loi
+ % combinaison lineaires
+La loi normale repose sur les travaux de Jacques Bernouilli (1654-1705).
+Parfois attribu\'e \`a Laplace et Gauss, elle tient son nom
+de Pearson (le p\`ere). F. Galton et K. Pearson utilisaient d\'ej\`a
+la loi normale en dimension 2 \`a la fin du 19\ieme si\`ecle et l'extension
+au cas g\'en\'eral a \'et\'e r\'ealis\'e durant le premier quart
+du 20\ieme si\`ecle. 
+
+Dans le cadre de la reconnaissance des formes, la loi
+normale est couramment utilis\'ee comme densit\'e 
+de classe : on suppose ainsi que chaque $\x_i \in \R^d$  
+appartenant \`a la classe ${\cal C}_k$ suit une loi de densit\'e 
+\begin{equation}
+f_k(\x_i | \theta_k)=(2\pi)^{-\frac{d}{2}}  \det{|\bSigma_k|}^{-\frac{1}{2}}
+\exp{(-\frac{1}{2}(\x-\bmu_k)^t \bSigma_k^{-1} (\x-\bmu_k))} 
+\end{equation}
+avec $\bmu_k$  le vecteur moyenne, $\bSigma_k$ la matrice 
+de variance covariance, et $d$ la dimension des vecteurs $\x_i$.
+De mani\`ere plus concise, on note 
+$$
+\x_i \sim {\cal N}_d(\bmu_k,\bSigma_k)
+$$
+
+D'un point de vue g\'eom\'etrique (si l'on se place dans $\R^d$), faire
+l'hypoth\`ese de normalit\'e revient \`a supposer que tous les vecteurs
+forme d'une classe $k$ donn\'ee appartiennent \`a une hyperellipso\"{\i}de 
+de centre $\bmu_k$ avec une certaine probabilit\'e $\alpha$. L'\'equation
+de l'hyperellipso\"{\i}de est donn\'ee par :
+$$
+r_\alpha^2=(\x_i-\bmu_k)^t \bSigma_k (\x_i-\bmu_k)
+$$ 
+Si l'on d\'ecompose  la matrice de covariance dans sa base de vecteurs propres :
+\begin{equation}
+\bSigma_k=\lambda_k \cdot \Dbold_k \cdot \Bbold_k \cdot \Dbold_k^t
+\end{equation}   
+il est possible d'interpr\'eter g\'eom\'etriquement les quantit\'es
+mises en \'evidence :
+\begin{itemize}
+\item $\lambda_k=\det{|\bSigma_k|^{\frac{1}{d}}}$ est interpr\'et\'e comme le volume de
+la $k$\ieme classe. En effet plus $\lambda_k$ est grand plus la classe occupera une
+place importante dans l'espace $\R^d$. Cette notion ne doit pas \^etre confondue avec 
+le nombre d'individus de la classe qui est relatif \`a la proportion $p_k$; ce n'est pas
+parce qu'une classe occupe un grand volume qu'elle contient forc\'ement beaucoup d'individus.
+
+\item $\Bbold_k$ (avec $det{|B_k|}$) est la matrice diagonale des valeurs propres.
+Elle caract\'erise la forme de la
+classe $k$. Plus une valeur propre est importante plus l'enveloppe de la classe
+est ``allong\'ee'' dans la direction du vecteur propre correspondant.
+
+\item $\Dbold_k$ est la matrice des vecteurs propres, qui sont les axes principaux
+de l'hyperellipso\"{\i}de.  Cette matrice donne l'orientation de la 
+classe $k$. C'est une matrice orthogonale de changement de base. Par rapport
+aux axes de r\'ef\'erence, la base de vecteurs propres est obtenue par rotation. 
+\end{itemize}
+
+\begin{figure}[hbtp]
+\begin{center}
+\leavevmode
+\hbox
+{
+\epsfxsize=\textwidth
+\divide\epsfxsize by 100
+\multiply\epsfxsize by 50
+\epsffile{/home/soleil/ambroise/figures/gauspar.eps}
+}
+\end{center}
+\caption{Param\'etrisation de la matrice de covariance dans le cas
+bidimensionnel}
+\label{fig :param}
+\end{figure}
+
+La matrice de covariance est sym\'etrique d\'efinie positive. Dans
+$\R^d$, une matrice de covariance repr\'esente  $d \cdot \frac{(d+1)}{2}$ param\`etres \`a estimer pour une seule classe. Si l'on se place dans $\R^8$, 
+cela fait 144  param\`etres \`a estimer pour une
+seule matrice de covariance.  
+Un moyen simple et classique de r\'eduire ce nombre consiste \`a faire
+l'hypoth\`ese (forte), que toutes les classes ont m\^eme matrice 
+de covariance $\bSigma$. Ainsi classiquement deux cas d'\'etudes
+sont distingu\'es :
+\begin{itemize}
+\item h\'et\'erosc\'edasticit\'e : matrice de covariance propre \`a chaque classe ($\bSigma_k$).
+\item homosc\'edasticit\'e : matrice de covariance commune \`a toutes les classes ($\bSigma_k=\bSigma$).
+\end{itemize}
+
+\subsection{Homosc\'edasticit\'e}
+Lorsque les matrices de covariance sont identiques pour toutes les
+classes, cela revient \`a supposer que les vecteurs forme de chaque
+classe tombent dans des hyperellipso\"{\i}des de m\^eme volume,
+m\^eme forme et m\^eme orientation. Dans ce cas la r\`egle de
+Bayes choisit la classe $\hat{c}(\x)$ telle que :
+\begin{eqnarray*}
+\hat{c}(\x) & = & arg \max_k \pi (k | \x ),\\
+            & = & arg \max_k (p_k \cdot f_k(\x)),\\
+            & = & arg \min_k -2 \cdot \log p_k  + (\x - \bmu_k)^t \bSigma^{-1} (\x - \bmu_k).
+\end{eqnarray*}
+
+Remarquons que si les proportions $p_k$ sont toutes \'egales, alors cette r\`egle de
+d\'ecision revient \`a affecter un vecteur forme \`a la classe la plus proche au
+sens de la distance de \citeasnoun{Mahalanobis1936} :
+$$
+\delta(\x,\bmu_k)=[(\x - \bmu_k)^t \bSigma^{-1} (\x - \bmu_k)]^{\frac{1}{2}}.
+$$ 
+Si, de plus, la matrice de covariance est proportionnelle \`a la matrice identit\'e,
+$$
+\bSigma=\sigma \cdot I,
+$$
+alors la distance de Mahalanobis est \'equivalente \`a la distance euclidienne. Dans ce dernier
+cas les classes sont suppos\'ees avoir une forme sph\'erique et un volume $\sigma$.
+Lorsque les proportions sont diff\'erentes, le terme $-2 \cdot \log p_k$ biaise la 
+d\'ecision en faveur de la classe la plus probable {\em a priori}.
+
+
+La r\`egle de d\'ecision peut s'exprimer sous une forme plus simple lorsque le terme
+quadratique est d\'evelopp\'e, car $\x^t \bSigma^{-1} \x$ est une expression ind\'ependante
+de l'indice de classe : 
+\begin{eqnarray*}
+\hat{c}(\x) & = & arg \max_k (\bSigma^{-1} \bmu_k)^t \cdot \x + (-\frac{1}{2}{\bmu_k}^t\bSigma^{-1} \bmu_k + \log p_k),\\
+            & = & arg \max_k \bw_k^t \cdot \x + w_{k0}.
+\end{eqnarray*}
+
+La fonction de d\'ecision est lin\'eaire et on parle d'analyse discriminante lin\'eaire, ce qui
+implique, que les fronti\`eres s\'eparant deux  r\'egions voisines de d\'ecision, sont des hyperplans.
+Consid\'erons  ${\cal R}_k$ et ${\cal R}_\ell$ deux r\'egions contig\"ues :  la fronti\`ere entre ces
+deux r\'egions est d\'ecrite par l'\'equation : 
+$$
+(\bSigma^{-1} (\bmu_k-\bmu_\ell))^t \cdot (\x - \x_0)=0,
+$$ 
+o\`u 
+$$
+\x_0=\frac{1}{2}(\bmu_k + \bmu_\ell) - \log (\frac{p_k}{p_\ell}) \frac{(\bmu_k-\bmu_\ell)}{(\bmu_k-\bmu_\ell)^t\bSigma^{-1} (\bmu_k-\bmu_\ell) }.
+$$
+Ainsi la surface s\'eparatrice est un hyperplan orthogonal \`a $\bSigma^{-1} (\bmu_k-\bmu_\ell)$ et
+passant par le point $\x_0$.
+
+Notons que dans le cas particulier o\`u les proportions 
+sont \'egales et la matrice de covariance proportionnelle \`a la matrice identit\'e, alors
+l'hyperplan est orthogonal \`a l'axes reliant les vecteur moyennes $\bmu_k$ et $\bmu_\ell$
+et le point $\x_0$ est exactement au milieu du segment d\'efini par $\bmu_k$ et $\bmu_\ell$.
+Si les proportions sont diff\'erentes cela revient \`a translater l'hyperplan vers vecteur
+moyenne de la classe la moins probable.
+
+\begin{ex}\cite{Ripley1996}(suite de l'exemple \ref{ex:erreur})
+Probabilit\'e d'erreur dans le cas de deux classes gaussiennes sous hypoth\`ese d'homosc\'edasticit\'e :
+la r\`egle de d\'ecision prend la forme suivante
+$$
+\hat{c}(\x)=
+\left \{ \begin{array}{l}
+1 \ si \ A=(\bmu_1 - \bmu_2)^t \bSigma^{-1}(\x - \frac{1}{2}(\bmu_1 + \bmu_2)) > \log \frac{p_1}{p_2} , \\
+2 \ sinon.\\
+\end{array}
+\right .
+$$
+Si $X$ appartient \`a la classe 1 alors on peut montrer que
+$$
+A \sim {\cal N}(\frac{1}{2}\delta^2,\delta^2)
+$$
+avec $\delta=[(\bmu_1 - \bmu_2)^t \bSigma^{-1} (\bmu_1 - \bmu_2)]^{\frac{1}{2}}$.
+De m\^eme si $X$ appartient \`a la seconde classe alors 
+$$
+A \sim {\cal N}(-\frac{1}{2}\delta^2,\delta^2)
+$$
+
+Maintenant,  la probabilit\'e d'erreur peut s'\'ecrire comme : 
+\begin{eqnarray*}
+P(\mbox{Erreur})& = &  P(\X \in {\cal R}_2 | C=1) \cdot p_1 +  
+P(\X \in {\cal R}_1 | C=2) \cdot p_2,\\
+& = &  p_1 \cdot P(A\leq \log \frac{p_1}{p_2}| C=1) + p_2 \cdot  P(A > \log \frac{p_1}{p_2}| C=2),\\
+                & = &  p_1 \cdot \Phi(-\frac{1}{2} \delta + \frac{1}{\delta} \log \frac{p_1}{p_2}) + p_2 \cdot \Phi(-\frac{1}{2} \delta - \frac{1}{\delta} \log \frac{p_1}{p_2})
+\end{eqnarray*}
+
+
+\end{ex}
+
+
+
+
+
+
+\subsection{H\'et\'erosc\'edasticit\'e}
+Dans le cas g\'en\'eral, chaque matrice de covariance est diff\'erente. 
+La r\`egle de d\'ecision prend une forme plus complexe que dans le cas
+pr\'ec\'edent :
+\begin{eqnarray*}
+\hat{c}(\x) & = & arg \max_k \pi (k | \x ),\\
+            & = & arg \min_k -2 \cdot \log p_k  + \log(\det{|\bSigma_k|}) + (\x - \bmu_k)^t \bSigma_k^{-1} (\x - \bmu_k).
+\end{eqnarray*}
+
+Cette r\'egle est quadratique et les surfaces de d\'ecisions g\'en\'er\'ees
+sont des hyperquadratiques : hypersph\`eres, hyperellispo\"{\i}de, 
+hyperparabolo\"{\i}de, hyperhyperbolo\"{\i}de. L'\'equation g\'er\'erale
+d'une  surface s\'eparatrice est alors de la forme :
+$$
+\x^t W_k \x + \bw_k^t \x + \bw_{k0}=0. 
+$$  
+
+
+ 
+
+\subsection{Mod\`ele parcimonieux}
+
+\begin{table}\label{tab:modeles}
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+mod\`ele & nombre de param\`etres \\
+\hline
+$[\lambda D B D']$&$\alpha+\beta$\\
+$[\lambda_k D B D']$&$\alpha+\beta+K-1$\\
+$[\lambda D B_k D']$&$\alpha+\beta+(K-1)(d-1)$\\
+$[\lambda_k D B_k D']$&$\alpha+\beta+(K-1)d$\\
+$[\lambda D_k B D_k']$&$\alpha+K\beta-(K-1)d$\\
+$[\lambda_k D_k B D_k']$&$\alpha+K\beta-(K-1)(d-1)$\\
+$[\lambda D_k B_k D_k']$&$\alpha+K\beta-(K-1)$\\
+$[\lambda_k D_k B_k D_k']$&$\alpha+K\beta$\\
+     & \\
+$[\lambda A]$&$\alpha+d$\\
+$[\lambda_k A]$  & $\alpha+d+K-1$\\
+$[\lambda A_k$] &$\alpha+Kd-K+1$\\
+$[\lambda_k A_k]$&$\alpha+Kd$\\
+      &  \\
+$[\lambda I]$&$\alpha+1$\\
+$[\lambda_k I]$&$\alpha+d$\\
+\hline
+\end{tabular}
+\end{center}
+\caption{Nombre de param\`etres \`a estimer pour chacun des quatorze mod\`eles.
+Lorsque un param\`etre diff\'erent est caclul\'e par classe, celui-ci est
+indic\'e. Si le param\`etre est commun a toutes les classes, il ne porte
+pas d'indice. Nous avons  $\alpha=Kd$ et  $\beta=\frac{d(d+1)}{2}$}
+\end{table}
+
+Une  solution interm\'ediaire  pour r\'eduire le nombre de param\`etres
+\`a estimer consiste \`a consid\'erer la param\'etrisation
+de la matrice de covariance. Cette param\'etrisation permet
+de mettre en \'evidence des param\`etres qui poss\`edent une
+signification g\'eom\'etrique et l'on peut alors autoriser
+certains de ces param\`etres a \^etre commun \`a toutes les
+classes et estimer les autres par classe. Cette approche
+englobe bien \'evidemment les deux solutions pr\'esent\'ees
+pr\'ec\'edemment et permet  de d\'efinir 8 mod\`eles
+diff\'erents selon que l'on   autorise la libert\'e par classe 
+des param\`etres de volume $\lambda_k$, de forme $\Bbold_k$, ou
+bien d'orientation $\Dbold_k$. Dans le contexte du classement,
+les mod\`eles parcimonieux ont \'et\'e exploit\'es par Flury {\em et al.}
+(1994) et apppliqu\'es entre autre par \citeasnoun{Celeux1995} \`a la 
+classification. 
+
+Pour diminuer encore le nombre de param\`etres \`a estimer,
+il est possible d'envisager des hypoth\`eses suppl\`ementaires
+sur les matrices de covariance. Deux situations semblent
+int\'eressantes :
+\begin{itemize}
+\item imposer le fait que les matrices de covariance sont diagonales. 
+Dans ce cas, 
+$$
+\bSigma_k= \lambda_k \cdot \Abold_k
+$$ 
+avec  $\det(\Abold_k)=1$. Cette hypoth\`ese fournit 4 mod\`eles 
+suppl\'ementaires ; 
+\item faire l'hypoth\`ese que les matrices de covariances sont
+proportionnelles \`a la matrice identit\'e :
+$$
+\bSigma_k= \lambda_k \cdot I,
+$$
+ce qui ajoute encore deux mod\`eles.
+\end{itemize}  
+
+
+Finalement, nous avons quatorze mod\`eles diff\'erent qui vont
+du plus simple forcant toutes les matrices de covariance \`a \^etre
+proportionnelles \`a la matrice identit\'e et \`a avoir m\^eme volume,
+au plus compliqu\'e, qui n\'ecessite le calcul d'une matrice de 
+covariance diff\'erente par classe. Le tableau \ref{tab:modeles}
+donne le nombre de param\`etre \`a estimer pour chacun des quatorzes
+mod\`eles.
+
+
+
+\section{La loi de Student}
+% Loi de Student
+\citeasnoun{Ripley1996} remarque que la loi normale poss\`ede des ``queues''
+tr\`es aplaties contrairement au distributions (empiriques) observ\'ees
+dans des probl\`emes r\'eels. La loi de Student, qui poss\`ede des ``queues''
+plus lourdes, peut donc \^etre utilis\'ee avantageusement.
+
+La loi de Student multivariable peut \^etre d\'efinie par la densit\'e suivante
+lorsque $\nu$ le nombre de degr\'e de libert\'e est sup\'erieur \`a deux
+\begin{equation}
+f_k(\x| \theta_k)=\frac{\Gamma(\frac{1}{2}(\nu+d))}{(\nu\pi)^\frac{d}{2} \Gamma(\frac{1}{2}\nu)}|\bSigma_k|^{-\frac{1}{2}}[1+\frac{1}{\nu}(\x-\bmu_k)^t\bSigma_k^{-1}(\x-\bmu_k)]^{-\frac{1}{2}(\nu+d)} 
+\end{equation}
+
+avec $\bmu_k$ le vecteur moyenne et $\bSigma_k$ la matrice 
+d'\'echelle. La matrice de covariance est $\frac{\nu\bSigma}{\nu-2}$.
+
+La r\`egle de d\'ecision prend la forme
+\begin{eqnarray*}
+\hat{c}(\x) & = & arg \min_k \frac{\nu+d}{2}\log[1+\frac{1}{\nu}(\x-\bmu_k)^t\bSigma_k^{-1}(\x-\bmu_k)]+\frac{1}{2}\log|\bSigma_k|-\log p_k
+\end{eqnarray*}
+
+\section{Estimation par maximum de vraisemblance}
+
+Entre autres contributions \`a la statistique, R. Fisher (1890--1962) a
+introduit le concept de vraisemblance en 1912 dans un article intitul\'e
+``On absolute criterion for fitting frequency curves'' \cite{Fisher1912}.
+Aujourd'hui (1997), les estimateurs du maximum de vraisemblance jouent un 
+r\^ole central dans la th\'eorie de l'estimation.
+
+\begin{defi}
+Soit la r\'ealisation d'un \'echantillon i.i.d. ${\cal X}=(\x_1,...,\x_N)$ d'une 
+variable al\'eatoire  de densit\'e  $f$ d\'ependant d'un param\`etre $\theta$. 
+On note $f({\cal X} | \theta)=\prod_{i=1}^N f(\x_i | \theta)$ la densit\'e de 
+l'\'echantillon et $\ell(\theta; {\cal X})=f({\cal X} | \theta)$ la vraisemblance 
+du  param\`etre $\theta$.   
+\end{defi}
+
+La notion de vraisemblance am\`ene \`a r\'e\'ecrire la densit\'e de 
+l'\'echantillon en consid\'erant le param\`etre $\theta$ comme fonction
+d'un \'echantillon observ\'e, ${\cal X}$. Cette d\'efinition du concept de 
+vraisemblance conduit naturellement la d\'efinition d'estimateur du
+maximum de vraisemblance :
+
+L'estimateur du maximum de vraisemblance $\hat{\theta}_{MV}$ de $\theta$ est
+tel que $\hat{\theta}_{MV}=arg \max_{\theta}\ell(\theta;{\cal X})$.
+Il est souvent plus avantageux de maximiser la log-vraisemblance $L(\theta; {\cal X})=\log \ell(\theta; {\cal X})$
+plut\^ot que la vraisemblance. 
+
+Dans le cas particulier o\`u la log-vraisemblance est deux fois diff\'erentiable et
+le param\`etre est un scalaire,
+$\hat{\theta}_{MV}$ est une solution du syst\`eme : 
+\[
+\left \{
+\begin{array}{c}
+\frac{\partial L(\theta; {\cal X})}{\partial \theta}=0 \\
+\frac{\partial^2 L(\theta; {\cal X})}{\partial \theta^2}<0 \\
+\end{array}
+\right .
+\]
+Si le param\`etre \`a estimer est vectoriel, l'estimateur du maximum de
+vraisemblance annule le gradient, et induit une matrice hessienne
+d\'efinie n\'egative.  Notons que ces conditions sont  
+n\'ecessaires mais pas suffisantes.
+
+
+\subsection{Discrimination et maximum de vraisemblance}
+Dans un probl\`eme de discrimination, l'on dispose d'un ensemble 
+d'apprentissage 
+$$
+{\cal F}=\{(\x_1,c(\x_1)),\cdots,(\x_N,c(\x_N))\}
+$$
+Notons $n_k$ le nombre de vecteurs forme de la classe $k$ et 
+$\x_{i,k}$ un vecteur forme de cette classe. La vraisemblance
+de l'ensemble des param\`etres $(\theta,(p_1,\cdots p_{K}))$ du mod\`ele
+connaissant ${\cal F}$ s'\'ecrit
+\begin{eqnarray*}
+\ell(\theta,(p_k); {\cal F})) & = & \prod_{k=1}^K \prod_{i=1}^{n_k} P(\X_{ik}=\x_{i,k},C=k;\theta),\\
+                  & = & \prod_{k=1}^K \prod_{i=1}^{n_k} p_k \cdot f_k(\x_{i,k};\theta)
+\end{eqnarray*}
+Les estimateurs du maximum de vraisemblance de $(\theta,(p_1,\cdots p_{K-1}))$ 
+maximisent 
+\begin{equation}
+L(\theta,(p_k); {\cal F}))  = \sum_{k=1}^{K} \sum_{i=1}^{n_k} \log f_k(\x_{i,k};\theta) + \sum_{k=1}^{K} n_k \log p_k.
+\end{equation}
+Si nous cherchons dans un premier temps les estimateurs des proportions, 
+en prenant en compte la contrainte $\sum_{k=1}^{K} p_k =1$ grace \`a
+un multiplicateur de Lagrange, alors on trouve
+$$
+\widehat{p}_k=\frac{n_k}{\sum_{\ell=1}^{K} n_{\ell}}=\frac{n_k}{N}
+$$ 
+
+\subsection{Les param\`etres de la loi normale}
+Dans le cas o\`u les densit\'e de classe sont normales, 
+les estimateurs du maximum  de vraisemblance s'\'ecrivent :
+\begin{itemize}
+\item pour les vecteurs moyennes 
+$$
+\widehat{\bmu}_k=\frac{\sum_{i=1}^{n_k}\x_{i,k}}{n_k},
+$$
+\item et pour les matrices de covariance
+$$
+\widehat{\bSigma}_k=\frac{1}{n_k} \sum_{i=1}^{n_k} (\x_{i,k}-\widehat{\bmu}_k)(\x_{i,k}-\widehat{\bmu}_k)^t.
+$$
+Remarquons que cet estimateur est biais\'e et qu'en pratique ce sont
+les estimateurs d\'ebiais\'es qui sont couramment utilis\'es
+$$
+\widehat{\bSigma}_k^*=\frac{1}{n_k-1} \sum_{i=1}^{n_k} (\x_{i,k}-\widehat{\bmu}_k)(\x_{i,k}-\widehat{\bmu}_k)^t
+$$
+\end{itemize}
+
+Si toutes les matrices de covariance des densit\'e de classe sont
+suppos\'ees identiques (homosc\'edasticit\'e) alors
+$$
+\widehat{\bSigma}= \sum_{k=1}^{K} \frac{n_k}{N}\widehat{\bSigma}_k
+$$
+Ce dernier estimateur est aussi biais\'e, car l'estimateur du vecteur moyenne 
+est utilis\'e \`a la place du vecteur moyenne  et l'on consid\`ere en g\'en\'eral
+$$
+\widehat{\bSigma}^*= \sum_{k=1}^{K} \frac{n_k}{N-K}\widehat{\bSigma}_k
+$$
+qui est sans biais.
+
+
+Lorsque la matrice de covariance est d\'ecompos\'ee sur sa base
+de vecteurs propres (mod\`eles parcimonieux), et que certains param\`etres 
+sont fix\'es le calcul des estimateurs du maximum de vraisemblance se
+complique l\'eg\`erement et n\'ecessite parfois l'usage
+d'algorithmes it\'eratifs. Le lecteur int\'eress\'e consultera
+avantageusement Flury {\em et al.}(1994).
+
+
+\subsection{Les param\`etres de la loi de Student}
+Dans le cas o\`u les densit\'es de classe sont de lois de Student
+multivari\'ees, le calcul des estimateurs de maximum de vraisemblance
+devient it\'eratif. Notons $Q_{ik}$ le terme quadratique
+$$
+Q_{ik}=(\x_{ik}-\bmu_k)^t\bSigma_k^{-1}(\x_{ik}-\bmu_k), 
+$$
+et $w_{ik}$ des coefficient de la forme
+$$
+w_{ik}=\frac{1}{1+Q_{ik}/\nu}.
+$$
+En utilisant ces notations, les estimateurs de maximum de
+vraisemblance sont
+\begin{itemize}
+\item pour les vecteurs moyennes 
+$$
+\widehat{\bmu}_k=\frac{\sum_{i=1}^{n_k} w_{ik}\x_{i,k}}{\sum_{i=1}^{n_k} w_{ik }},
+$$
+\item et pour les matrices $\bSigma_k$ (qui ne sont pas les matrices de covariance,
+mais des matrices d'\'echelles). 
+)
+$$
+\widehat{\bSigma}_k=\frac{1}{n_k}\frac{\nu+p}{\nu} \sum_{i=1}^{n_k} w_{ik} (\x_{i,k}-\widehat{\bmu}_k)(\x_{i,k}-\widehat{\bmu}_k)^t.
+$$
+\end{itemize}
+Comme les coefficients $w_{ik}$ sont fonctions des param\`etres que l'on
+d\'esire estimer, les estimateurs du maximum de vraisemblance ne peuvent
+\^etre d\'etermin\'es directement. 
+
+Remarquons que les estimateurs produits sont des versions pond\'er\'ees
+des estimateurs trouv\'es dans le cas gaussien. Les pond\'erations
+donnant moins d'importance aux vecteurs forme isol\'es. 
+
+
+\section{Choix de mod\`ele}
+
+Lorsque un statisticien choisit un mod\`ele, il sait pertinemment
+qu'il n'est qu'une approximation pratique de la r\'ealit\'e. 
+Si la question n'est pas de trouver le mod\`ele id\'eal que
+suivent les donn\'ees, il semble par contre int\'eressant de 
+d\'eterminer quel est le meilleur mod\`ele candidat parmi un
+certain nombre possible. Par exemple, on peut se poser la question
+de savoir quel est le mod\`ele normal,  parmi les quatorze
+mod\`eles parcimonieux, qui rend le mieux compte de la densit\'e
+d'une classe. On pourrait s'attendre \`a ce que  le mod\`ele le plus 
+compliqu\'e (celui qui poss\`ede le plus de param\`etres) donne
+le meilleur r\'esultat. Cette derni\`ere observation  se confirme  
+lorsque l'ensemble d'apprentissage comporte de tr\`es nombreux
+exemples, mais ce n'est pas toujours le cas en pratique. 
+
+Mais comment \'evaluer les performances d'un mod\`ele ? Dans le contexte
+de la discrimination, deux approches sont envisageable :  
+\begin{itemize}
+\item une premi\`ere solution consiste \`a envisager la question sous l'angle
+de la performance du classifieur produit par un mod\`ele donn\'e.
+ Le mod\`ele retenu
+sera celui qui engendre la plus petite probabilit\'e d'erreur de 
+classement.  Cette perspective r\'eduit alors le probl\`eme \`a la 
+question trait\'ee dans la derni\`ere section du premier chapitre ;
+
+\item une seconde alternative consiste \`a consid\'erer un crit\`ere
+d'ajustement du mod\`ele \`a la r\'ealit\'e, classe par classe. Ainsi, 
+le mod\`ele le mieux ajust\'e devrait produire un classifieur le 
+plus proche possible du classifieur bay\'esien id\'eal (celui qui
+classifie connaissant les densit\'es r\'eelles) et donc, indirectement
+minimiser l'erreur de classement. La fin de ce chapitre pr\'esente deux strat\'egies
+diff\'erentes permettant de choisir entre plusieurs mod\`eles.
+\end{itemize}      
+
+
+\subsection{P\'enalisation de la vraisemblance}
+
+Comment choisir entre plusieurs mod\`eles de diff\'erentes complexit\'es
+lorsque la m\'ethode du maximum de vraisemblance est utilis\'e
+comme strat\'egie d'estimation ? En r\`egle g\'en\'erale, sur 
+un ensemble d'apprentissage donn\'e, le mod\`ele le plus
+complexe donne la plus grande vraisemblance. Une fa\c{c}on
+d'aborder le  probl\`eme du choix consiste \`a tenter de 
+r\'epondre \`a la question suivante : comment se comporterait
+le mod\`ele en moyenne  si l'on jugeait ses performances avec d'autres
+donn\'eees ?
+L'id\'ee sous-jacente est qu'un mod\`ele tr\`es compliqu\'e,
+ajust\'e en utilisant un petit ensemble d'apprentissage,
+risque de mal se comporter si l'on calcule ses performances
+sur un ensemble test, car le mod\`ele sera ``sp\'ecialis\'e''
+pour rendre compte du petit ensemble d'apprentissage.  
+
+% definition de theta0 a partir de la distance de Kulback
+
+La vraisemblance est une fonction d'un vecteur de param\`etre
+$\theta$, pour une certaine r\'ealisation d'un \'echantillon.
+ Si l'on \'ecrit la log-vraisemblance en 
+fonction d'un \'echantillon de taille $N$ :
+$$
+L_N(\theta)=\sum_{i=1}^N \log f(\X_i ; \theta)
+$$
+alors d'apr\`es la loi forte des grands nombres, 
+$$
+\lim_{N \rightarrow \infty} L_N(\theta)/N= \int f(\x) \log f(\x ; \theta) d\x.
+$$
+Cette esp\'erance poss\`ede souvent un maximum unique $\theta_0$,
+qui peut \^etre interpr\'et\'e comme la valeur de $\theta$
+qui rend la densit\'e $f(\x ; \theta)$ aussi proche
+que possible de la densit\'e vraie $f(\x)$ au sens de la distance
+de Kullback :
+$$
+d(f,f_\theta)=\int f(\x) \log \frac{f(\x)}{f(\x ; \theta)}d\x.
+$$
+
+Sous certaines conditions, on montre que $\hat{\theta}$ l'estimateur
+du maximum de vraisemblance converge en loi vers  $\theta_0$. 
+
+
+
+Consid\'erons maintenant l'esp\'erance de l'\'ecart au mod\`ele, pour
+un seul vecteur forme :
+$$
+D=2 \E[\log f(\X) - \log f(\X ; \hat{\theta})]
+$$
+Cette valeur moyenne est int\'eressante car elle mesure l'ajustement
+moyen du mod\`ele en prenant en compte d'autre vecteurs formes que ceux
+de ${\cal F}$. Le th\'eor\`eme suivant montre comment l'on peut
+estimer cette esp\'erance et l'utiliser pour choisir le mod\`ele
+le plus adapt\'e. 
+
+\begin{th}\label{th:penalty}\cite{Ripley1996}
+$$
+2 \E[\log f(\X) - \log f(\X ; \theta_0)]=2 \E[\log f(\X) - \log f(\X ; \hat{\theta})] + \frac{1}{N} trace[KJ^{-1}] + O(1/\sqrt{N})
+$$
+avec 
+\begin{itemize}
+\item
+$$
+J=-\E[\frac{\partial^2 f(\X_i ; \theta_0)}{\partial \theta \partial \theta^T}]
+$$
+\item
+$$
+K=var[\frac{\partial f(\X_i ; \theta_0)}{\partial \theta}]
+$$
+la matrice d'information de Fisher.
+\end{itemize}
+\end{th}
+
+Si l'on remplace esp\'erance par moyenne empirique dans le th\'eor\`eme \ref{th:penalty},
+alors on trouve
+\begin{equation}
+\label{eq:complexite}
+2 \sum_{i=1}^{N} \log \frac{f(\X_i)}{f(\X_i ; \theta_0)} \approx 2 \sum_{i=1}^{N} \log \frac{f(\X_i)}{f(\X_i ; \hat{\theta})}
++ trace[KJ^{-1}].
+\end{equation}
+Cette \'equation montre que la d\'eviance de $\hat{\theta}$ calcul\'ee sur 
+${\cal F}$
+$$
+D_{\cal F}(\hat{\theta})=2 \sum_{i=1}^{N} \log \frac{f(\X_i)}{f(\X_i ; \hat{\theta)}},
+$$ 
+gagne \`a \^etre p\'enalis\'ee  par $trace[KJ^{-1}]$ pour approcher la d\'eviance
+calcul\'ee sur un \'echantillon de taille infini et  obtenir un crit\`ere de choix 
+de mod\`ele. Ainsi, l'\'equation \ref{eq:complexite} est \`a la base des crit\`eres
+de choix de mod\`ele :
+\begin{itemize}
+\item NIC (Network Information Criterion) $= D_{\cal F}(\hat{\theta}) + 2d^*$, \\
+avec $d^*=trace[KJ^{-1}]$. On peut approximer les matrices $K$ et 
+$J$ en remplacant esp\'erance par moyenne sur ${\cal F}$ et $\theta_0$ par
+$\hat{\theta}$.
+\item AIC (An Information Criterion)$ = D_{\cal F}(\hat{\theta}) + 2d$ ; \\
+o\`u $d^*$ est remplac\'e par $d$ le nombre de param\`etre du mod\`ele. 
+Notons que cette approximation est justifi\'ee lorsque la densit\'e vraie
+$f()$ appartient \`a la famille $f_{\theta}$, car dans ce cas $K=J$ et
+$d^*=trace[I]$.
+\end{itemize}
+
+Le mod\`ele choisit par ce type d'approche est bien \'evidemment celui 
+qui donne la plus petite valeur du crit\`ere choisit. En terme de vraisemblance,
+cela revient \`a choisir le mod\`ele qui maximise la vraisemblance p\'enalis\'ee
+par un terme n\'egatif, li\'e au nombre de param\`etres du mod\`ele.
+ 
+\subsection{S\'election par  validation crois\'ee}
+
+Il est aussi possible de recourir \`a  une proc\'edure de validation
+crois\'ee pour choisir le meilleur mod\`ele au vue d'un 
+certain crit\`ere. Si le crit\`ere consid\'er\'e est la d\'eviance
+alors cela revient \`a utiliser le crit\`ere NIC.
+
+Supposons que l'on dispose d'un \'echantillon ${\cal F}=(\x_1,\cdots,\x_N)$ et
+notons ${\cal F}_i$, l'\'echantillon ${\cal F}$ sans $\x_i$. La proc\'edure
+de validation crois\'ee consiste \`a estimer  $\hat{\theta}_i$ par 
+maximum de vraisemblance en utilisant ${\cal F_i}$ et \`a calculer le terme 
+$$
+D_i(\hat{\theta}_i)=2( \log f(\x_i) - \log f(\x_i ; \hat{\theta}_i) )
+$$
+La validation crois\'ee de l'\'ecart au mod\`ele s'exprime alors comme
+la somme de tous les $D_i$ obtenus. Si l'on consid\`ere le 
+developpement de taylor de cette somme \`a l'ordre 1 en $\hat{\theta}$, 
+on trouve :
+\begin{eqnarray*}
+ \sum_{i=1}^{N} D_i(\hat{\theta}_i)  & = &\sum_{i=1}^{N} D_i(\hat{\theta}) +  \sum_{i=1}^{N} ( \hat{\theta}_i- \hat{\theta})^t D_i^{'}(\tilde{\theta}_i) \\
+          & = & D_{\cal F}(\hat{\theta}) +   \sum_{i=1}^{N} ( \hat{\theta}_i- \hat{\theta})^t D_i^{'}(\tilde{\theta}_i)
+\end{eqnarray*}
+avec $\tilde{\theta}_i$ une combinaison convexe de $\hat{\theta}_i$ et 
+$\hat{\theta}$. Consid\'erons ensuite le d\'eveloppement de taylor
+du vecteur $D_i^{'}(\hat{\theta}_i)$ (qui est le transpos\'e du gradient de
+$D_i(\hat{\theta}_i)$ par rapport \`a $\hat{\theta}_i$) : 
+\begin{eqnarray*}
+D_i^{'}(\hat{\theta}_i)  & = &  D_i^{'}(\hat{\theta}) +  ( \hat{\theta}_i- \hat{\theta})^t D_i^{''}(\overline{\theta}_i) \\
+D_i^{'}(\hat{\theta}_i)  & = &   ( \hat{\theta}_i- \hat{\theta})^t D_i^{''}(\overline{\theta}_i) 
+\end{eqnarray*}
+avec $\overline{\theta}_i$ une combinaison convexe de $\hat{\theta}_i$ et 
+$\hat{\theta}$. Si tous les estimateurs converge vers $\theta_0$, alors
+\begin{eqnarray*}
+\sum_{i=1}^{N} D_i(\hat{\theta}_i)  & \approx  & D_{\cal F}(\hat{\theta}) +   
+\sum_{i=1}^{N} D_i^{'}(\theta_0)^t D_i^{''}(\theta_0)^{-1}
+ D_i^{'}(\theta_0) \\
+  & \approx  & D_{\cal F}(\hat{\theta}) + trace [KJ^{-1}].
+\end{eqnarray*}
+
+Ce qui montre que cette approche est asymptotiquement \'equivalente au choix de mod\`ele 
+sur la base du crit\`ere NIC.
+
+% Choix de mod\`le
+ % Critere de choix
+ % Leave one out procedure

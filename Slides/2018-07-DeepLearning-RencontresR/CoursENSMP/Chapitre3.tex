@@ -1,0 +1,748 @@
+\nocite{Dempster1977}
+\chapter{Approche statistique et m\'ethodes non param\'etriques}
+
+Les m\'ethodes non param\'etriques d'estimation de densit\'e,
+ne font pratiquement aucune hypoth\`ese sur la forme de la 
+densit\'e.
+Utilis\'ees dans le contexte de la discrimination, elles 
+peuvent servir \`a obtenir des estimations de densit\'es de classe.
+Si les $p_k$ sont estim\'es sur la base
+des proportions observ\'ees dans l'ensemble d'apprentissage, 
+les loi {\em a posteriori} sont alors approch'ees par :
+$$
+\hat{\pi}(k| \x)=\frac{\hat{p}_k \cdot \hat{f}_k(\x)}{\sum_{\ell=1}^{K} \hat{p}_k \cdot \hat{f}_\ell(\x)}.
+$$  
+Ces techniques sont particuli\`erement utiles lorsque les densit\'es
+de classes sont mal ajust\'ees aux densit\'es param\'etriques usuelles. 
+Notons par exemple, que toutes les densit\'es param\'etriques sont uni-modales,
+ce qui n'est bien \'evidemment pas toujours le cas des densit\'es
+observ\'ees dans des probl\`emes r\'eels.
+
+Ce chapitre  pr\'esente un choix de trois m\'ethodes non param\'etriques
+diff\'erentes, parmi les nombreuses existantes\footnote{De nombreuses autres m\'ethodes non 
+param\'etriques existent, mais elles sont toutes reli\'ees plus ou moins directement
+aux trois approches pr\'esent\'ees dans ce chapitre.} :
+\begin{itemize}
+\item les fen\^etres de Parzen,
+\item la technique des  k plus proches voisins,
+\item les mod\`eles de m\'elange.
+\end{itemize}
+
+
+\section{Estimation non param\'etrique d'un densit\'e}
+Comment estimer une densit\'e, sans supposer que celle-ci appartient
+\`a une famille connue, lorsqu'on dispose de $N$ observations ? L'estimateur
+le plus simple  est sans doute l'histogramme.
+Dans le cas multi-dimensionnel, le 
+calcul d'un histogramme revient \`a partitionner l'espace en cellules
+disjointes de m\^eme volume et \`a estimer la densit\'e d'une cellule comme la
+proportion d'observations de l'\'echantillon tombant dans cette
+cellule. En pratique cette approche n'est pas adapt\'ee car elle
+produit (avec des \'echantillons de taille raisonnable) une
+estimation nulle dans la plupart des cellules. En effet, si les vecteurs
+forme sont caract\'eris\'es par $d$ variables et que chaque variable
+est partag\'ee en $M$ intervalles, il faut consid\'erer $M^d$ cellules, 
+ce qui repr\'esente souvent bien plus que le nombre d'observations
+disponibles !   
+
+
+Une alternative consiste \`a utiliser les estimateurs par noyaux.
+Historiquement introduits par \citeasnoun{Fix1951} dans un
+rapport non publi\'e, ces estimateurs
+exploitent le fait, que la probabilit\'e qu'un vecteur $\X$ de loi $f()$
+tombe dans une r\'egion ${\cal R}$ avec une probabilit\'e 
+$$
+P=\int_{\cal R} f(\y)d\y.
+$$ 
+Ainsi, si l'on dispose de la r\'ealisation d'un \'echantillon i.i.d. $(\x_1,...,\x_{N})$
+de loi parente $f()$, alors la probabilit\'e que $r$ de ces vecteurs tombent dans ${\cal R}$
+suit une loi binomiale ${\cal B}(P,N)$ et
+$$
+P(R=r)=C_{r}^{N} P^r(1-P)^{N-r}.
+$$
+L'esp\'erance de la variable al\'eatoire $R$ est
+$$
+\E[R]=N \cdot P,
+$$
+et $P$ est classiquement estim\'e par $\hat{P}=r/N$.
+Si le volume $V$ de la r\'egion ${\cal R}$ est suffisamment petit, alors on peut supposer
+que $f(\x)$ varie  peu sur ${\cal R}$ et que l'approximation suivante est raisonnable
+$$
+P=\int_{\cal R} f(\y)d\y \approx V \cdot f(\x), 
+$$
+avec $\x$, un vecteur de ${\cal R}$. En remplacant $P$ par son estimation, on obtient : 
+$$
+\hat{f}(\x)=\frac{r/N}{V}.
+$$
+Il est possible de montrer que sous certaines hypoth\`eses concernant le choix de $V$ et de $r$,
+en fonction de $N$, cet estimateur est convergent (lorsque $N$ tend vers l'infini). Dans le cadre
+qui nous int\'eresse, constatons seulement qu'en pratique cet estimateur exige de 
+choisir soit un volume, soit une valeur de $r$ :
+\begin{itemize}
+\item
+si un volume $V$ est choisi autour de $\x$, alors l'estimation de $\hat{f}_k(\x)$
+n\'ecessite le comptage du nombre de vecteurs forme, qui appartiennent \`a ce volume.
+Cet type de technique est connue sous le nom de fen\^etre de Parzen et constitue
+le sujet de la prochaine section ;
+\item
+si un nombre $r$ est fix\'e, il faut trouver un volume $V$ autour de $\x$ qui
+contienne $r$ vecteurs forme. Cette m\'ethode est baptis\'ee m\'ethode des 
+$k$ plus proches voisins (KPPV). 
+\end{itemize}  
+
+\section{Fen\^etres de Parzen}
+
+\`A la suite de \citeasnoun{Fix1951}, l'approche de Parzen a \'et\'e propos\'ee 
+par \citeasnoun{Rosenblatt1956} dans
+le cas unidimensionnel puis par \citeasnoun{Parzen1962} dont le
+nom est rest\'e. La m\'ethode consiste \`a choisir une fonction fen\^etre $\delta(\x-\x_i)$,
+qui permet d'estimer le rapport $r/V$ autour de $\x$, c'est-\`a-dire le
+nombre $r$ par unit\'e de volume :
+$$
+\frac{r}{V}\approx \sum_{i=1}^{N} \delta(\x-\x_i).
+$$
+L'estimateur $\hat{f}()$ de $f()$ s'exprime alors comme :
+$$
+\hat{f}(\x)=\frac{1}{N} \sum_{i=1}^{N} \delta(\x-\x_i).
+$$
+Pour garantir que $\hat{f}()$ d\'efinit bien une densit\'e, il faut que 
+$$
+\delta(\y)>0
+$$
+et
+$$
+\int \delta(\y)d\y=1.
+$$
+En effet, dans ce cas, ces deux conditions seront aussi satisfaites par $\hat{f}()$.
+La fonction $\delta$ pond\`ere la contribution du vecteur $\x_i$ dans 
+le calcul de la densit\'e au point $\x$. Ainsi, il semble souhaitable, que
+$\delta(\x-\x_i)$ soit tr\`es petite (voir nulle) lorsque $\x$ et $\x_i$ 
+sont tr\`es \'eloign\'es, et maximum quand $\x=\x_i$. La fonction fen\^etre
+hypercubique et la gaussienne multivari\'ee constituent des exemples
+de fonction $\delta$.
+
+Notons que la d\'efinition de ce type de fonction n\'ecessite toujours de choisir
+un param\`etre $h$, qui d\'etermine ``la zone d'influence''  associ\'ee \`a chaque
+observation $\x_i$. Par exemple, dans le cas de la gaussienne, ce param\`etre 
+$h$ est la variance. Si $h$ tend vers $0$ alors la fonction $\delta$ tend \`a devenir
+une Dirac et l'estimateur de la densit\'e est une fonction tr\`es chahut\'ee. Si par
+contre $h$ est choisi tr\`es grand par rapport \`a la distance moyenne 
+s\'eparant les $\x_i$, l'estimateur de la densit\'e sera une fonction tr\`es
+lisse.  Ainsi le choix de ce param\`etre a une influence d\'eterminante sur
+l'estimateur $\hat{f}()$. Si $h$ est trop grand alors la densit\'e estim\'ee
+n'aura aucune pr\'ecision, et dans le cas contraire elle sera extr\^emement
+variable. Dans le cadre de la discrimination, notons qu'il semble avantageux 
+de consid\'erer des valeurs de $h$ propre \`a chaque classe. Il y a peu de 
+raisons pour qu'une valeur de $h$ optimale
+pour une densit\'e de classe donn\'ee, soit optimale pour toutes les autres densit\'es
+de classe du probl\`eme. Une proc\'edure d'estimation possible de $h$ consiste \`a utiliser le
+maximum de vraisemblance par l'interm\'ediaire d'une validation crois\'ee (chapitre 2).    
+
+
+\begin{figure}[hbtp]
+\begin{center}
+\leavevmode
+\begin{tabular}{c c}
+(a) Mod\'elisation par la m\'ethode de noyaux &  (b) Mod\`ele gaussien\\
+%--------------------------------------------------------------
+ 
+\epsfxsize=\textwidth
+\divide\epsfxsize by 100
+\multiply\epsfxsize by 45
+\epsffile{/home/soleil/ambroise/figures/Modelnoyau.ps}
+&
+ 
+\epsfxsize=\textwidth
+\divide\epsfxsize by 100
+\multiply\epsfxsize by 45
+\epsffile{/home/soleil/ambroise/figures/Modelgauss.ps}\\
+%---------------------------------------------------------------
+\end{tabular}
+\caption{R\'epartition de la taille d'adultes de sexes masculins mod\'elis\'ee 
+          par une m\'ethode non param\'etrique (a) et une m\'ethode param\'etrique (b)
+\`a partir de 10 mesures.}
+\end{center}
+\label{fig:gaussnoyau}
+\end{figure}
+
+Dans le contexte de la discrimination, si les densit\'es de classes sont
+estim\'ees en utilisant une fonction fen\^etre $\delta$, les
+loi {\em a posteriori} s'expriment :
+\begin{eqnarray*}
+\hat{\pi}(k| \x) & = & \frac{\hat{p}_k \cdot \hat{f}_k(\x)}{\sum_{\ell=1}^{K} \hat{p}_k \cdot \hat{f}_\ell(\x)}\\
+                 & = &  \frac{(\frac{n_k}{N})\frac{1}{n_k}\sum_{i=1}^{n_k} \delta(\x-\x_{i,k})}{\sum_{\ell=1}^K (\frac{n_\ell}{N})\frac{1}{n_\ell}\sum_{i=1}^{n_\ell} \delta(\x-\x_{i,\ell})}\\
+                 & = & \frac{\sum_{i=1}^{n_k} \delta(\x-\x_{i,k})}{\sum_{i=1}^{N} \delta(\x-\x_{i})}
+\end{eqnarray*}
+o\`u  $\x_{i,k}$ un vecteur forme de la classe $k$.  
+
+La puissance de ce type de m\'ethodes r\'eside dans leur g\'en\'eralit\'e. 
+Elles sont th\'eoriquement \`a m\^eme d'estimer n'importe quel type
+de densit\'e continue.  En pratique, elles sont surtout efficaces, si l'on 
+dispose d'un grand ensemble d'apprentissage. Notons aussi, que des probl\`emes 
+apparaissent lorsque  les vecteurs forme appartiennent \`a un espace de 
+grande dimension. En effet, dans ce cas la taille de l'ensemble
+d'apprentissage, n\'ecessaire pour obtenir une certaine pr\'ecision
+d'estimation, cro\^{\i}t de mani\`ere exponentielle avec la dimension de 
+l'espace. De plus, si des fonction $\delta$ \`a support born\'e sont utilis\'ees,
+alors le risque d'obtenir des estimations nulles (comme avec les histogrammes).
+Pour palier ce comportement, une solution consiste \`a r\'eduire
+dans un premier temps la dimensionalit\'e des donn\'ees (chapitre 5).
+
+
+\section{Estimation par les $k$ plus proches voisins}
+
+Dans la section pr\'ec\'edente, nous avons remarqu\'e, qu'un probl\`eme
+majeur de l'approche par fen\^etre de Parzen pour estimer une densit\'e
+$f()$ en $\x$, repose dans le choix
+du volume  consid\'er\'e autour d'un vecteur forme $\x$, pour $N$ une taille 
+d'\'echantillon donn\'ee. Une alternative simple consiste \`a choisir le
+volume $V$ autour de $\x$, qui contienne exactement $r$ vecteurs forme de 
+l'\'echantillon observ\'e. Dans ce cas, l'estimateur $\hat{f}()$ de 
+$f()$ s'exprime  comme :
+$$
+\hat{f}(\x)=\frac{1}{N} \frac{r}{V_r}.
+$$
+Cette m\'ethode poss\`ede l'avantage de choisir le volume $V_r$ en fonction
+des donn\'ees, et non plus de mani\`ere arbitraire.
+
+
+L'usage de cette technique pour l'estimation des loi {\em a posteriori} 
+am\`ene :
+\begin{eqnarray*}
+\hat{\pi}(k| \x) & = & \frac{\hat{p}_k \cdot \hat{f}_k(\x)}{\sum_{\ell=1}^{K} \hat{p}_k \cdot \hat{f}_\ell(\x)}\\
+               & = & \frac{(\frac{n_k}{N})\cdot \frac{r_k/n_k}{V}}{\frac{r/N}{V}}\\
+                 & = & \frac{r_k}{r},
+\end{eqnarray*}
+o\`u $r_k$ est le nombre de vecteurs forme de la classe $k$ parmi les $r$ plus
+proches voisins de $\x$.
+
+
+La version la plus simple de cette technique consiste \`a consid\'erer
+le plus proche voisin ($r=1$). D'un point de vue g\'eom\'etrique,
+la r\`egle du plus proche voisin partage l'espace en un pavage de Vorono\"{\i}
+suivant les vecteurs forme de l'ensemble d'apprentissage 
+${\cal F}=\{(\x_1,c(\x_1)),\cdots,(\x_N,c(\x_N))\}$ et attribue la 
+classe $c_i$ \`a chaque nouvel individu tombant dans le pav\'e d\'efini
+autour $\x_i$.
+
+\citeasnoun{Cover1967} sont parvenus \`a donner un encadrement de la 
+probabilit\'e d'erreur obtenue par la r\`egle du plus proche voisin,
+lorsque la taille de l'\'echantillon tend vers l'infini :
+\begin{th}
+Si $P^*$ d\'enote la probabilit\'e d'erreur de Bayes, qui est l'erreur
+mimimale, et $P$ la 
+probabilit\'e d'erreur limite, lorsque la taille de l'ensemble 
+d'apprentissage tend vers l'infini, de la r\`egle du plus 
+proche voisin alors
+$$
+P^*\leq P \leq P^* (2- \frac{K}{K-1}P^*).
+$$ 
+o\`u $K$ est le nombre de classes.
+\end{th}
+
+
+Dans le cas o\`u $r$ voisins sont pris en compte, la r\`egle de d\'ecision 
+consiste \`a d\'eterminer la classe majoritaire parmi ces $r$ voisins.
+Par rapport aux fen\^etres de Parzen, cette approche poss\`ede l'avantage
+de produire des estimateurs des lois {\em a posteriori} qui ne sont jamais nuls,
+m\^eme loin de tout vecteur forme de l'ensemble d'apprentissage.
+
+La r\`egle des $r$ plus proches voisins peut \^etre \'etendue de mani\`ere
+prendre en compte le doute \cite{Hellman1970} : il suffit de consid\'erer $r$ plus proches 
+voisins et de d\'ecider de douter  si la classe majoritaire repr\'esente moins 
+de $s$ voisins parmi les $r$ pris en compte.
+
+Remarquons que les m\'ethodes de fen\^etres de Parzen et des $r$ plus
+proches voisins requierent le stockage de tout l'ensemble d'apprentissage.
+Elles ne n\'ecessitent pas d'apprentissage mais beaucoup de calculs
+pour prendre une d\'ecision.  
+
+
+
+
+\section{Mod\`ele de m\'elange et algorithme EM}
+
+Les mod\`eles de m\'elanges se situent \`a la fronti\`ere entre les 
+mod\`eles param\'etriques et non param\'etriques. L'estimation des
+param\`etres de ces mod\`eles est une t\^ache compliqu\'ee et  l'une
+des m\'ethodes d'estimation les plus populaire, dans ce contexte,  est 
+l'algorithme EM. 
+
+
+\subsection{Mod\`ele de m\'elange gaussien}
+%-----------------------------------------------------------
+En 1894, Karl Pearson publiait un article sur l'estimation
+par la m\'ethode des moments des cinq param\`etres d'une
+densit\'e m\'elange de deux distribution normales univari\'ees
+\cite{Pearson1894}.
+Depuis, ce genre de mod\`ele conna\^\i t un certain succ\`es et
+a \'et\'e \`a l'origine de nombreuses applications. 
+  
+D'une mani\`ere tr\`es g\'en\'erale, les m\'elanges de densit\'e
+sont des distributions de probabilit\'e de la forme suivante :
+\begin{equation}
+f(\x)=\int h(\theta)\cdot f(\x | \theta) d\theta
+\end{equation}
+o\`u $f(\x | \theta)$ est une densit\'e param\'etrique conditionnelle
+d\'efinie par le param\`etre $\theta$ et $h(\theta)$ est la densit\'e
+de m\'elange.
+
+Lorsque la densit\'e de probabilit\'e $h(\theta)$ est discr\`ete et
+prend ses valeurs sur un ensemble fini $(\theta_1,\cdots,\theta_K)$
+avec les probabilit\'es $(p_1,\cdots,p_K)$ (avec $\sum_{k=1}^K p_k=1$),
+la densit\'e $f$ s'\'ecrit
+\begin{equation}
+f(\x)=\sum_{k=1}^K p_k f_k(\x | \theta_k),
+\end{equation}
+et on parle de m\'elange fini. Ce genre de densit\'e appara\^\i t naturellement
+lorsque la population consid\'er\'ee est form\'ee de plusieurs sous-populations
+qui ont des densit\'es diff\'erentes. 
+
+\begin{ex}
+En m\'ecanique, l'\'etude d'un mat\'eriau passe souvent par une phase
+pratique d'essais de traction. On tire sur le mat\'eriau pour
+observer la d\'eformation  et temps de rupture. En pratique,
+une distribution de Weibull est souvent un bon mod\`ele statistique
+du temps de rupture. Comme le mat\'eriau peut se rompre pour 
+diverses raisons, un m\'elange de distributions de Weibull
+permet de mod\'eliser le ph\'enom\`ene. Dans ce cas, il y aura
+autant de composants que de raisons de rupture. 
+\end{ex}
+
+Notons aussi que les m\'elanges finis peuvent mod\'eliser des distributions
+de probabilit\'es ``biscornues'' dont les modes ne correspondent pas forcement
+\`a la pr\'esence d'une sous-population.  Dans le cadre de la discrimination,
+c'est cette derni\`ere propri\'et\'es qui est exploit\'ee.
+Si les densit\'es de classes sont estim\'es par des m\'elange de loi,
+$$
+\hat{f}_k(\x)=\sum_{i=1}^{m_k} p_{ki} \hat{f}_{ki}(\x),
+$$
+la loi {\em a posteriori} s'exprime alors comme :
+\begin{eqnarray*}
+\hat{\pi}(k| \x) & = & \frac{\hat{p}_k \cdot \sum_{i=1}^{m_k} p_{ki} \hat{f}_{ki}(\x)}{\sum_{\ell=1}^{K} \hat{p}_k \cdot \sum_{i=1}^{m_\ell} p_{\ell i}\hat{f}_{\ell i}(\x)}.
+\end{eqnarray*}
+
+Les m\'elanges sont un  interm\'ediaire, un compromis entre approche 
+param\'etrique et non param\'etrique\footnote{Dans un souci de simplification 
+des notations, tout le reste du chapitre utilise 
+les conventions usuelles suivantes :
+\begin{itemize}
+\item
+$f(\x|\Phi)$ sera utilis\'ee \`a la place de $\hat{f}_{k}(x)$ et d\'enotera 
+une densit\'e m\'elange, qui dans notre cas est utilis\'ee
+comme densit\'e de classe ;
+\item 
+$f_k(\x)$ sera utilis\'ee \`a la place de $f_{ik}(\x)$ et d\'enotera  une composante du m\'elange.
+\end{itemize}
+}.
+Dans ce document, nous nous concentrerons
+sur le mod\`ele de m\'elange gaussien (Figure \ref{fig:mel}),
+qui est de loin le plus  populaire. 
+
+\begin{figure}[hbtp]
+\begin{center}
+\leavevmode
+\begin{tabular}{c c}
+(a) Trois distributions gaussiennes &  (b) M\'elange de distributions\\
+%--------------------------------------------------------------
+ 
+\epsfxsize=\textwidth
+\divide\epsfxsize by 100
+\multiply\epsfxsize by 45
+\epsffile{/home/soleil/ambroise/figures/3gauss.ps}
+&
+ 
+\epsfxsize=\textwidth
+\divide\epsfxsize by 100
+\multiply\epsfxsize by 45
+\epsffile{/home/soleil/ambroise/figures/mixture.ps}\\
+%---------------------------------------------------------------
+\end{tabular}
+\caption{Exemple d'un m\'elange gaussien}
+\label{fig:mel}
+\end{center}
+\end{figure}
+
+
+
+Le probl\`eme consiste \`a estimer les param\`etres du m\'elange.
+Avant de r\'esoudre ce genre de probl\`eme, il faut s'assurer
+qu'il  est bien pos\'e, c'est-\`a-dire qu'il admet
+une solution unique et donc que les composants du m\'elange
+sont effectivement identifiables. 
+
+\begin{ex}
+Le m\'elange de deux lois uniformes n'est pas identifiable.
+Prenons par exemple les deux distributions suivantes :
+\begin{eqnarray*}
+f(x)=\frac{1}{3}U[-1,1]+\frac{2}{3}U[-2,2]\\
+f(x)=\frac{1}{2}U[-2,1]+\frac{1}{2}U[-1,2]
+\end{eqnarray*}
+Elles sont identiques et il existe m\^eme une infinit\'e
+de m\'elanges de lois uniformes qui sont identiques aux
+deux densit\'es pr\'ec\'edentes.
+\end{ex}
+
+
+On peut montrer que les m\'elanges gaussiens (ainsi que les m\'elanges
+exponentiels, de Poisson et de Cauchy) sont identifiables. Dans
+la suite du document, nous d\'etaillerons plusieurs m\'ethodes
+d'estimation adapt\'ees \`a ce genre de mod\`eles de m\'elange
+identifiable. 
+
+
+
+\subsection{L'algorithme EM}
+%----------------------------------------------------------
+
+
+\subsubsection{Le principe d'information manquante}
+
+Dans certains probl\`emes, l'\'echantillon de donn\'ees disponible ne permet
+pas de calculer facilement les estimateurs du maximum de vraisemblance. C'est 
+par exemple le cas pour l'estimation des param\`etres d'un m\'elange fini
+de densit\'es de probabilit\'e.
+
+\begin{ex}
+\label{ex :fletan}
+\cite{Redner1984}
+La taille d'un fl\'etan (poisson de la mer baltique) d'un \^age donn\'e 
+est distribu\'ee suivant un m\'elange de deux lois gaussiennes correspondant
+aux deux distributions relatives aux m\^ales et femelles : 
+\begin{equation}
+f(\x | \Phi)= p_1 f_1(\x |\mu_1,\sigma_1) + p_2 f_2(\x |\mu_2,\sigma_2)
+\end{equation} 
+o\`u les $p_k$ sont les proportions du m\'elange ($0<p_k<1$, pour 
+$k=1,2$ et $\sum_k p_k=1$), $f_k(\x | \mu_k,\sigma_k)$ est une loi de Gauss
+de moyenne $\mu_k$ et d'\'ecart type $\sigma_k$, et $\Phi=(p_1,
+\mu_1,\sigma_1,\mu_2,\sigma_2 )$. L'estimation de $\Phi$ est un probl\`eme
+simple si les mesures prises sp\'ecifient la taille et le sexe de chaque 
+poisson consid\'er\'e. Malheureusement le sexe du fl\'etan est difficile \`a
+d\'eterminer et il faut estimer le vecteur $\Phi$ \`a l'aide de donn\'ees 
+incompl\`etes. 
+\end{ex}
+
+Pour maximiser la vraisemblance de ce type de donn\'ees, qualifi\'ees de 
+donn\'ees incompl\`etes, il est souvent
+avantageux de poser le probl\`eme pour un jeu hypoth\'etique de donn\'ees
+compl\`etes. Cette fa\c con d'aborder le probl\`eme conduit \`a la formulation
+d'un algorithme it\'eratif qui permet de calculer des estimateurs des
+param\`etres inconnus. Dempster, Laird et Rubin (1977) ont baptis\'e cet
+algorithme, bas\'e sur le principe de l'information manquante, algorithme
+EM (Expectation Maximization), et ont donn\'e des nombreux exemples de 
+son application \`a des probl\`emes aussi vari\'es que le calcul des 
+estimateurs du m.v. des param\`etres d'une loi multinomiale,
+d'un m\'elange fini de densit\'es ou l'estimation 
+d'hyperparam\`etres dans un cadre bay\'esien.
+
+
+D'une mani\`ere tr\`es g\'en\'erale deux espaces mesurables 
+sont consid\'er\'es : $\cal{X}$, l'espace des donn\'ees observ\'ees
+(ou donn\'ees incompl\`etes) et $\cal{Y}$ l'espace des donn\'ees
+compl\`etes. Soient deux vecteurs $\x \in \cal{X}$ et $\y \in  \cal{Y}$,
+de densit\'e respective $f(\x | \Phi)$ et $g(\y | \Phi)$.
+
+
+Le but de l'algorithme est de calculer l'estimateur du m.v. du vecteur
+de param\`etres inconnus, $\Phi$, en utilisant les relations qui existent
+entre $\x$ et $\y$. 
+
+En pratique $\y$ n'est pas observ\'e et contient des donn\'ees manquantes,
+des param\`etres inconnus, des donn\'ees inobservables (e.g. le sexe des
+fl\'etans dans l'exemple pr\'ec\'edent).
+
+On note $k(\y |  \x, \Phi)$ la densit\'e conditionnelle des donn\'ees
+compl\`etes connaissant les donn\'ees observ\'ees :
+
+\begin{equation}
+f(\x | \Phi) =  \frac{g(\y | \Phi)}{k(\y |  \x, \Phi)}.
+\end{equation} 
+
+En prenant le logarithme, on obtient :
+\begin{equation}
+\label{eq :logvr}
+ L(\Phi;\x) = L(\Phi;\y) - L(\Phi;\y|\x),
+\end{equation}
+o\`u $L(\Phi;\y)$ et $L(\Phi;\x)$ sont les log-vraisemblances de $\Phi$
+en consid\'erant respectivement les donn\'ees compl\`etes et les donn\'ees
+observ\'ees. De m\^eme $L(\Phi;\y|\x)$ repr\'esente la log-vraisemblance 
+de $\Phi$ tenant compte de la densit\'e conditionnelle de $\y$ sachant $\x$.
+
+Consid\'erons $\Phi_d$ une valeur donn\'ee du
+vecteur $\Phi$. En prenant de chaque cot\'e de l'\'equation
+\ref{eq :logvr}, l'esp\'erance pour la loi $k(\y |  \x, \Phi_d)$,
+on peut \'ecrire :
+\begin{equation}
+\label{eq :em}
+L(\Phi;\x) =Q(\Phi | \Phi_d) - H(\Phi | \Phi_d),
+\end{equation}
+o\`u 
+\begin{eqnarray*}
+& Q(\Phi | \Phi_d)=\E^k [L(\Phi;\y) | \x, \Phi_d ]; \\
+& H(\Phi | \Phi_d)=\E^k [L(\Phi;\y | \x) | \x, \Phi_d ].
+\end{eqnarray*}
+Notons que l'in\'egalit\'e de Jensen (Dempster {\em et al.} 1977) permet de montrer que la valeur de $\Phi$, qui maximise $H(\Phi | \Phi_d)$, est $\Phi_d$. La valeur $\Phi^+$ de $\Phi$ qui maximise $Q(\Phi | \Phi_d)$ 
+est une fonction de $\Phi_d$ :
+\begin{equation}
+\label{eq :fixe}
+\Phi^+ = M( \Phi_d).
+\end{equation}
+
+Soit $\Phi^*$ le maximum de vraisemblance cherch\'e. Si l'on pose
+$$
+\Phi_d=\Phi^*
+$$
+il est alors \'evident que la valeur $\Phi^*$ maximise
+$$
+L(\Phi;\x) + H(\Phi | \Phi^*).
+$$
+De cette constatation, on d\'eduit que $\Phi^*$ maximise $Q(\Phi | \Phi^*)$.
+Ainsi, $\Phi^*$ est un point fixe de la fonction $M(\Phi)$, et ceci
+sugg\`ere un algorithme it\'eratif 
+de type point fixe qui calcule le param\`etre $\Phi^{q+1}$ \`a partir 
+d'une valeur  $\Phi^{q}$ :
+\begin{itemize}
+\item {\bf Etape d'Estimation :} D\'eterminer $Q(\Phi | \Phi^q)=\E^k [L(\Phi;\y) | \x, \Phi^q ]$
+\item {\bf Etape de Maximisation :}  Calculer $\Phi^{q+1} = M( \Phi^q)$. $\Phi^{q+1}$
+ v\'erifie alors 
+$$
+\Phi^{q+1}=arg \max_{\Phi}Q(\Phi | \Phi^q)
+$$ 
+\end{itemize}
+
+La propri\'et\'e fondamentale de l'algorithme EM est que chaque 
+it\'eration augmente la vraisemblance des param\`etres \`a estimer. 
+En effet, suite \`a l'\'etape de maximisation on a
+\[
+Q(\Phi^{q+1} | \Phi^q) \geq Q(\Phi^{q} | \Phi^q)
+\]
+ et d'apr\`es 
+l'in\'egalit\'e de Jensen (Dempster {\em et al.} 1977)  :
+\[H(\Phi^{q+1} | \Phi^q) \leq H(\Phi^{q} | \Phi^q),\] 
+donc 
+\[L(\Phi^{q+1};\x) \geq L(\Phi^{q};\x).\]
+
+
+Dans un cadre g\'en\'eral la convergence de
+l'algorithme n'est pas d\'emontr\'ee (la d\'emonstration de Dempster, Laird
+et Rubin en 1977 \'etait fausse) et si l'algorithme converge vers un point
+fixe, on est seulement s\^ur que c'est un point stationnaire de la vraisemblance
+et pas obligatoirement un maximum local, mais dans le cadre de l'estimation
+des param\`etres d'un m\'elange fini,
+qui nous int\'eresse particuli\`erement, \citeasnoun{Redner1984}
+ont d\'emontr\'e le th\'eor\`eme de convergence locale suivant :
+\begin{th}\cite{Redner1984}
+Soit un m\'elange de densit\'es exponentielles,
+supposons que $I(\Phi)$, la matrice d'information de Fisher associ\'ee aux
+param\`etres du m\'elange est d\'efinie positive pour $\Phi^*$ les vraies
+valeurs des param\`etres, si les proportions sont positives, alors pour
+$n$ suffisamment grand, l'unique solution presque s\^urement consistante
+$\Phi_n$ des \'equations de vraisemblance existe presque s\^urement, et
+la suite $\{ \Phi^q \}$ des it\'er\'es de l'algorithme EM converge vers $\Phi_n$
+pourvu que la position initiale $\Phi^0$ soit suffisamment proche de $\Phi_n$;
+de plus il existe une norme sur l'espace des param\`etres pour laquelle
+il existe $\lambda$, $0\leq \lambda <1$, pour laquelle :
+\begin{eqnarray*}
+\|\Phi^{q+1}- \Phi_n\| \leq \lambda \|  \Phi^{q}- \Phi_n \|, \forall q \geq 0.
+\end{eqnarray*}
+\end{th}
+
+
+D'apr\`es ce th\'eor\`eme, et avec un peu de pratique, on s'aper\c{c}oit que
+l'initialisation de l'algorithme conditionne la qualit\'e du r\'esultat.
+Si la position initiale choisie est tr\`es ``\'eloign\'ee'' de la vraie
+valeur des param\`etres, l'algorithme EM risque de converger vers une
+solution singuli\`ere.
+
+L'algorithme EM converge  lin\'eairement et dans certaines situations peut
+s'av\'erer particuli\`erement lent. Ainsi, lorsque les composants du
+m\'elange sont mal s\'epar\'es, le coefficient $\lambda$ sera proche
+de $1$ et un grand nombre d'it\'erations sera n\'ecessaire \`a la convergence.
+
+Pour pallier ce probl\`eme de vitesse de convergence, Redner et Walker (1984)
+ont sugg\'er\'e l'utilisation de m\'ethodes d'optimisation qui ont une
+meilleure vitesse de convergence comme celle de Newton. La m\'ethode de Newton
+est it\'erative. A partir d'une position initiale $\Phi^0$, une suite d'it\'er\'es
+est  calcul\'ee comme suit :
+\begin{equation}
+\Phi^{q+1}=\Phi^q - H(\Phi^q)^{-1}\nabla_{\Phi} L(\Phi^q;\x),
+\end{equation}
+o\`u $H(\Phi^q)$ est la matrice hessienne de $L(\Phi_q;\x)$. Cette m\'ethode a
+une vitesse de convergence quadratique ; c'est-\`a-dire qu'il existe  une constante
+$\lambda$, telle que :
+\begin{eqnarray*}
+\|\Phi^{q+1}- \Phi_n\| \leq \lambda \|  \Phi^{q}- \Phi_n \|^2 .
+\end{eqnarray*}
+La convergence quadratique est beaucoup plus rapide que la convergence lin\'eaire
+mais le calcul de l'inverse de la matrice hessienne est tr\`es co\^uteux. 
+Une autre m\'ethode possible est celle de quasi Newton, qui approxime
+la matrice hessienne  et r\'eduit ainsi la complexit\'e algorithmique
+de la m\'ethode de Newton tout en ayant une convergence supra-lin\'eaire,
+donc sup\'erieure \`a celle de l'algorithme EM.
+
+ 
+Malgr\'e les qualit\'es des m\'ethodes de Newton, l'algorithme EM reste tr\`es
+utilis\'e pour plusieurs raisons. En effet, chaque it\'eration n\'ecessite peu de calculs
+et m\^eme dans les cas o\`u la convergence vers les vraies valeurs des param\`etres est lente,
+la convergence de la vraisemblance reste tr\`es rapide \cite{Redner1984}. Ainsi
+les premi\`eres it\'erations produisent des bonnes valeurs des param\`etres et les 
+nombreuses autres augmentent peu la vraisemblance. \citeasnoun{Xu1995} remarquent :
+\begin{quotation}
+In the context of the current litterature on learning, in which the predictive aspects of
+data modeling is emphasized at the expense of the traditonal Fisherian statistician's
+concern over the ``true'' value of the parameters, such rapid convergence in 
+likelihood is a major desideratum of a learning algorithm and undercuts the critique of EM
+as a ``slow'' algorithm.
+\end{quotation}
+
+Lorsque la convergence de l'algorithme EM est lente (composantes du m\'elange 
+mal s\'epar\'ees), les matrices Hessiennes sont mal conditionn\'ees et
+les m\'ethodes superlin\'eaires et de quadratiques ont aussi des probl\`emes.
+De plus dans le cas des mod\`eles de m\'elange gaussien, l'algorithme EM peut
+\^etre consid\'er\'e comme une mont\'ee de gradient projet\'e (Xu et Jordan 1995) ; les
+deux \'etapes de l'algorithme  se r\'esument \`a l'\'equation suivante :
+\begin{equation}
+\Phi^{q+1}=\Phi^q - P(\Phi^q) \nabla_{\Phi} L(\Phi^q;\x)
+\end{equation}
+o\`u $P(\Phi^q)$ est une matrice de projection calcul\'ee \`a chaque it\'eration.
+Il est alors possible de montrer que sous certaines conditions l'algorithme EM approxime une m\'ethode superlin\'eaire.
+
+
+
+
+
+
+% Convergence vers un maximum local ou vers un point stationnaire
+% 
+% vitesse de convergence
+% Regarder Walker pour les performances
+% Comparaisons avec d'autres algorithmes dans Jordan 
+
+
+\subsubsection{Application au mod\`ele de m\'elange}
+%++++++++++++++++++++++++++++++++++++++++++++++++++
+% Faire une petite partie historique apropos de Day et Wolf
+
+%Day en 1969, proposait un algorithme tr\`es similaire, qui \'etait
+%un version probabiliste, limit\'e au probl\`eme de la partition en deux
+%classes. Chaque classe \'etait consid\'er\'e comme l'\echantillon d'une
+%loi .....
+%La structure de l'algorithme \'etait en fait celle de 
+%l'algorithme EM que nous pr\'esenterons en d\'etails dans les sections
+%suivante.  
+
+
+
+
+
+
+
+
+Pour toutes les raisons mentionn\'ees pr\'ec\'edemment,
+l'algorithme EM est tr\`es utilis\'e pour l'estimation des param\`etres
+d'un mod\`ele de m\'elange de densit\'e de probabilit\'e. 
+Dans ce contexte, son utilisation est bien ant\'erieure \`a l'article 
+de Dempster, Laird et Rubin (1977)  : \citeasnoun{Day1969} proposait d\'ej\`a 
+un algorithme identique pour identifier les param\`etres d'un m\'elange de
+deux gaussiennes multidimensionnelles. \citeasnoun{Wolfe1970}, de mani\`ere
+ind\'ependante, d\'ecrivait un algorithme de classification automatique 
+probabiliste destin\'e \`a l'estimation des param\`etres de m\'elanges
+de $K$ lois de Bernoulli, ou de Gauss multivari\'ees. Cet article
+remarquable introduisait ainsi l'algorithme EM pour obtenir une
+partition floue, alors que la notion de flou en classification
+ne se d\'eveloppa qu'\`a partir de 1974 principalement sous 
+l'impulsion de \citeasnoun{Bezdeck1974}.
+
+
+Dans le cadre d'un mod\`ele de m\'elange, le probl\`eme d'estimation des 
+param\`etres se pose comme suit :  on dispose d'un \'echantillon 
+$(\x_1,...,\x_N)$
+d'une variable al\'eatoire \`a valeurs dans $\R^d$ de densit\'e :
+\begin{equation}
+f(\x_i | \Phi)= \sum_{k=1}^{K} p_{k} f_k(\x_i | \theta_k), 
+\end{equation}
+o\`u les $p_k$ sont les proportions du m\'elange ($0<p_k<1$, pour $k=1,..,K$ et
+$\sum_k p_k=1$) et $f_k(\x | \theta_k)$ est une loi compl\`etement 
+d\'etermin\'ee par la connaissance du vecteur $\theta_k$.
+
+
+Posons le probl\`eme de l'estimation de $\Phi=(p_1,...,p_k, \theta_1,...,\theta_K)$
+sous une forme traitable par le principe d'information
+manquante. Consid\'erons que l'\'echantillon observ\'e $\x=(\x_1,...,\x_N)$ est
+incomplet. L'\'echantillon complet s'\'ecrit $\y=(\y_1,...,\y_N)$ avec 
+$\y_i=(\x_i,\z_i)$. $\z_i=(z_{ik},k=1,...,K)$ est un vecteur qui indique 
+de quelle composante du m\'elange est issu $\x_i$ 
+($z_{ik} \in \{0,1\}$ et $\sum_{k=1}^K  z_{ik}=1$) :
+$z_{ik}=1$ signifie que $\x_i$ provient de la $k$\ieme composante.
+Indi\c{c}ons les param\`etres \`a estimer par $\z_i$ \`a la place de k lorsque
+$z_{ik}=1$ et \'ecrivons les densit\'es des deux \'echantillons $\x$ et $\y$ :
+
+\begin{equation}
+f(\x | \Phi)=\prod_{i=1}^N f(\x_i | \Phi)=
+\prod_{i=1}^N  \sum_{k=1}^{K} p_{k} f_k(\x_i | \theta_k),
+\end{equation}
+et
+\begin{equation}
+g(\y | \Phi)=\prod_{i=1}^N  p_{\z_i} f_{\z_i}(\x_i | \theta_{\z_i}).
+\end{equation}
+  
+$k(\y |  \x, \Phi)$ la densit\'e conditionnelle des donn\'ees
+compl\`etes connaissant les donn\'ees observ\'ees s'exprime par :
+
+\begin{equation}
+k(\y |  \x, \Phi)=\prod_{i=1}^N  k(\y_i | \x_i;\Phi)=
+\prod_{i=1}^N \frac{p_{\z_i} f_{\z_i}(\x_i | \theta_{\z_i})}
+{\sum_{k=1}^{K} p_{k} f_k(\x_i | \theta_{k})}.
+\end{equation}
+ 
+Ainsi dans le cas particulier des mod\`eles de m\'elanges les quantit\'es $Q$ et $H$ de
+l'\'equation \ref{eq :em} deviennent : 
+\begin{eqnarray*}
+& Q(\Phi | \Phi^q) &= \E^k [L(\Phi;\y) | \x, \Phi^q]=
+                     \E^k [\log{\prod_{i=1}^N  p_{\z_i} f_{\z_i}(\x_i |
+                     \theta_{\z_i})} | \x, \Phi^q]\\
+&                  &= \sum_{i=1}^N \E^k [\log{ p_{\z_i} f_{\z_i}(\x_i |
+                     \theta_{\z_i})} | \x, \Phi^q]\\
+&                  & =\sum_{i=1}^N \sum_{k=1}^{K} t_k(\x_i)^q \log{p_{k} f_k(\x_i |\theta{k})}\\
+& H(\Phi | \Phi^q) &= \E^k [L(\Phi;\y | \x) | \x, \Phi_d ]=
+                     \E^k [\log{\prod_{i=1}^N  k(\y_i | \x_i;\Phi)} | \x, \Phi^q]\\
+&                  &= \sum_{i=1}^N \E^k [\log{ k(\y_i | \x_i;\Phi)} | \x, \Phi^q]\\
+&                  & =\sum_{i=1}^N \sum_{k=1}^{K} t_k(\x_i)^q \log{t_k(\x_i)}
+\end{eqnarray*}
+avec
+\begin{equation}
+t_k(\x_i)^q=\frac{p^q_{k} f_k(\x_i | \theta^q_{k})}{f(\x_i )}.
+\end{equation}
+
+
+Dans la suite de cette section, nous consid\'erons
+uniquement le cas des m\'elanges
+gaussiens qui sont de loin les  plus utilis\'es en classification
+automatique. Le m\'elange est alors  param\'etr\'e par le vecteur
+$\Phi^q=(p_1^q,...,p_{K-1}^q, \theta_1^q,...,\theta_K^q)$ o\`u $\theta_k=(\bmu_k, \bSigma_k)$ et les deux \'etapes de l'algorithme EM s'\'ecrivent :
+\begin{itemize}
+\item {\bf Etape E :} Calcul des probabilit\'es $t_k(\x_i)^q$ en utilisant
+$\Phi^q=(p_1^q,...,p_k^q, \theta_1^q,...,\theta_K^q)$.
+\item {\bf Etape M :} Calcul de $\Phi^{q+1}$ qui maximise
+$$
+Q(\Phi | \Phi^q)=\sum_{i=1}^N \sum_{k=1}^{K} t_k(\x_i)^q \log{p_{k} f_k(\x_i |
+\theta_{k})}.
+$$
+Les estimateurs du maximum de vraisemblance s'\'ecrivent alors :
+\begin{equation} 
+\bmu_k^{q+1}=\frac{\sum_{i=1}^N t_k(\x_i)^q \cdot \x_i}{n_k^{q}} ;
+\end{equation}
+
+\begin{equation}
+\bSigma_k^{q+1}=\frac{1}{n_k} \sum_{i=1}^N t_{k}(\x_i)^q (\x_i- \bmu_k^{q+1}) (\x_i- \bmu_k^{q+1})^t ;  
+\end{equation}
+\begin{equation} 
+p_k^{q+1}=\frac{n_k^{q}}{N}, 
+\end{equation}
+o\`u $n_k^{q}=\sum_{i=1}^N t_k(\x_i)^q.$
+\end{itemize}
+
+A la convergence, l'algorithme EM fournit une estimation des param\`etres
+du m\'elange, ainsi que des probabilit\'es $k((\x_i, \z_i) | \x_i)$.
+
+

@@ -1,0 +1,532 @@
+\chapter{Th\'eorie bay\'esienne de la d\'ecision}
+\nocite{Neyman1928}
+L'estimation de quantit\'es inconnues est un probl\`eme central
+des statistiques. Pour juger de  la qualit\'e d'une
+quantit\'e estim\'ee, la th\'eorie de la d\'ecision statistique 
+propose de consid\'erer un crit\`ere. Habituellement,
+en th\'eorie de la d\'ecision les crit\`eres utilis\'es sont  bas\'es
+sur des fonctions de co\^ut :
+$$
+L(\mbox{Valeur r\'eelle},\mbox{D\'ecision})
+$$
+qui mesurent le co\^ut de prendre une certaine d\'ecision
+si  la valeur r\'eelle de la quantit\'e \`a estimer est connue.   
+
+\begin{ex}
+\label{ex:estimation1}
+Consid\'erons le  probl\`eme qui consiste \`a estimer le param\`etre
+$\theta$ d'une densit\'e de probabilit\'e $f$, lorsque l'on dispose
+d'un ensemble $\x=(x_1,\cdots,\x_N)$ de r\'ealisations ind\'ependantes 
+de cette loi.  
+L'approche fr\'equentiste consiste alors \`a juger de la qualit\'e de
+l'estimateur $\hat{\theta}$ de $\theta$ suivant  le risque fr\'equentiste :
+\begin{equation}
+R(\theta,\hat{\theta})=\E[L(\theta,\hat{\theta}(X))]=
+\int_{\cal{X}} L(\theta,\hat{\theta}(\x)) f(\x|\theta ) d\x,
+\end{equation} 
+o\`u $L(\theta,\hat{\theta}(\x))$ est le co\^ut de choisir 
+$\hat{\theta}(\x)$ alors que la valeur du param\`etre est $\theta$.
+Un risque classique est celui qui utilise un co\^ut quadratique
+\begin{equation}
+L(\theta,\hat{\theta})=(\theta-\hat{\theta})^2.
+\end{equation}
+Dans ce cas, le risque peut \^etre formul\'e comme la somme de la variance
+et du biais de l'estimateur :
+\begin{equation}
+R(\theta,\hat{\theta})=\E[(\theta-\hat{\theta})^2]=
+Var[\hat{\theta}] + (\E_{\theta}[\hat{\theta}] - \theta)^2
+\end{equation}
+Ainsi le ``meilleur'' estimateur au sens de ce risque, parmi les estimateurs
+sans biais est celui qui poss\`ede  la variance la plus petite. 
+\end{ex}
+
+Dans le cadre de la th\'eorie bay\'esienne de la d\'ecision, la quantit\'e
+\`a estimer est consid\'er\'ee comme une variable al\'eatoire et
+le crit\`ere  de qualit\'e pris en compte est le risque {\em a posteriori}
+(ou risque conditionnel), c'est-\`a-dire l'esp\'erance du co\^ut conditionnellement 
+aux donn\'ees observ\'ees : 
+$$
+R(\mbox{D\'ecision}|\mbox{Donn\'ees})=
+\E[L(\mbox{Valeur r\'eelle,D\'ecision})| \mbox{Donn\'ees observ\'ees}]
+$$ 
+\begin{ex}
+(suite de l'exemple \ref{ex:estimation1})
+Ainsi, dans le contexte d'une approche statistique bay\'esienne,
+l'estimation d'un param\`etre $\theta$ d'une distribution 
+$f(\x|\theta)$,  trois fonctions doivent 
+\^etre sp\'ecifi\'ees :
+\begin{enumerate}
+\item la distribution a priori sur les param\`etres, $\pi(\theta)$ ;
+\item la loi sur les observations, $f(\x|\theta)$ ; 
+\item le co\^ut associ\'e \`a la d\'ecision $\hat{\theta}(\x)$ pour le
+param\`etre $\theta$.
+\end{enumerate}
+
+On appelle estimateur de Bayes associ\'e \`a une loi a priori $\pi$
+et \`a un co\^ut $L$, tout estimateur $\hat{\theta}^\pi(\x)$ qui, 
+\'etant donn\'e un vecteur d'observation $\x$, minimise le co\^ut {\em a posteriori} 
+\[
+\E[L(\theta,\hat{\theta}^\pi(\x))|\x]=
+\int_\theta L(\theta,\hat{\theta}^\pi(\x)) \pi(\theta | \x) d\theta.
+\]
+\end{ex}
+
+
+\begin{ex}
+En g\'eostatistique lin\'eaire, le krigeage consiste \`a estimer en un 
+point $\x$ la valeur prise par une fonction $z$ dont on conna\^{\i}t 
+les valeurs en $N$ points $z(\x_1),\cdots,z(\x_N)$. En se pla\c{c}ant 
+dans le cadre de la th\'eorie des variables r\'egionalis\'ees, on 
+r\'esout le probl\`eme en cherchant  une estimation
+$z^*(\x)=\sum_{i=1}^{N}\lambda_i \cdot z(\x_i)$  qui  minimise le crit\`ere :
+\begin{equation}
+\E[(Z^*(\x)-Z(\x))^2]
+\end{equation}
+Dans le cas o\`u l'on impose la contrainte de non biais, 
+optimiser ce crit\`ere revient encore \`a chercher un estimateur 
+de variance minimal. 
+\end{ex}  
+
+Historiquement les travaux de Neyman et Pearson (1928) jet\`erent les
+bases des tests d'hypoth\`eses et donc de la th\'eorie statistique 
+de la d\'ecision. \citeasnoun{Wald1939} g\'en\'eralisa  en
+introduisant les notions de risque et de co\^ut. \citeasnoun{Chow1957} 
+utilisa ce type d'approche d\'ecisionnelle dans le cadre de la
+reconnaissance des formes. 
+
+\section{Discrimination et d\'ecision bay\'esienne}
+
+Dans le contexte de la discrimination, on dispose d'un 
+ensemble d'observations $\{(\x_1,c(\x_1)),\cdots,(\x_N,c(\x_N))\}$,
+o\`u $\x_i$ est un vecteur forme et $c(\x_i) \in \{1,\cdots,K\}$
+est le label indiquant \`a quelle classe appartient le vecteur
+$\x_i$.
+
+Le probl\`eme consiste \`a d\'ecider  quelle classe attribuer 
+\`a une nouvelle observation $\x$, c'est-\`a-dire \`a d\'efinir
+un estimateur $\hat{c}(\x)$ de la classe $c(\x)$. 
+
+Dans la suite de ce chapitre, nous noterons $C$ l'indice de classe d'un vecteur 
+forme al\'eatoire $\X$. Nous supposerons aussi connues les loi de 
+probabilit\'es relatives \`a toutes les variables al\'eatoires consid\'er\'ees. 
+Cette hypoth\`ese n'est \'evidemment pas r\'ealiste mais permet
+de d\'eterminer des strat\'egies de d\'ecision et de se faire
+une id\'ee de la limite sup\'erieure des performances de ces
+strat\'egies. Ainsi nous notons :  
+\begin{itemize}
+\item les lois $P(\X=\x | C=k)=f_k(\x)$  sur les vecteurs formes de chaque classe k,
+\item les probabilit\'es {\em a priori} $P(C=k)=p_k$ de chaque classe,
+\item le co\^ut $L(k,\hat{c}(\x))$ associ\'e \`a la d\'ecision 
+$\hat{c}(\x)$ sachant que $C=k$.
+\end{itemize}
+Les probabilit\'es {\em a posteriori} se d\'eduisent des probabilit\'es pr\'ec\'edentes
+par la formule de Bayes :
+$$
+\pi(k | \x)=\frac{p_k \cdot f_k(\x)}{\sum_{\ell=1}^{K} p_{\ell} \cdot f_{\ell}(\x)}
+$$
+Dans ce cas le risque conditionnel associ\'e \`a la d\'ecision 
+$\hat{c}(\x)$ est
+$$
+R(\hat{c}(\x)|\x)=\E[L(C,\hat{c}(\x))|\x]=\sum_{k=1}^{K} L(k,\hat{c}(\x))\cdot \pi(k | \x).
+$$
+
+Au sens du risque conditionnel, la d\'ecision optimale $c^*(\x)$ est celle qui
+v\'erifie :
+$$
+c^*(\x)=arg \min_{\ell \in \{1,\cdots,K \}} \sum_{k=1}^{K} L(k,\ell)\cdot \pi(k | \x).
+$$ 
+
+Remarquons que cette r\`egle de d\'ecision minimise aussi le risque total :
+$$
+R(\hat{c})=\E \left[ \E[ L(C,\hat{c}(\X))|\X] \right]=\int_{\cal X} \E[L(C,\hat{c}(\x))|\x] \cdot f(\x) d\x.
+$$
+
+En effet, comme $f(\x)$ est toujours positive et que la r\`egle de d\'ecision 
+minimise le risque conditionnel pour chaque valeur de $\x$, elle minimise
+aussi  le risque total. Cette r\`egle est appel\'ee la {\em r\`egle de 
+Bayes} et le risque total minimum $R(c^*)$ est appel\'e risque de Bayes.
+
+
+\subsection{Minimisation du taux d'erreur}
+
+Quelle fonction de co\^ut $L$ utiliser ? Une fonction particuli\`erement en faveur 
+est la fonction de co\^ut $\{0,1\}$ :
+$$
+L(k,\ell)=
+\left \{ \begin{array}{l}
+0 \ si \ k=\ell, \\
+1 \ sinon.\\
+\end{array}
+\right .
+$$
+Une bonne d\'ecision est gratuite (z\'ero) et une erreur co\^ute un. Toutes
+les erreurs sont p\'enalis\'ees de la m\^eme mani\`ere et le risque 
+conditionnel li\'e \`a ce co\^ut s'exprime alors comme :
+$$
+R(k|\x)=1-\pi(k|\x)
+$$
+Ce risque conditionnel peut s'interpr\'eter comme la probabilit\'e
+conditionnelle d'erreur de classement.  
+La r\`egle de Bayes consiste donc \`a choisir la classe la plus probable 
+{\em a posteriori},
+$$
+c^*(\x)=arg \max_{\ell \in \{1,\cdots,K \}} \pi(\ell | \x).
+$$
+ce qui revient, comme nous allons le montrer 
+\`a minimiser la probabilit\'e d'erreur de classement induite par le 
+classifieur $\hat{c}$ :
+\begin{eqnarray*}
+P(\mbox{Erreur}) & =  & \sum_{k=1}^{K} p_k  P(\mbox{Erreur} | k),\\
+                 & =  & \sum_{k=1}^{K} p_k  P( \hat{c}(\X))\neq k| C=k),
+\end{eqnarray*}
+
+
+Consid\'erons la d\'ecomposition du  risque total sur les r\'egions ${\cal R}_k$
+o\`u $\hat{c}(\x)=k$ :
+\begin{eqnarray*}
+R(\hat{c})& = & \sum_{k=1}^K \int_{\cal X} P(\X=\x,C=k) \cdot L(k,\hat{c}(\x)) d\x,\\
+&  = & \sum_{k=1}^K \sum_{\ell=1}^K \int_{{\cal R}_{\ell}} p_k \cdot P(\X=\x | C=k)  \cdot L(k,\hat{c}(\x)) d\x,\\
+&  = & \sum_{k=1}^K \sum_{\ell=1}^K  p_k \cdot P(\hat{c}(\x)=\ell | C=k) \cdot L(k,\ell),\\
+&  = & \sum_{k=1}^K   p_k \cdot P(\hat{c}(\x) \neq \ell | C=k),\\
+&  = & P(\mbox{Erreur})
+\end{eqnarray*}
+Comme la r\`egle de Bayes minimise le risque total, elle minimise aussi l'erreur de classement.
+
+La partition de l'espace qui maximise la probabilit\'e de prendre une 
+d\'ecision correcte est bien  celle obtenu par un classifieur de
+Bayes. Insistons sur le fait,  que les remarques pr\'ec\'edentes supposent bien 
+\'evidemment que les distributions $p_k$ et $f_k(\x)$ sont toutes connues, alors
+qu'en pratique, l'on dispose seulement d'estimations. 
+
+
+
+\begin{ex}\label{ex:erreur}
+Illustrons de mani\`ere g\'eom\'etrique la minimisation de la 
+probabilit\'e d'erreur par la r\`egle de Bayes correspondant au co\^ut $\{0,1\}$ :
+consid\'erons le cas limit\'e \`a deux classes.
+
+D'un point de vue 
+g\'eom\'etrique, un classifieur partage l'espace en deux r\'egions
+${\cal R}_1$ et ${\cal R}_2$ et classe un vecteur forme dans la classe
+${\cal C}_i$ si celui ci appartient \`a ${\cal R}_i$.     
+Une erreur peut \^etre commise de deux mani\`eres : ou bien
+une observation provenant r\'eellement de la classe ${\cal C}_1$ 
+tombe dans la r\'egion ${\cal R}_2$, ou bien une observation 
+provenant r\'eellement de la classe ${\cal C}_2$ 
+tombe dans la r\'egion ${\cal R}_1$ :
+\begin{eqnarray*}
+P(\mbox{Erreur})& = &   P(\X \in {\cal R}_2,C=1)+P(\X \in {\cal R}_1,C=2),\\
+& &  P(\X \in {\cal R}_2 | C=1) \cdot p_1 +  
+P(\X \in {\cal R}_1 | C=2) \cdot p_2,\\
+& = & \int_{{\cal R}_2} f_1(\x ) \cdot p_1 d\x +
+\int_{{\cal R}_1} f_2(\x ) \cdot p_2 d\x.
+\end{eqnarray*}
+
+Il est clair que le probabilit\'e d'erreur sera minimale si lorsque
+$\x \in {\cal R}_2$, alors 
+\begin{eqnarray*}
+ f_1(\x) \cdot p_1  & {<}  &  f_2(\x) \cdot  p_2 \\
+ \pi (1 |\x)        & {<}  &  \pi(2|\x) 
+\end{eqnarray*}
+Cette r\`egle de d\'ecision est exactement la r\`egle de Bayes.
+\end{ex}
+
+\subsection{Introduction du doute}
+
+Introduire la notion de doute revient \`a consid\'erer une d\'ecision suppl\'ementaire :
+$$
+\hat{c}(\x)={\cal D}.
+$$
+La strat\'egie classiquement retenue pour prendre en compte le  doute
+utilise  la fonction de co\^ut suivante :
+\begin{equation}
+\label{eq:doute}
+L(k,\ell)=
+\left \{ \begin{array}{l}
+0 \ si \ k=\ell, \ \mbox{(d\'ecision correcte)}\\
+1 \ si \ k\neq \ell \ \mbox{and} \ \ell \in \{1,\cdots,K\},\  \mbox{(erreur)}\\
+d \ si \ \ell={\cal D} \  \mbox{(doute)}.
+\end{array}
+\right .
+\end{equation}
+La probabilit\'e de doute li\'ee \`a l'utilisation du classifieur $\hat{c}$ peut alors
+s'exprimer comme :
+\begin{eqnarray*}
+P(\mbox{Doute}) & =  & \sum_{k=1}^{K} p_k  P(\mbox{Doute} | C=k),\\
+                 & =  & \sum_{k=1}^{K} p_k  P( \hat{c}(\X)={\cal D}| C=k).
+\end{eqnarray*}
+ 
+
+Pour minimiser le risque total $R(\hat{c})$, il suffit de prendre la d\'ecision 
+$c^*(\x)$ qui  minimise le risque conditionnel, qui s\'ecrit 
+$$ 
+R(\hat{c}(x)=\ell |\x) = \sum_{k=1}^{K} L(k,\ell)\cdot \pi(k | \x)
+$$
+dans le cas g\'en\'eral et vaut 
+$$
+\{\sum_{k=1}^{K}\pi(k | \x)\}\cdot  L(k,\ell)= d
+$$
+si $\hat{c}(x)={\cal D}$.
+
+Suivant  la d\'ecision consid\'er\'ee $\hat{c}={1,\cdots,K,{\cal D}}$, le risque 
+conditionnel devient respectivement
+$$
+\{ 1 - \pi(1|\x), \cdots, 1 - \pi(K|\x), d  \}.
+$$
+La d\'ecision prise, c'est-\`a-dire celle qui minimise le risque,  est donc la suivante :
+$$
+c^*(\x)=
+\left \{ \begin{array}{l}
+k \ si \ \pi(k | \x)=\max_{\ell} \pi(\ell | \x) < (1-d), \\
+{\cal D} \ sinon.\\
+\end{array}
+\right .
+$$
+
+Notons que pour  qu'il existe une possibilit\'e de doute il faut que :
+$$
+0 \leq d \leq \frac{K-1}{K}.
+$$
+En effet la somme des probabilit\'es $\pi(k|\x)$ valant $1$, le maximum sur $k$ de 
+$\pi(k|\x)$ est compris entre $1$ et $\frac{1}{K}$ et l'on a :
+$$
+0 \leq 1 - \max_k \pi(k|\x) \leq 1 - \frac{1}{K}.
+$$
+
+Si l'on prend $d>\frac{K-1}{K}$, la r\`egle de d\'ecision 
+r\'esultante correspond \`a la r\`egle de Bayes pour le co\^ut $\{0,1\}$.
+Par contre, si $d$ est choisi tr\`es petit, le classifieur doutera
+dans la plupart des cas. Ainsi, en pratique, le choix de la valeur 
+de la constante $d$ conditionne le comportement du classifieur.
+
+
+Lorsque le doute est pris en compte par l'interm\'ediaire de la fonction
+de co\^ut \ref{eq:doute} alors le risque total peut s'exprimer comme
+une combinaison des probabilit\'es d'erreur et de doute :
+\begin{eqnarray*}
+R(\hat{c}) &  =   & \E[ L(C,\hat{c}(\X))], \\
+& =    &  \sum_{k=1}^K  \sum_{\ell=1}^K P(\hat{c}(\X) = \ell , C=k)\cdot L(k,\ell) + d\sum_{k=1}^K P(\hat{c}(\X) = \cal{D} , C=k),\\
+& =    & \sum_{k=1}^K   p_k \cdot P(\hat{c}(\X) \neq \ell | C=k) + d \cdot P(\mbox{Doute}),\\
+& =    & P(\mbox{Erreur}) + d \cdot P(\mbox{Doute})
+%R(c^*) &  =   & \E[ R(c^*|\X)], \\
+% &   = & \E[R(c^*|\X)\cdot \II_{\{R(c^*|\X)\leq d\}}] + \E[R(c^*|\X)\cdot \II_{\{R(c^*|\X)> d\}}],\\
+% &   = & \E[(1-\max_k \pi(k|\X))  \cdot \II_{\{R(c^*|\X)\leq d\}}] + \E[ d \cdot \II_{\{R(c^*|\X)> d\}}],\\ 
+% &  =   & P(\mbox{Erreur}) + d\cdot P(\mbox{Doute}) 
+\end{eqnarray*}
+
+Dans ce cadre de d\'ecision statistique le probl\`eme central consiste donc \`a estimer les
+densit\'es {\em a posteriori} $\pi(k | \x)$ qui permettront de d\'efinir pr\'ecisement le classifieur. 
+
+\subsection{Traitement des donn\'ees aberrantes}
+
+Les donn\'ees aberrantes sont un probl\`eme d\'elicat \`a traiter en discrimination.
+Une mani\`ere d'int\'egrer ce concept dans la th\'eorie de la d\'ecision consiste
+\`a d\'efinir une classe sp\'ecifique ${\cal O}$ qui regroupe les donn\'ees
+qui n'appartiennent \`a aucune autre classe.  Un individu $\x$ sera alors 
+class\'e donn\'ee aberrante si :
+$$
+p_{\cal O} f_{\cal O}(\x) \geq [d \cdot f(\x) ,\max_k p_k \cdot f_k( \x)].
+$$
+Cette r\`egle revient \`a rejeter un vecteur forme $\x$ dans la classe 
+${\cal O}$ si $f(\x)$ est tr\'es petite. 
+Notons malheureusement que cette d\'emarche n'est envisageable que lorsqu'un
+nombre raisonnable d'individus aberrants (erreurs de mesure) est disponible.
+En effet, il faut que l'estimation de la distribution {\em a posteriori} 
+relative \`a la classe des donn\'ees aberrantes soit possible.
+C'est le cas dans certaines applications, comme la reconnaissance automatique
+des ZIP codes, qui donne de nombreux exemple d'erreurs de reconnaissance,
+mais dans la plupart des probl\`emes les donn\'ees aberrantes sont rares et
+n'autorisent pas une estimation fiable des loi  $ p_{\cal O}$ et $f_{\cal O}(\x)$.
+
+Il est alors possible de raisonner directement sur la densit\'e m\'elange et 
+de consid\'erer un seuil $s_{\cal O}$ tel que si :
+$$
+f(\x)<s_{\cal O}
+$$
+le vecteur $\x$ est consid\'er\'e comme aberrant. Dans ce contexte, on pourra 
+alors envisager de calculer ce seuil en fonction du pourcentage acceptable $\alpha$
+d'individus aberrants :
+$$
+P(f(\X)<s_{\cal O})\leq \alpha.
+$$
+
+
+\section{\'Evaluation des performances}
+
+Comment \'evaluer les performances d'un classifieur de Bayes ?
+Si le co\^ut $\{0,1\}$ est utilis\'e, le taux d'erreurs de 
+classement ($P(\mbox{Erreur})$) qui est le crit\`ere 
+minimis\'e semble une mesure naturelle. 
+
+
+Si cette erreur de classement est estim\'ee \`a l'aide de l'ensemble
+d'apprentissage, c'est-\`a-dire de l'ensembe $\{(\x_1,c(\x_1)),\cdots,(\x_N,c(\x_N))\}$
+qui a servi \`a d\'efinir le classifieur et dont on veut mesurer les performances,
+l'estimation risque de souffrir d'un biais optimiste quasi syst\'ematique.
+En effet, le classifieur a \'et\'e d\'efini pour minimiser le taux d'erreurs
+sur l'ensemble d'apprentissage et risque donc d'\^etre plus performant sur
+cet ensemble que sur un autre ensemble de vecteurs forme.
+Cette estimation de l'erreur est couramment appel\'ee erreur d'apprentissage.
+
+
+ 
+
+\subsection{Proportion de mal class\'es}
+La solution la plus simple pour estimer cette erreur de classement consiste
+\`a utiliser un ensemble de vecteurs forme dont on conna\^it la classe
+et qui n'a pas servi lors de l'apprentissage. Cet ensemble distinct est 
+g\'en\'eralement appel\'e ensemble de test.
+
+Si l'ensemble de test est constitu\'e de $M$ vecteurs forme et que le 
+classifieur \'etudi\'e commet $R$ erreurs, on aura :
+$$
+\hat{P}(\mbox{Erreur})=\frac{R}{M}.
+$$
+Cette approche poss\`ede deux inconv\'enients majeurs :
+\begin{itemize}
+\item il faut un ensemble de test ``de grande taille'' pour obtenir une estimation pr\'ecise. 
+Remarquons que le nombre d'erreurs $R$ commises par le classifieur suit une loi binomiale 
+${\cal B}(M,P(\mbox{Erreur}))$. Un simple calcul d'intervalle de confiance montre
+que si pour avoir $95\%$ de chances de conna\^itre $P(\mbox{Erreur})$ \`a $1\%$ pr\`es, il faut :
+$$
+M= P(\mbox{Erreur})(1-P(\mbox{Erreur}))\cdot(1.96 \cdot 100)^2.
+$$
+Supposons que $P(\mbox{Erreur})=10\%$, il faudra alors un ensemble test de 3460 individus pour
+estimer \`a $1\%$ de pr\'ecision !
+\item il semble dommage d'utiliser un si grand nombre de vecteurs forme \'etiquett\'es dans le
+seul but de valider le classifieur alors que ceux-ci pourraient servir \`a am\'eliorer
+la qualit\'e de l'apprentissage.
+\end{itemize}
+
+\subsection{Moyennage du risque}
+
+Pour am\'eliorer la pr\'ecision de l'estimation, il est possible de prendre en
+compte directement les probabilit\'es {\em a posteriori}. Dans la section pr\'ec\'edente
+nous avons consid\'er\'e la variable al\'eatoire 
+$$
+R=\sum_{i=1}^M \II_{[C \neq arg \max_{k} P(k | \x_i)]}
+$$
+comptant le nombre d'individus mal class\'es, ce qui revient \`a travailler directement
+sur la v.a.
+$$
+Y=\II_{[C \neq arg \max_{k} P(k | \x)]}.
+$$ 
+Cet v.a. est un estimateur sans biais de la probabilit\'e d'erreur. En effet, on a
+$$
+\E[\II_{[C\neq arg max_{k} P(k | \x)]}]=P(\mbox{Erreur}).
+$$ 
+Sa variance s'exprime comme 
+\begin{eqnarray*}
+var[Y] & = & \E[Y^2]-\E[Y]^2 \\
+       & = &  P(\mbox{Erreur})-P(\mbox{Erreur})^2
+\end{eqnarray*}
+
+Consid\'erons maintenant $Z=1-\max_k P(k | \X)$ 
+(notons que $1-Z$ correspond au risque conditionnel
+minimis\'e par la r\`egle de Bayes) comme estimateur de $P(\mbox{Erreur})$. Nous
+pouvons remarquer que c'est aussi un estimateur non biais\'e :
+$$
+\E[1-\max_k P(k | \X)]=R(\hat{c})=P(\mbox{Erreur})
+$$
+et que sa variance est plus petite que celle de l'estimateur pr\'ec\'edent :
+\begin{eqnarray*}
+var[Z] & =    &  \E[Z^2]-\E[Z]^2 \\
+        & \leq &  \E[Z \cdot (1-\frac{1}{K})]-P(\mbox{Erreur})^2 \\
+        & \leq & (1-\frac{1}{K}) \cdot  P(\mbox{Erreur})-P(\mbox{Erreur})^2\\
+        & \leq & var[Y]-\frac{P(\mbox{Erreur})}{K}
+\end{eqnarray*}
+(Le passage \`a l'in\'egalit\'e utilise le fait que $\max_k \pi(k | \x) \geq \frac{1}{K}$.)
+Un autre avantage de cet estimateur est qu'il ne repose pas sur la connaissance 
+de la vraie classe des vecteurs formes de l'ensemble de test. Par contre il 
+est \'evidemment tr\`es d\'ependant de la qualit\'e de l'estimation des
+probabilit\'es {\em a posteriori}. 
+
+\subsection{Validation crois\'ee}
+
+Dans le souci d'\'eviter d'utiliser des vecteurs forme 
+sp\'ecialement pour l'estimation de
+la probabilit\'e d'erreur, il est possible de recourir \`a la technique de 
+validation crois\'ee. Cette technique consiste \`a diviser l'ensemble 
+des vecteurs formes \'etiquet\'es disponibles en $V$ sous parties, et \`a
+d\'efinir le classifieur \`a l'aide de  toutes les parties sauf une qui servira
+\`a l'estimation de la probabilit\'e d'erreur. La proc\'edure est r\'ep\'et\'ee
+en utilisant successivement toutes les parties pour l'estimation, ce qui
+produit $V$ diff\'erents taux d'erreur estim\'es. La version extr\^eme de 
+cette proc\'edure, alors baptis\'ee ``leave one out'', consiste \`a partager un 
+ensemble de taille $N$ en $N$ sous parties.  
+
+Remarquons que l'estimation
+de cette probabilit\'e peut se faire indiff\'erement suivant les deux 
+techniques d\'ecrites pr\'ec\'edement.  
+
+
+\subsection{M\'ethode de r\'eechantillonage : bootstrap}
+
+Une autre approche du probl\`eme de l'estimation de la probabilit\'e
+d'erreur consiste \`a effectivement utiliser l'ensemble d'apprentissage
+qui produit un estimateur biais\'e et \`a tenter d'estimer ce biais pour 
+proposer un estimateur d\'ebiais\'e. 
+
+Dans ce cadre, le but consiste donc \`a estimer le biais 
+$$
+B=\E[\hat{P}(\mbox{Erreur})-P(\mbox{Erreur})].
+$$
+Le bootstrap est une m\'ethode  adapt\'e \`a l'estimation de ce biais, 
+qui ne fait aucune hypoth\`ese distributionnelle. Elle proc\`ede par
+r\'eechantillonnage de l'ensemble d'apprentissage : de nouveaux ensembles
+d'apprentissage ${\cal F}_i^*$ de taille $N$ sont r\'eechantillonn\'es
+en utilisant un tirage avec remise parmi les $N$ valeurs de 
+l'echantillon initial ${\cal F}$. Pour chaque nouvel \'echantillon,
+le classifieur associ\'e est calcul\'e et deux taux d'erreur 
+empiriques sont ainsi obtenus :
+\begin{itemize}
+\item $\hat{P_i}(\mbox{Erreur})$ sur ${\cal F}$ (l'ensemble initial),
+\item $\tilde{P_i}(\mbox{Erreur})$ sur ${\cal F}_i^*$ (l'ensemble g\'en\'er\'e par bootstrap),
+\end{itemize}  
+Le biais est alors estim\'e par :
+$$
+\hat{B}=\E_i[\hat{P_i}(\mbox{Erreur})-\tilde{P_i}(\mbox{Erreur})]
+$$
+o\`u $\E_i$ est l'esp\'erance sur tous les \'echantillons possibles.
+En pratique,  $\bar{B}$ la moyenne empirique sur le plus grand nombre 
+d'\'echantillons possible est utilis\'ee pour 
+estimer ce biais et l'estimation de l'erreur sera alors :
+$$
+\hat{P}_{\mbox{bootstrap}}(\mbox{Erreur})=\hat{P}(\mbox{Erreur})+\bar{B}.
+$$
+Cette proc\'edure a le d\'efaut d'\^etre optimiste car les vecteurs
+forme de ${\cal F}$ utilis\'es pour le calcul du taux d'erreurs 
+$\hat{P_i}(\mbox{Erreur})$ peuvent
+avoir \'et\'e pr\'esents dans l'ensemble d'apprentissage ${\cal F}_i^*$.
+Efron a donc propos\'e de calculer les taux d'erreur 
+$\hat{P_i}(\mbox{Erreur})$  en faisant intervenir les vecteurs forme 
+de  ${\cal F}$ qui ne sont pas dans ${\cal F}_i^*$. Ces taux d'erreurs
+sont ensuite moyenn\'es pour obtenir $\epsilon_0$ qui sert au calcul
+de l'estimateur du bootstrap dit ``.632'' :
+$$
+\hat{P}_{\mbox{bootstrap632}}(\mbox{Erreur})=0.368 \cdot \hat{P}(\mbox{Erreur})+
+0.632 \cdot \epsilon_0.
+$$
+
+``0.632''($\approx (1-\frac{1}{e})$) n'est pas seulement un nombre magique 
+mais aussi la probabilit\'e lorsque $N$ devient grand qu'un vecteur forme de 
+${\cal F}$ soit pr\'esent dans  ${\cal F}_i^*$\footnote{Notons $K$ la v.a. 
+comptant le nombre de fois o\`u un vecteur de ${\cal F}$ apparait dans ${\cal F}_i^*$.
+On montre facilement que $P(K \geq 1)=1-P(K=0)=(1-\frac{1}{e})$, lorsque 
+$N$ tend vers l'infini.} !
+
+
+\subsection{Matrices de confusion}
+
+Pour caract\'eriser les performances d'un classifieur, il 
+semble aussi int\'eressant, en plus de l'estimation du taux d'erreur
+d'avoir une id\'ee sur les classes qu'il  confond. Les probabilit\'es 
+$$
+e_{k\ell}=P(\hat{c}(X)=k | C=\ell)
+$$  
+permettent d'acc\'eder \`a ce type d'information. La mani\`ere la plus
+simple d'estimer l'ensemble de ces probabilit\'es qui forment ce que
+l'on appelle la matrice de confusion consiste \`a compter l'ensemble 
+des d\'ecisions erron\'ees pour chaque classe en utilisant un ensemble de test
+ou bien l'ensemble d'apprentissage.
+

@@ -1,0 +1,101 @@
+\documentstyle[epsf,12pt,MyStyle,harvard]{book}
+%\documentstyle[epsf,12pt,MyStyle,harvard,french,draftcopy]{book}
+%\documentstyle[epsf,12pt,twoside,harvard,These,french]{report}
+
+\pagestyle{theseheadings}
+%\pagestyle{drafts}
+%\pagestyle{myheadings}
+\input{notation.tex}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DEBUT DU DOCUMENT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\bibliographystyle{fifac}
+
+
+% Titre
+%-------------------------------------
+\begin{titlepage}
+\thispagestyle{empty}
+
+\vspace{8cm}
+
+\begin{center}
+{\Large \bf 
+INTRODUCTION \`A LA RECONNAISSANCE STATISTIQUE DES FORMES}\\
+\vspace{1cm}
+
+Christophe AMBROISE
+
+\vspace{1cm}
+
+\begin{picture}(50,2)(0,0)
+\put(0,0){\line(1,0){50}}
+\end{picture}
+
+\vspace{1cm}
+
+Mars 1997
+
+\vfill
+
+CENTRE DE G\'EOSTATISTIQUE\\
+35, RUE SAINT-HONOR\'E, 77305 FONTAINEBLEAU\\
+
+\begin{center}
+\leavevmode
+\hbox
+{
+\epsfxsize=\textwidth
+\divide\epsfxsize by 100
+\multiply\epsfxsize by 20
+\epsffile{/home/soleil/ambroise/figures/logo.ps}
+}
+\end{center}
+\'ECOLE DES MINES \\
+DE PARIS
+\end{center}
+\end{titlepage}
+
+
+% Table des matiere
+%-------------------------------------
+
+\thispagestyle{empty}
+
+\tableofcontents
+\markboth{Table des mati\`eres}{Table des mati\`eres}
+
+\input{Notations.tex}
+
+\input{Introduction.tex}
+\input{Chapitre1.tex}
+\input{Chapitre2.tex}
+\input{Chapitre3.tex}
+\input{Chapitre4.tex}
+\input{Chapitre5.tex}
+\input{Chapitre6.tex}
+\input{Chapitre7.tex}
+%\appendix
+%\input{AnnexeA.tex}
+%\input{AnnexeB.tex}
+
+\bibliography{/home/soleil/ambroise/Latex/bilbo}
+\markboth{Bibliographie}{Bibliographie}
+\addcontentsline{toc}{chapter}{Bibliographie}
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
