@@ -13113,21 +13113,12 @@ div#notebook {
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
 
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Preprocessing">Preprocessing<a class="anchor-link" href="#Preprocessing">&#182;</a></h1>
-</div>
-</div>
-</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="k">import</span> <span class="n">GridSearchCV</span>
 </pre></div>
 
@@ -13136,75 +13127,19 @@ div#notebook {
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;res_all_INC.csv&quot;</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>/usr/lib/python3.7/site-packages/IPython/core/interactiveshell.py:3020: DtypeWarning: Columns (13,20,21,23,24,26,28,72,73,84,85,86,87,100,101,102) have mixed types. Specify dtype option on import or set low_memory=False.
-  interactivity=interactivity, compiler=compiler, result=result)
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>On selectionne les lignes pour lesquelles LC n'est pas manquant et RL_STATUT est différent de DD</p>
-
+<h1 id="Importation-des-donn&#233;es-pr&#233;trait&#233;es">Importation des donn&#233;es pr&#233;trait&#233;es<a class="anchor-link" href="#Importation-des-donn&#233;es-pr&#233;trait&#233;es">&#182;</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[39]:</div>
+<div class="prompt input_prompt">In&nbsp;[37]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data1</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">notna</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;LC&#39;</span><span class="p">])</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;RL_STATUT&#39;</span><span class="p">]</span><span class="o">!=</span><span class="s1">&#39;DD&#39;</span><span class="p">)]</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>On enlève des colonnes</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[40]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">columns_to_exclude</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;T1ID&#39;</span><span class="p">,</span><span class="s1">&#39;SPECIESBASAUTHORS&#39;</span><span class="p">,</span><span class="s1">&#39;SPECIESAUTHORS&#39;</span><span class="p">,</span><span class="s1">&#39;INFRASPECIFICBASAUTHORS&#39;</span><span class="p">,</span><span class="s1">&#39;INFRASPECIFICEPITHET&#39;</span><span class="p">,</span><span class="s1">&#39;INFRASPECIFICAUTHORS&#39;</span><span class="p">,</span><span class="s1">&#39;BASIONYMAUTHORS&#39;</span><span class="p">,</span><span class="s1">&#39;DATEP&#39;</span><span class="p">,</span><span class="s1">&#39;ACCEPTEDNAMEID&#39;</span><span class="p">,</span><span class="s1">&#39;ACCEPTEDNAME&#39;</span><span class="p">,</span><span class="s1">&#39;CLIMATE_AQUATIC&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;LC&#39;</span><span class="p">,</span><span class="s1">&#39;MAJOR_CLIMATE&#39;</span><span class="p">,</span><span class="s1">&#39;MAJOR_LIFEFORM&#39;</span><span class="p">,</span><span class="s1">&#39;ANID&#39;</span><span class="p">,</span><span class="s1">&#39;SUPPRESSED&#39;</span><span class="p">,</span><span class="s1">&#39;LIFEFORM_BUDHGHT_MIN&#39;</span><span class="p">,</span> <span class="s2">&quot;LIFEFORM_BUDHGHT_MAX&quot;</span><span class="p">,</span> <span class="s1">&#39;RL_NUM&#39;</span><span class="p">,</span> <span class="s1">&#39;RL_STATUT&#39;</span><span class="p">,</span> <span class="s1">&#39;YEAR_ASSESSED&#39;</span><span class="p">,</span> <span class="s1">&#39;LC&#39;</span><span class="p">,</span> <span class="s1">&#39;LCNT&#39;</span><span class="p">,</span> <span class="s1">&#39;RL_V1&#39;</span><span class="p">,</span> <span class="s1">&#39;RL_V2&#39;</span><span class="p">,</span> <span class="s1">&#39;RL_V3&#39;</span><span class="p">,</span> <span class="s1">&#39;RL&#39;</span><span class="p">,</span> <span class="s1">&#39;SONNERAT&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;pred_LC&#39;</span><span class="p">,</span> <span class="s1">&#39;p_LC&#39;</span><span class="p">,</span> <span class="s1">&#39;binf.p_LC&#39;</span><span class="p">,</span> <span class="s1">&#39;bsup.p_LC&#39;</span><span class="p">,</span> <span class="s1">&#39;p_rl_V3&#39;</span><span class="p">,</span> <span class="s1">&#39;p_LCNT&#39;</span><span class="p">,</span> <span class="s1">&#39;binf.p_LCNT&#39;</span><span class="p">,</span> <span class="s1">&#39;bsup.p_LCNT&#39;</span><span class="p">,</span> <span class="s1">&#39;miss&#39;</span><span class="p">]</span>
-
-<span class="n">data2</span> <span class="o">=</span> <span class="n">data1</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">columns_to_exclude</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;y_LC.csv&#39;</span><span class="p">,</span><span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13214,454 +13149,13 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[41]:</div>
+<div class="prompt input_prompt">In&nbsp;[38]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">categorial_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;CL&#39;</span><span class="p">,</span><span class="s1">&#39;N_CLIMATE&#39;</span><span class="p">,</span><span class="s1">&#39;CLIMATE_ALTITUDE&#39;</span><span class="p">,</span><span class="s1">&#39;CLIMATE_DRY&#39;</span><span class="p">,</span><span class="s1">&#39;CLIMATE_TEMPERATE&#39;</span><span class="p">,</span><span class="s1">&#39;CLIMATE_TROPICAL&#39;</span><span class="p">,</span><span class="s1">&#39;N_LIFEFORM&#39;</span><span class="p">]</span><span class="o">+</span><span class="p">[</span><span class="s1">&#39;LIFEFORM_CLIMBING&#39;</span><span class="p">,</span><span class="s1">&#39;LIFEFORM_DEATH&#39;</span><span class="p">,</span><span class="s1">&#39;LIFEFORM_ANNUAL&#39;</span><span class="p">,</span><span class="s1">&#39;LIFEFORM_BIENNIAL&#39;</span><span class="p">,</span><span class="s1">&#39;LIFEFORM_PERENNIAL&#39;</span><span class="p">,</span><span class="s1">&#39;LIFEFORM_GEOPHYTE&#39;</span><span class="p">,</span><span class="s1">&#39;LIFEFORM_HYDROPHYTE&#39;</span><span class="p">,</span><span class="s1">&#39;LIFEFORM_HELOPHYTE&#39;</span><span class="p">,</span><span class="s1">&#39;LIFEFORM_PHANEROPHYTE&#39;</span><span class="p">,</span><span class="s1">&#39;LIFEFORM_NANOPHANEROPHYTE&#39;</span><span class="p">,</span><span class="s1">&#39;LIFEFORM_HEMICRYPTOPHYTE&#39;</span><span class="p">,</span><span class="s1">&#39;LIFEFORM_CHAMAEROPHYTE&#39;</span><span class="p">,</span><span class="s1">&#39;LIFEFORM_EPIPHYTE&#39;</span><span class="p">,</span><span class="s1">&#39;LIFEFORM_LITHOPHYTE&#39;</span><span class="p">,</span><span class="s1">&#39;LIFEFORM_TUBER&#39;</span><span class="p">,</span><span class="s1">&#39;LIFEFORM_RHIZOME&#39;</span><span class="p">,</span><span class="s1">&#39;LIFEFORM_BULB&#39;</span><span class="p">,</span><span class="s1">&#39;LIFEFORM_PSEUDOBULB&#39;</span><span class="p">,</span><span class="s1">&#39;LIFEFORM_AQUATIC&#39;</span><span class="p">,</span><span class="s1">&#39;LIFEFORM_SUCCULENT&#39;</span><span class="p">,</span><span class="s1">&#39;LIFEFORM_CAUDIFORM&#39;</span><span class="p">,</span><span class="s1">&#39;LIFEFORM_PARASITE&#39;</span><span class="p">,</span><span class="s1">&#39;LIFEFORM_CAUDEX&#39;</span><span class="p">,</span><span class="s1">&#39;LIFEFORM_PACHYCAUL&#39;</span><span class="p">,</span><span class="s1">&#39;LIFEFORM_EXPOSED&#39;</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;X_SimpleFill.csv&#39;</span><span class="p">,</span><span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
 </pre></div>
 
     </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>On marque les variables catégorielles comme telles</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[42]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data2</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;?&#39;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">data2</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">data2</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;0&#39;</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">data2</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;2&#39;</span><span class="p">,</span><span class="mf">2.</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[43]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data2</span><span class="p">[</span><span class="n">categorial_columns</span><span class="p">]</span><span class="o">=</span><span class="n">data2</span><span class="p">[</span><span class="n">categorial_columns</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[44]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># conversion object =&gt; category</span>
-<span class="n">object_columns</span> <span class="o">=</span> <span class="p">(</span><span class="n">data2</span><span class="o">.</span><span class="n">dtypes</span> <span class="o">==</span> <span class="s1">&#39;object&#39;</span><span class="p">)</span>
-<span class="c1"># index des colonnes categorielles</span>
-<span class="n">index_object_columns</span> <span class="o">=</span> <span class="n">object_columns</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">object_columns</span><span class="p">]</span>
-<span class="c1">#conversion</span>
-<span class="n">data2</span><span class="p">[</span><span class="n">index_object_columns</span><span class="p">]</span><span class="o">=</span><span class="n">data2</span><span class="p">[</span><span class="n">index_object_columns</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[45]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># nombres de categories par colonne</span>
-<span class="n">data2</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">exclude</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;float64&#39;</span><span class="p">,</span><span class="s1">&#39;int64&#39;</span><span class="p">,</span><span class="s1">&#39;bool&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;unique&#39;</span><span class="p">]</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[45]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>ORDER                           59
-SUPER_ORDER                      8
-ACCEPTEDFAMILY                 265
-FAMILY                         308
-FAMILY_CLEAN                   279
-FULLNAME                     15824
-RANK                             4
-GENUS                         3322
-SPECIES                       9824
-CL                               2
-N_CLIMATE                        3
-CLIMATE_ALTITUDE                 2
-CLIMATE_DRY                      2
-CLIMATE_TEMPERATE                2
-CLIMATE_TROPICAL                 2
-N_LIFEFORM                       4
-LIFEFORM_CLIMBING                3
-LIFEFORM_DEATH                   3
-LIFEFORM_ANNUAL                  2
-LIFEFORM_BIENNIAL                2
-LIFEFORM_PERENNIAL               2
-LIFEFORM_GEOPHYTE                2
-LIFEFORM_HYDROPHYTE              2
-LIFEFORM_HELOPHYTE               2
-LIFEFORM_PHANEROPHYTE            2
-LIFEFORM_NANOPHANEROPHYTE        2
-LIFEFORM_HEMICRYPTOPHYTE         2
-LIFEFORM_CHAMAEROPHYTE           2
-LIFEFORM_EPIPHYTE                3
-LIFEFORM_LITHOPHYTE              2
-LIFEFORM_TUBER                   2
-LIFEFORM_RHIZOME                 2
-LIFEFORM_BULB                    2
-LIFEFORM_PSEUDOBULB              2
-LIFEFORM_AQUATIC                 2
-LIFEFORM_SUCCULENT               3
-LIFEFORM_CAUDIFORM               2
-LIFEFORM_PARASITE                2
-LIFEFORM_CAUDEX                  1
-LIFEFORM_PACHYCAUL               2
-LIFEFORM_EXPOSED                 3
-Name: unique, dtype: object</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>On repère les variables catégorielles avec un grand nombre de catégories pour les supprimer</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[46]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">high_cardidality_features_boolean</span> <span class="o">=</span> <span class="p">(</span><span class="n">data2</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">exclude</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;float64&#39;</span><span class="p">,</span><span class="s1">&#39;int64&#39;</span><span class="p">,</span><span class="s1">&#39;bool&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;unique&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">)</span>
-<span class="n">high_cardidality_features_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">high_cardidality_features_boolean</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">high_cardidality_features_boolean</span><span class="p">])</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[47]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X_with_missing_and_categorical</span> <span class="o">=</span> <span class="n">data2</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">high_cardidality_features_list</span><span class="p">)</span>
-<span class="c1"># X_with_missing_and_categorical = data2</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[49]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">data1</span><span class="p">[</span><span class="s1">&#39;LC&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int&#39;</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>On procède au one-hot encoding des variables catégorielles</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[50]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X_with_missing</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">X_with_missing_and_categorical</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>On impute les données manquantes par un algo 5NN</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>On normalise les données</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[70]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="k">import</span> <span class="n">StandardScaler</span>
-<span class="n">X_with_missing</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_with_missing</span><span class="p">)</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_with_missing</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>/usr/lib/python3.7/site-packages/sklearn/preprocessing/data.py:617: DataConversionWarning: Data with input dtype uint8, int64, float64 were all converted to float64 by StandardScaler.
-  return self.partial_fit(X, y)
-/usr/lib/python3.7/site-packages/ipykernel_launcher.py:2: DataConversionWarning: Data with input dtype uint8, int64, float64 were all converted to float64 by StandardScaler.
-  
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[71]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">fancyimpute</span> <span class="k">import</span> <span class="n">KNN</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">KNN</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_with_missing</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Imputing row 1/15824 with 9 missing, elapsed time: 163.661
-Imputing row 101/15824 with 31 missing, elapsed time: 163.787
-Imputing row 201/15824 with 6 missing, elapsed time: 163.924
-Imputing row 301/15824 with 12 missing, elapsed time: 164.041
-Imputing row 401/15824 with 31 missing, elapsed time: 164.161
-Imputing row 501/15824 with 31 missing, elapsed time: 164.288
-Imputing row 601/15824 with 6 missing, elapsed time: 164.431
-Imputing row 701/15824 with 25 missing, elapsed time: 164.555
-Imputing row 801/15824 with 6 missing, elapsed time: 164.676
-Imputing row 901/15824 with 0 missing, elapsed time: 164.785
-Imputing row 1001/15824 with 25 missing, elapsed time: 164.865
-Imputing row 1101/15824 with 0 missing, elapsed time: 164.963
-Imputing row 1201/15824 with 0 missing, elapsed time: 165.033
-Imputing row 1301/15824 with 25 missing, elapsed time: 165.132
-Imputing row 1401/15824 with 0 missing, elapsed time: 165.220
-Imputing row 1501/15824 with 25 missing, elapsed time: 165.341
-Imputing row 1601/15824 with 25 missing, elapsed time: 165.462
-Imputing row 1701/15824 with 0 missing, elapsed time: 165.566
-Imputing row 1801/15824 with 2 missing, elapsed time: 165.666
-Imputing row 1901/15824 with 0 missing, elapsed time: 165.792
-Imputing row 2001/15824 with 6 missing, elapsed time: 165.871
-Imputing row 2101/15824 with 25 missing, elapsed time: 165.966
-Imputing row 2201/15824 with 0 missing, elapsed time: 166.045
-Imputing row 2301/15824 with 25 missing, elapsed time: 166.151
-Imputing row 2401/15824 with 25 missing, elapsed time: 166.250
-Imputing row 2501/15824 with 25 missing, elapsed time: 166.351
-Imputing row 2601/15824 with 25 missing, elapsed time: 166.426
-Imputing row 2701/15824 with 25 missing, elapsed time: 166.523
-Imputing row 2801/15824 with 6 missing, elapsed time: 166.612
-Imputing row 2901/15824 with 0 missing, elapsed time: 166.662
-Imputing row 3001/15824 with 6 missing, elapsed time: 166.727
-Imputing row 3101/15824 with 0 missing, elapsed time: 166.818
-Imputing row 3201/15824 with 12 missing, elapsed time: 166.921
-Imputing row 3301/15824 with 12 missing, elapsed time: 167.010
-Imputing row 3401/15824 with 6 missing, elapsed time: 167.088
-Imputing row 3501/15824 with 31 missing, elapsed time: 167.207
-Imputing row 3601/15824 with 0 missing, elapsed time: 167.282
-Imputing row 3701/15824 with 0 missing, elapsed time: 167.354
-Imputing row 3801/15824 with 12 missing, elapsed time: 167.431
-Imputing row 3901/15824 with 25 missing, elapsed time: 167.579
-Imputing row 4001/15824 with 6 missing, elapsed time: 167.703
-Imputing row 4101/15824 with 6 missing, elapsed time: 167.781
-Imputing row 4201/15824 with 6 missing, elapsed time: 167.906
-Imputing row 4301/15824 with 6 missing, elapsed time: 167.974
-Imputing row 4401/15824 with 6 missing, elapsed time: 168.071
-Imputing row 4501/15824 with 6 missing, elapsed time: 168.137
-Imputing row 4601/15824 with 6 missing, elapsed time: 168.215
-Imputing row 4701/15824 with 12 missing, elapsed time: 168.308
-Imputing row 4801/15824 with 12 missing, elapsed time: 168.428
-Imputing row 4901/15824 with 9 missing, elapsed time: 168.541
-Imputing row 5001/15824 with 0 missing, elapsed time: 168.626
-Imputing row 5101/15824 with 31 missing, elapsed time: 168.755
-Imputing row 5201/15824 with 6 missing, elapsed time: 168.862
-Imputing row 5301/15824 with 6 missing, elapsed time: 168.958
-Imputing row 5401/15824 with 6 missing, elapsed time: 169.103
-Imputing row 5501/15824 with 0 missing, elapsed time: 169.211
-Imputing row 5601/15824 with 31 missing, elapsed time: 169.323
-Imputing row 5701/15824 with 6 missing, elapsed time: 169.448
-Imputing row 5801/15824 with 12 missing, elapsed time: 169.564
-Imputing row 5901/15824 with 3 missing, elapsed time: 169.675
-Imputing row 6001/15824 with 31 missing, elapsed time: 169.780
-Imputing row 6101/15824 with 0 missing, elapsed time: 169.907
-Imputing row 6201/15824 with 9 missing, elapsed time: 170.027
-Imputing row 6301/15824 with 31 missing, elapsed time: 170.168
-Imputing row 6401/15824 with 6 missing, elapsed time: 170.307
-Imputing row 6501/15824 with 6 missing, elapsed time: 170.474
-Imputing row 6601/15824 with 6 missing, elapsed time: 170.564
-Imputing row 6701/15824 with 9 missing, elapsed time: 170.713
-Imputing row 6801/15824 with 25 missing, elapsed time: 170.835
-Imputing row 6901/15824 with 6 missing, elapsed time: 170.968
-Imputing row 7001/15824 with 12 missing, elapsed time: 171.068
-Imputing row 7101/15824 with 31 missing, elapsed time: 171.184
-Imputing row 7201/15824 with 31 missing, elapsed time: 171.311
-Imputing row 7301/15824 with 31 missing, elapsed time: 171.465
-Imputing row 7401/15824 with 31 missing, elapsed time: 171.620
-Imputing row 7501/15824 with 31 missing, elapsed time: 171.748
-Imputing row 7601/15824 with 31 missing, elapsed time: 171.874
-Imputing row 7701/15824 with 9 missing, elapsed time: 171.986
-Imputing row 7801/15824 with 31 missing, elapsed time: 172.111
-Imputing row 7901/15824 with 31 missing, elapsed time: 172.231
-Imputing row 8001/15824 with 31 missing, elapsed time: 172.352
-Imputing row 8101/15824 with 31 missing, elapsed time: 172.526
-Imputing row 8201/15824 with 31 missing, elapsed time: 172.627
-Imputing row 8301/15824 with 6 missing, elapsed time: 172.744
-Imputing row 8401/15824 with 31 missing, elapsed time: 172.863
-Imputing row 8501/15824 with 25 missing, elapsed time: 172.992
-Imputing row 8601/15824 with 0 missing, elapsed time: 173.133
-Imputing row 8701/15824 with 6 missing, elapsed time: 173.219
-Imputing row 8801/15824 with 0 missing, elapsed time: 173.275
-Imputing row 8901/15824 with 0 missing, elapsed time: 173.375
-Imputing row 9001/15824 with 25 missing, elapsed time: 173.450
-Imputing row 9101/15824 with 25 missing, elapsed time: 173.557
-Imputing row 9201/15824 with 25 missing, elapsed time: 173.660
-Imputing row 9301/15824 with 25 missing, elapsed time: 173.756
-Imputing row 9401/15824 with 25 missing, elapsed time: 173.868
-Imputing row 9501/15824 with 6 missing, elapsed time: 173.995
-Imputing row 9601/15824 with 25 missing, elapsed time: 174.080
-Imputing row 9701/15824 with 25 missing, elapsed time: 174.154
-Imputing row 9801/15824 with 0 missing, elapsed time: 174.230
-Imputing row 9901/15824 with 25 missing, elapsed time: 174.320
-Imputing row 10001/15824 with 6 missing, elapsed time: 174.413
-Imputing row 10101/15824 with 25 missing, elapsed time: 174.467
-Imputing row 10201/15824 with 25 missing, elapsed time: 174.560
-Imputing row 10301/15824 with 0 missing, elapsed time: 174.664
-Imputing row 10401/15824 with 6 missing, elapsed time: 174.750
-Imputing row 10501/15824 with 0 missing, elapsed time: 174.811
-Imputing row 10601/15824 with 0 missing, elapsed time: 174.904
-Imputing row 10701/15824 with 0 missing, elapsed time: 174.940
-Imputing row 10801/15824 with 25 missing, elapsed time: 174.998
-Imputing row 10901/15824 with 25 missing, elapsed time: 175.117
-Imputing row 11001/15824 with 25 missing, elapsed time: 175.188
-Imputing row 11101/15824 with 25 missing, elapsed time: 175.266
-Imputing row 11201/15824 with 3 missing, elapsed time: 175.347
-Imputing row 11301/15824 with 0 missing, elapsed time: 175.422
-Imputing row 11401/15824 with 6 missing, elapsed time: 175.554
-Imputing row 11501/15824 with 12 missing, elapsed time: 175.682
-Imputing row 11601/15824 with 31 missing, elapsed time: 175.817
-Imputing row 11701/15824 with 12 missing, elapsed time: 175.927
-Imputing row 11801/15824 with 31 missing, elapsed time: 176.085
-Imputing row 11901/15824 with 12 missing, elapsed time: 176.228
-Imputing row 12001/15824 with 31 missing, elapsed time: 176.391
-Imputing row 12101/15824 with 31 missing, elapsed time: 176.557
-Imputing row 12201/15824 with 12 missing, elapsed time: 176.689
-Imputing row 12301/15824 with 31 missing, elapsed time: 176.851
-Imputing row 12401/15824 with 31 missing, elapsed time: 176.985
-Imputing row 12501/15824 with 6 missing, elapsed time: 177.104
-Imputing row 12601/15824 with 12 missing, elapsed time: 177.238
-Imputing row 12701/15824 with 31 missing, elapsed time: 177.380
-Imputing row 12801/15824 with 31 missing, elapsed time: 177.526
-Imputing row 12901/15824 with 9 missing, elapsed time: 177.702
-Imputing row 13001/15824 with 12 missing, elapsed time: 177.882
-Imputing row 13101/15824 with 12 missing, elapsed time: 178.045
-Imputing row 13201/15824 with 31 missing, elapsed time: 178.181
-Imputing row 13301/15824 with 12 missing, elapsed time: 178.340
-Imputing row 13401/15824 with 31 missing, elapsed time: 178.507
-Imputing row 13501/15824 with 31 missing, elapsed time: 178.686
-Imputing row 13601/15824 with 31 missing, elapsed time: 178.858
-Imputing row 13701/15824 with 35 missing, elapsed time: 178.986
-Imputing row 13801/15824 with 7 missing, elapsed time: 179.087
-Imputing row 13901/15824 with 35 missing, elapsed time: 179.195
-Imputing row 14001/15824 with 16 missing, elapsed time: 179.287
-Imputing row 14101/15824 with 35 missing, elapsed time: 179.359
-Imputing row 14201/15824 with 35 missing, elapsed time: 179.479
-Imputing row 14301/15824 with 35 missing, elapsed time: 179.566
-Imputing row 14401/15824 with 35 missing, elapsed time: 179.665
-Imputing row 14501/15824 with 10 missing, elapsed time: 179.786
-Imputing row 14601/15824 with 10 missing, elapsed time: 179.898
-Imputing row 14701/15824 with 10 missing, elapsed time: 179.939
-Imputing row 14801/15824 with 10 missing, elapsed time: 180.018
-Imputing row 14901/15824 with 35 missing, elapsed time: 180.157
-Imputing row 15001/15824 with 35 missing, elapsed time: 180.318
-Imputing row 15101/15824 with 16 missing, elapsed time: 180.419
-Imputing row 15201/15824 with 6 missing, elapsed time: 180.504
-Imputing row 15301/15824 with 31 missing, elapsed time: 180.612
-Imputing row 15401/15824 with 12 missing, elapsed time: 180.745
-Imputing row 15501/15824 with 31 missing, elapsed time: 180.875
-Imputing row 15601/15824 with 31 missing, elapsed time: 181.006
-Imputing row 15701/15824 with 31 missing, elapsed time: 181.103
-Imputing row 15801/15824 with 9 missing, elapsed time: 181.233
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -13676,7 +13170,7 @@ Imputing row 15801/15824 with 9 missing, elapsed time: 181.233
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[72]:</div>
+<div class="prompt input_prompt">In&nbsp;[39]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="k">import</span> <span class="n">train_test_split</span>
@@ -13697,7 +13191,7 @@ Imputing row 15801/15824 with 9 missing, elapsed time: 181.233
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[73]:</div>
+<div class="prompt input_prompt">In&nbsp;[40]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="k">import</span> <span class="n">LogisticRegression</span><span class="p">,</span> <span class="n">LogisticRegressionCV</span>
@@ -13726,7 +13220,7 @@ Imputing row 15801/15824 with 9 missing, elapsed time: 181.233
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[86]:</div>
+<div class="prompt input_prompt">In&nbsp;[41]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">LogisticRegression</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="s1">&#39;saga&#39;</span><span class="p">,</span><span class="n">penalty</span><span class="o">=</span><span class="s1">&#39;l1&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span><span class="n">y_test</span><span class="p">)</span>
@@ -13754,13 +13248,13 @@ Imputing row 15801/15824 with 9 missing, elapsed time: 181.233
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[86]:</div>
+    <div class="prompt output_prompt">Out[41]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>0.7909504550050556</pre>
+<pre>0.7960060667340748</pre>
 </div>
 
 </div>
@@ -13779,7 +13273,7 @@ Imputing row 15801/15824 with 9 missing, elapsed time: 181.233
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[87]:</div>
+<div class="prompt input_prompt">In&nbsp;[42]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">logregcvl1</span> <span class="o">=</span> <span class="n">LogisticRegressionCV</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="s1">&#39;saga&#39;</span><span class="p">,</span><span class="n">penalty</span><span class="o">=</span><span class="s1">&#39;l1&#39;</span><span class="p">,</span><span class="n">Cs</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span><span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
@@ -13812,7 +13306,9 @@ Imputing row 15801/15824 with 9 missing, elapsed time: 181.233
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>max_iter reached after 5 seconds
+<pre>max_iter reached after 8 seconds
+max_iter reached after 8 seconds
+max_iter reached after 8 seconds
 </pre>
 </div>
 </div>
@@ -13835,53 +13331,50 @@ Imputing row 15801/15824 with 9 missing, elapsed time: 181.233
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>max_iter reached after 5 seconds
-max_iter reached after 5 seconds
-max_iter reached after 6 seconds
-max_iter reached after 6 seconds
-max_iter reached after 6 seconds
-max_iter reached after 6 seconds
-max_iter reached after 6 seconds
-max_iter reached after 5 seconds
-max_iter reached after 6 seconds
-max_iter reached after 6 seconds
-max_iter reached after 6 seconds
-max_iter reached after 7 seconds
-max_iter reached after 7 seconds
-max_iter reached after 6 seconds
-max_iter reached after 6 seconds
-max_iter reached after 7 seconds
-max_iter reached after 6 seconds
-max_iter reached after 6 seconds
-max_iter reached after 6 seconds
-max_iter reached after 7 seconds
-max_iter reached after 6 seconds
-max_iter reached after 6 seconds
-max_iter reached after 6 seconds
-max_iter reached after 6 seconds
-max_iter reached after 6 seconds
-max_iter reached after 6 seconds
-max_iter reached after 6 seconds
-max_iter reached after 6 seconds
-max_iter reached after 6 seconds
-max_iter reached after 6 seconds
-max_iter reached after 6 seconds
-max_iter reached after 6 seconds
-max_iter reached after 6 seconds
-max_iter reached after 7 seconds
-max_iter reached after 6 seconds
-max_iter reached after 6 seconds
-max_iter reached after 7 seconds
-max_iter reached after 7 seconds
-max_iter reached after 6 seconds
-max_iter reached after 7 seconds
-max_iter reached after 7 seconds
-max_iter reached after 6 seconds
-max_iter reached after 6 seconds
-max_iter reached after 6 seconds
-max_iter reached after 6 seconds
-max_iter reached after 6 seconds
-max_iter reached after 6 seconds
+<pre>max_iter reached after 8 seconds
+max_iter reached after 8 seconds
+max_iter reached after 8 seconds
+max_iter reached after 8 seconds
+max_iter reached after 8 seconds
+max_iter reached after 8 seconds
+max_iter reached after 8 seconds
+max_iter reached after 8 seconds
+max_iter reached after 8 seconds
+max_iter reached after 8 seconds
+max_iter reached after 9 seconds
+max_iter reached after 9 seconds
+max_iter reached after 8 seconds
+max_iter reached after 9 seconds
+max_iter reached after 8 seconds
+max_iter reached after 9 seconds
+max_iter reached after 8 seconds
+max_iter reached after 9 seconds
+max_iter reached after 8 seconds
+max_iter reached after 8 seconds
+max_iter reached after 8 seconds
+max_iter reached after 8 seconds
+max_iter reached after 8 seconds
+max_iter reached after 8 seconds
+max_iter reached after 9 seconds
+max_iter reached after 9 seconds
+max_iter reached after 9 seconds
+max_iter reached after 8 seconds
+max_iter reached after 9 seconds
+max_iter reached after 8 seconds
+max_iter reached after 8 seconds
+max_iter reached after 8 seconds
+max_iter reached after 9 seconds
+max_iter reached after 8 seconds
+max_iter reached after 8 seconds
+max_iter reached after 8 seconds
+max_iter reached after 9 seconds
+max_iter reached after 8 seconds
+max_iter reached after 8 seconds
+max_iter reached after 8 seconds
+max_iter reached after 9 seconds
+max_iter reached after 8 seconds
+max_iter reached after 8 seconds
+max_iter reached after 8 seconds
 </pre>
 </div>
 </div>
@@ -13894,9 +13387,7 @@ max_iter reached after 6 seconds
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>/usr/lib/python3.7/site-packages/sklearn/linear_model/sag.py:334: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
   &#34;the coef_ did not converge&#34;, ConvergenceWarning)
-[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:  1.0min remaining:  1.5min
-/usr/lib/python3.7/site-packages/sklearn/linear_model/sag.py:334: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
-  &#34;the coef_ did not converge&#34;, ConvergenceWarning)
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:  1.4min remaining:  2.1min
 /usr/lib/python3.7/site-packages/sklearn/linear_model/sag.py:334: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
   &#34;the coef_ did not converge&#34;, ConvergenceWarning)
 </pre>
@@ -13909,8 +13400,8 @@ max_iter reached after 6 seconds
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>max_iter reached after 6 seconds
-max_iter reached after 6 seconds
+<pre>max_iter reached after 8 seconds
+max_iter reached after 7 seconds
 </pre>
 </div>
 </div>
@@ -13923,7 +13414,9 @@ max_iter reached after 6 seconds
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>/usr/lib/python3.7/site-packages/sklearn/linear_model/sag.py:334: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
   &#34;the coef_ did not converge&#34;, ConvergenceWarning)
-[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:  1.0min finished
+/usr/lib/python3.7/site-packages/sklearn/linear_model/sag.py:334: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
+  &#34;the coef_ did not converge&#34;, ConvergenceWarning)
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:  1.4min finished
 </pre>
 </div>
 </div>
@@ -13934,9 +13427,10 @@ max_iter reached after 6 seconds
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>max_iter reached after 3 seconds
-Train score:  0.8088978766430738
-Test score:  0.7939838220424671
+<pre>max_iter reached after 8 seconds
+max_iter reached after 2 seconds
+Train score:  0.8062858105830806
+Test score:  0.7982810920121335
 </pre>
 </div>
 </div>
@@ -13974,7 +13468,7 @@ Test score:  0.7939838220424671
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[88]:</div>
+<div class="prompt input_prompt">In&nbsp;[43]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">LogisticRegression</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="s1">&#39;saga&#39;</span><span class="p">,</span><span class="n">penalty</span><span class="o">=</span><span class="s1">&#39;l2&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span><span class="n">y_test</span><span class="p">)</span>
@@ -14002,13 +13496,13 @@ Test score:  0.7939838220424671
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[88]:</div>
+    <div class="prompt output_prompt">Out[43]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>0.788928210313448</pre>
+<pre>0.7927199191102123</pre>
 </div>
 
 </div>
@@ -14027,7 +13521,7 @@ Test score:  0.7939838220424671
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[89]:</div>
+<div class="prompt input_prompt">In&nbsp;[44]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">logregcvl2</span> <span class="o">=</span> <span class="n">LogisticRegressionCV</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="s1">&#39;saga&#39;</span><span class="p">,</span><span class="n">penalty</span><span class="o">=</span><span class="s1">&#39;l2&#39;</span><span class="p">,</span><span class="n">Cs</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span><span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
@@ -14060,11 +13554,10 @@ Test score:  0.7939838220424671
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>max_iter reached after 10 seconds
-max_iter reached after 10 seconds
-max_iter reached after 10 seconds
-max_iter reached after 10 seconds
-max_iter reached after 10 seconds
+<pre>max_iter reached after 12 seconds
+max_iter reached after 12 seconds
+max_iter reached after 13 seconds
+max_iter reached after 13 seconds
 </pre>
 </div>
 </div>
@@ -14087,51 +13580,52 @@ max_iter reached after 10 seconds
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>max_iter reached after 10 seconds
-max_iter reached after 10 seconds
-max_iter reached after 10 seconds
-max_iter reached after 10 seconds
-max_iter reached after 10 seconds
-max_iter reached after 10 seconds
-max_iter reached after 10 seconds
-max_iter reached after 10 seconds
-max_iter reached after 10 seconds
-max_iter reached after 10 seconds
-max_iter reached after 10 seconds
-max_iter reached after 10 seconds
-max_iter reached after 10 seconds
-max_iter reached after 10 seconds
-max_iter reached after 11 seconds
-max_iter reached after 10 seconds
-max_iter reached after 11 seconds
-max_iter reached after 11 seconds
-max_iter reached after 11 seconds
-max_iter reached after 10 seconds
-max_iter reached after 11 seconds
-max_iter reached after 10 seconds
-max_iter reached after 10 seconds
-max_iter reached after 10 seconds
-max_iter reached after 10 seconds
-max_iter reached after 10 seconds
-max_iter reached after 10 seconds
-max_iter reached after 10 seconds
-max_iter reached after 10 seconds
-max_iter reached after 10 seconds
-max_iter reached after 10 seconds
-max_iter reached after 10 seconds
-max_iter reached after 10 seconds
-max_iter reached after 10 seconds
-max_iter reached after 10 seconds
-max_iter reached after 10 seconds
-max_iter reached after 10 seconds
-max_iter reached after 10 seconds
-max_iter reached after 10 seconds
-max_iter reached after 10 seconds
-max_iter reached after 10 seconds
-max_iter reached after 10 seconds
-max_iter reached after 10 seconds
-max_iter reached after 10 seconds
-max_iter reached after 10 seconds
+<pre>max_iter reached after 13 seconds
+max_iter reached after 13 seconds
+max_iter reached after 13 seconds
+max_iter reached after 12 seconds
+max_iter reached after 12 seconds
+max_iter reached after 12 seconds
+max_iter reached after 13 seconds
+max_iter reached after 13 seconds
+max_iter reached after 13 seconds
+max_iter reached after 13 seconds
+max_iter reached after 13 seconds
+max_iter reached after 12 seconds
+max_iter reached after 12 seconds
+max_iter reached after 12 seconds
+max_iter reached after 12 seconds
+max_iter reached after 13 seconds
+max_iter reached after 12 seconds
+max_iter reached after 12 seconds
+max_iter reached after 13 seconds
+max_iter reached after 13 seconds
+max_iter reached after 12 seconds
+max_iter reached after 13 seconds
+max_iter reached after 12 seconds
+max_iter reached after 13 seconds
+max_iter reached after 13 seconds
+max_iter reached after 13 seconds
+max_iter reached after 12 seconds
+max_iter reached after 13 seconds
+max_iter reached after 13 seconds
+max_iter reached after 12 seconds
+max_iter reached after 12 seconds
+max_iter reached after 13 seconds
+max_iter reached after 12 seconds
+max_iter reached after 12 seconds
+max_iter reached after 13 seconds
+max_iter reached after 13 seconds
+max_iter reached after 12 seconds
+max_iter reached after 13 seconds
+max_iter reached after 13 seconds
+max_iter reached after 12 seconds
+max_iter reached after 12 seconds
+max_iter reached after 13 seconds
+max_iter reached after 12 seconds
+max_iter reached after 12 seconds
+max_iter reached after 12 seconds
+max_iter reached after 12 seconds
 </pre>
 </div>
 </div>
@@ -14144,14 +13638,14 @@ max_iter reached after 10 seconds
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>/usr/lib/python3.7/site-packages/sklearn/linear_model/sag.py:334: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
   &#34;the coef_ did not converge&#34;, ConvergenceWarning)
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:  2.1min remaining:  3.1min
 /usr/lib/python3.7/site-packages/sklearn/linear_model/sag.py:334: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
   &#34;the coef_ did not converge&#34;, ConvergenceWarning)
-[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:  1.7min remaining:  2.5min
 /usr/lib/python3.7/site-packages/sklearn/linear_model/sag.py:334: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
   &#34;the coef_ did not converge&#34;, ConvergenceWarning)
 /usr/lib/python3.7/site-packages/sklearn/linear_model/sag.py:334: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
   &#34;the coef_ did not converge&#34;, ConvergenceWarning)
-[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:  1.7min finished
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:  2.1min finished
 </pre>
 </div>
 </div>
@@ -14163,8 +13657,8 @@ max_iter reached after 10 seconds
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>max_iter reached after 2 seconds
-Train score:  0.8087293562521065
-Test score:  0.7934782608695652
+Train score:  0.805695989214695
+Test score:  0.7957532861476239
 </pre>
 </div>
 </div>
@@ -14194,7 +13688,7 @@ Test score:  0.7934782608695652
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[90]:</div>
+<div class="prompt input_prompt">In&nbsp;[45]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="k">import</span> <span class="n">LinearSVC</span><span class="p">,</span> <span class="n">SVC</span>
@@ -14222,10 +13716,53 @@ Test score:  0.7934782608695652
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[91]:</div>
+<div class="prompt input_prompt">In&nbsp;[46]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">LinearSVC</span><span class="p">(</span><span class="n">penalty</span><span class="o">=</span><span class="s1">&#39;l1&#39;</span><span class="p">,</span><span class="n">dual</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span><span class="n">y_test</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0.7927199191102123
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/usr/lib/python3.7/site-packages/sklearn/svm/base.py:922: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  &#34;the number of iterations.&#34;, ConvergenceWarning)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[47]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">LinearSVC</span><span class="p">(</span><span class="n">penalty</span><span class="o">=</span><span class="s1">&#39;l2&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span><span class="n">y_test</span><span class="p">))</span>
 </pre></div>
 
     </div>
@@ -14263,49 +13800,6 @@ Test score:  0.7934782608695652
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[92]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">LinearSVC</span><span class="p">(</span><span class="n">penalty</span><span class="o">=</span><span class="s1">&#39;l2&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span><span class="n">y_test</span><span class="p">))</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>0.788928210313448
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>/usr/lib/python3.7/site-packages/sklearn/svm/base.py:922: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
-  &#34;the number of iterations.&#34;, ConvergenceWarning)
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -14316,7 +13810,7 @@ Test score:  0.7934782608695652
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[93]:</div>
+<div class="prompt input_prompt">In&nbsp;[48]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">svclinl1</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">LinearSVC</span><span class="p">(</span><span class="n">penalty</span><span class="o">=</span><span class="s1">&#39;l1&#39;</span><span class="p">,</span><span class="n">dual</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">param_grid</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;C&#39;</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">10</span><span class="p">)},</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
@@ -14350,9 +13844,9 @@ Test score:  0.7934782608695652
 
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>[Parallel(n_jobs=-1)]: Using backend LokyBackend with 12 concurrent workers.
-[Parallel(n_jobs=-1)]: Done   8 tasks      | elapsed:   11.6s
-[Parallel(n_jobs=-1)]: Done  44 out of  50 | elapsed:   51.6s remaining:    7.0s
-[Parallel(n_jobs=-1)]: Done  50 out of  50 | elapsed:   56.4s finished
+[Parallel(n_jobs=-1)]: Done   8 tasks      | elapsed:   14.3s
+[Parallel(n_jobs=-1)]: Done  44 out of  50 | elapsed:  1.1min remaining:    8.6s
+[Parallel(n_jobs=-1)]: Done  50 out of  50 | elapsed:  1.1min finished
 </pre>
 </div>
 </div>
@@ -14363,8 +13857,8 @@ Test score:  0.7934782608695652
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Train score: 0.8088136164475902
-Test score: 0.7937310414560161
+<pre>Train score: 0.8050219076508257
+Test score: 0.7927199191102123
 </pre>
 </div>
 </div>
@@ -14387,7 +13881,7 @@ Test score: 0.7937310414560161
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[94]:</div>
+<div class="prompt input_prompt">In&nbsp;[49]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">svclinl2</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">LinearSVC</span><span class="p">(</span><span class="n">penalty</span><span class="o">=</span><span class="s1">&#39;l2&#39;</span><span class="p">),</span> <span class="n">param_grid</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;C&#39;</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">)},</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
@@ -14431,9 +13925,9 @@ Test score: 0.7937310414560161
 
 
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[Parallel(n_jobs=-1)]: Done   8 tasks      | elapsed:    0.5s
-[Parallel(n_jobs=-1)]: Done  44 out of  50 | elapsed:   25.7s remaining:    3.5s
-[Parallel(n_jobs=-1)]: Done  50 out of  50 | elapsed:   27.1s finished
+<pre>[Parallel(n_jobs=-1)]: Done   8 tasks      | elapsed:    0.6s
+[Parallel(n_jobs=-1)]: Done  44 out of  50 | elapsed:   29.7s remaining:    4.0s
+[Parallel(n_jobs=-1)]: Done  50 out of  50 | elapsed:   31.1s finished
 </pre>
 </div>
 </div>
@@ -14444,20 +13938,8 @@ Test score: 0.7937310414560161
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Train score: 0.8090663970340412
-Test score: 0.7937310414560161
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>/usr/lib/python3.7/site-packages/sklearn/svm/base.py:922: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
-  &#34;the number of iterations.&#34;, ConvergenceWarning)
+<pre>Train score: 0.8050219076508257
+Test score: 0.7922143579373104
 </pre>
 </div>
 </div>
@@ -14475,7 +13957,7 @@ Test score: 0.7937310414560161
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[95]:</div>
+<div class="prompt input_prompt">In&nbsp;[50]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">svcpoly</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;poly&#39;</span><span class="p">,</span><span class="n">degree</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">gamma</span><span class="o">=</span><span class="s1">&#39;scale&#39;</span><span class="p">,</span><span class="n">coef0</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">param_grid</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;C&#39;</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">)},</span><span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">cv</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
@@ -14496,17 +13978,6 @@ Test score: 0.7937310414560161
     <div class="prompt"></div>
 
 
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>[Parallel(n_jobs=-1)]: Using backend LokyBackend with 12 concurrent workers.
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Fitting 3 folds for each of 5 candidates, totalling 15 fits
 </pre>
@@ -14519,9 +13990,10 @@ Test score: 0.7937310414560161
 
 
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[Parallel(n_jobs=-1)]: Done   4 out of  15 | elapsed:   41.5s remaining:  1.9min
-[Parallel(n_jobs=-1)]: Done  10 out of  15 | elapsed:   47.0s remaining:   23.5s
-[Parallel(n_jobs=-1)]: Done  15 out of  15 | elapsed:  1.0min finished
+<pre>[Parallel(n_jobs=-1)]: Using backend LokyBackend with 12 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   4 out of  15 | elapsed:   50.6s remaining:  2.3min
+[Parallel(n_jobs=-1)]: Done  10 out of  15 | elapsed:   57.3s remaining:   28.6s
+[Parallel(n_jobs=-1)]: Done  15 out of  15 | elapsed:  1.2min finished
 </pre>
 </div>
 </div>
@@ -14532,8 +14004,8 @@ Test score: 0.7937310414560161
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Train score: 0.8394000674081564
-Test score: 0.7934782608695652
+<pre>Train score: 0.8612234580384226
+Test score: 0.8073811931243681
 </pre>
 </div>
 </div>
@@ -14551,7 +14023,7 @@ Test score: 0.7934782608695652
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[96]:</div>
+<div class="prompt input_prompt">In&nbsp;[51]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="k">import</span> <span class="n">RandomForestClassifier</span>
@@ -14572,10 +14044,10 @@ Test score: 0.7934782608695652
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[97]:</div>
+<div class="prompt input_prompt">In&nbsp;[67]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">RandomForestClassifier</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span><span class="n">y_test</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span><span class="n">y_test</span><span class="p">))</span>
 </pre></div>
 
     </div>
@@ -14592,19 +14064,7 @@ Test score: 0.7934782608695652
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>0.7798281092012134
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>/usr/lib/python3.7/site-packages/sklearn/ensemble/forest.py:248: FutureWarning: The default value of n_estimators will change from 10 in version 0.20 to 100 in 0.22.
-  &#34;10 in version 0.20 to 100 in 0.22.&#34;, FutureWarning)
+<pre>0.8081395348837209
 </pre>
 </div>
 </div>
@@ -14623,7 +14083,7 @@ Test score: 0.7934782608695652
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[98]:</div>
+<div class="prompt input_prompt">In&nbsp;[53]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">rf</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">),</span> <span class="n">param_grid</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;criterion&#39;</span><span class="p">:[</span><span class="s1">&#39;gini&#39;</span><span class="p">,</span><span class="s1">&#39;entropy&#39;</span><span class="p">],</span> <span class="s1">&#39;max_depth&#39;</span><span class="p">:[</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">50</span><span class="p">],</span> <span class="s1">&#39;max_features&#39;</span><span class="p">:[</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">40</span><span class="p">]},</span><span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
@@ -14668,7 +14128,7 @@ Test score: 0.7934782608695652
 
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>[Parallel(n_jobs=-1)]: Done   8 tasks      | elapsed:    2.9s
-[Parallel(n_jobs=-1)]: Done  90 out of  90 | elapsed:   34.8s finished
+[Parallel(n_jobs=-1)]: Done  90 out of  90 | elapsed:   29.5s finished
 </pre>
 </div>
 </div>
@@ -14679,8 +14139,8 @@ Test score: 0.7934782608695652
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Training score:  0.9657903606336367
-Test score:  0.7980283114256825
+<pre>Training score:  0.9345298281092013
+Test score:  0.8121840242669363
 </pre>
 </div>
 </div>
@@ -14706,11 +14166,11 @@ Test score:  0.7980283114256825
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[99]:</div>
+<div class="prompt input_prompt">In&nbsp;[68]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="k">import</span> <span class="n">GradientBoostingClassifier</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">GradientBoostingClassifier</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span><span class="n">y_test</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">GradientBoostingClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span><span class="n">y_test</span><span class="p">))</span>
 </pre></div>
 
     </div>
@@ -14727,7 +14187,7 @@ Test score:  0.7980283114256825
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>0.8008088978766431
+<pre>0.8174924165824065
 </pre>
 </div>
 </div>
@@ -14746,7 +14206,7 @@ Test score:  0.7980283114256825
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[100]:</div>
+<div class="prompt input_prompt">In&nbsp;[55]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">gb</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">GradientBoostingClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">20</span><span class="p">),</span><span class="n">param_grid</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;loss&#39;</span><span class="p">:[</span><span class="s1">&#39;deviance&#39;</span><span class="p">,</span><span class="s1">&#39;exponential&#39;</span><span class="p">],</span> <span class="s1">&#39;learning_rate&#39;</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">)},</span><span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
@@ -14780,9 +14240,9 @@ Test score:  0.7980283114256825
 
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>[Parallel(n_jobs=-1)]: Using backend LokyBackend with 12 concurrent workers.
-[Parallel(n_jobs=-1)]: Done   8 tasks      | elapsed:  3.2min
-[Parallel(n_jobs=-1)]: Done  44 out of  50 | elapsed: 10.6min remaining:  1.4min
-[Parallel(n_jobs=-1)]: Done  50 out of  50 | elapsed: 11.3min finished
+[Parallel(n_jobs=-1)]: Done   8 tasks      | elapsed:  3.5min
+[Parallel(n_jobs=-1)]: Done  44 out of  50 | elapsed: 11.2min remaining:  1.5min
+[Parallel(n_jobs=-1)]: Done  50 out of  50 | elapsed: 11.8min finished
 </pre>
 </div>
 </div>
@@ -14793,8 +14253,8 @@ Test score:  0.7980283114256825
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Train score: 0.9825581395348837
-Test score: 0.7874115267947421
+<pre>Train score: 0.9779238287832828
+Test score: 0.8104145601617796
 </pre>
 </div>
 </div>
@@ -14812,7 +14272,7 @@ Test score: 0.7874115267947421
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[101]:</div>
+<div class="prompt input_prompt">In&nbsp;[56]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">xgboost</span> <span class="k">as</span> <span class="nn">xgb</span>
@@ -14833,10 +14293,10 @@ Test score: 0.7874115267947421
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[102]:</div>
+<div class="prompt input_prompt">In&nbsp;[66]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">xgb</span><span class="o">.</span><span class="n">XGBClassifier</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span><span class="n">y_test</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">xgb</span><span class="o">.</span><span class="n">XGBClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span><span class="n">y_test</span><span class="p">))</span>
 </pre></div>
 
     </div>
@@ -14853,7 +14313,7 @@ Test score: 0.7874115267947421
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>0.7977755308392316
+<pre>0.8190091001011123
 </pre>
 </div>
 </div>
@@ -14872,7 +14332,7 @@ Test score: 0.7874115267947421
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[103]:</div>
+<div class="prompt input_prompt">In&nbsp;[58]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">xgb_model</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">xgb</span><span class="o">.</span><span class="n">XGBClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span><span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">),</span><span class="n">param_grid</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;booster&#39;</span><span class="p">:[</span><span class="s1">&#39;gbtree&#39;</span><span class="p">,</span><span class="s1">&#39;gblinear&#39;</span><span class="p">,</span><span class="s1">&#39;dart&#39;</span><span class="p">]},</span><span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
@@ -14906,9 +14366,9 @@ Test score: 0.7874115267947421
 
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>[Parallel(n_jobs=-1)]: Using backend LokyBackend with 12 concurrent workers.
-[Parallel(n_jobs=-1)]: Done   4 out of  15 | elapsed:   12.3s remaining:   33.7s
-[Parallel(n_jobs=-1)]: Done  10 out of  15 | elapsed:   17.5s remaining:    8.8s
-[Parallel(n_jobs=-1)]: Done  15 out of  15 | elapsed:   41.1s finished
+[Parallel(n_jobs=-1)]: Done   4 out of  15 | elapsed:   18.0s remaining:   49.4s
+[Parallel(n_jobs=-1)]: Done  10 out of  15 | elapsed:   22.4s remaining:   11.2s
+[Parallel(n_jobs=-1)]: Done  15 out of  15 | elapsed:   49.6s finished
 </pre>
 </div>
 </div>
@@ -14919,8 +14379,8 @@ Test score: 0.7874115267947421
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Train score: 0.8207785642062689
-Test score: 0.7975227502527806
+<pre>Train score: 0.8475733063700708
+Test score: 0.8096562184024267
 </pre>
 </div>
 </div>
@@ -14938,7 +14398,7 @@ Test score: 0.7975227502527806
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[104]:</div>
+<div class="prompt input_prompt">In&nbsp;[59]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="k">import</span> <span class="n">ExtraTreesClassifier</span>
@@ -14959,10 +14419,10 @@ Test score: 0.7975227502527806
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[105]:</div>
+<div class="prompt input_prompt">In&nbsp;[64]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">ExtraTreesClassifier</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span><span class="n">y_test</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">ExtraTreesClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span><span class="n">y_test</span><span class="p">))</span>
 </pre></div>
 
     </div>
@@ -14979,19 +14439,7 @@ Test score: 0.7975227502527806
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>0.7798281092012134
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>/usr/lib/python3.7/site-packages/sklearn/ensemble/forest.py:248: FutureWarning: The default value of n_estimators will change from 10 in version 0.20 to 100 in 0.22.
-  &#34;10 in version 0.20 to 100 in 0.22.&#34;, FutureWarning)
+<pre>0.8129423660262892
 </pre>
 </div>
 </div>
@@ -15010,7 +14458,7 @@ Test score: 0.7975227502527806
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[106]:</div>
+<div class="prompt input_prompt">In&nbsp;[61]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">xt</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">ExtraTreesClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span><span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">),</span><span class="n">param_grid</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;criterion&#39;</span><span class="p">:[</span><span class="s1">&#39;gini&#39;</span><span class="p">,</span><span class="s1">&#39;entropy&#39;</span><span class="p">],</span><span class="s1">&#39;max_depth&#39;</span><span class="p">:[</span><span class="mi">3</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">50</span><span class="p">],</span><span class="s1">&#39;max_features&#39;</span><span class="p">:[</span><span class="mi">3</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">50</span><span class="p">]},</span><span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
@@ -15031,17 +14479,6 @@ Test score: 0.7975227502527806
     <div class="prompt"></div>
 
 
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>[Parallel(n_jobs=-1)]: Using backend LokyBackend with 12 concurrent workers.
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Fitting 5 folds for each of 32 candidates, totalling 160 fits
 </pre>
@@ -15054,9 +14491,10 @@ Test score: 0.7975227502527806
 
 
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>[Parallel(n_jobs=-1)]: Done   8 tasks      | elapsed:    7.1s
-[Parallel(n_jobs=-1)]: Done 104 tasks      | elapsed:  2.7min
-[Parallel(n_jobs=-1)]: Done 160 out of 160 | elapsed:  4.6min finished
+<pre>[Parallel(n_jobs=-1)]: Using backend LokyBackend with 12 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   8 tasks      | elapsed:    7.4s
+[Parallel(n_jobs=-1)]: Done 104 tasks      | elapsed:  3.1min
+[Parallel(n_jobs=-1)]: Done 160 out of 160 | elapsed:  5.1min finished
 </pre>
 </div>
 </div>
@@ -15067,8 +14505,8 @@ Test score: 0.7975227502527806
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Train score: 0.9609032692955848
-Test score: 0.7990394337714863
+<pre>Train score: 0.9280417930569599
+Test score: 0.814206268958544
 </pre>
 </div>
 </div>
@@ -15086,11 +14524,11 @@ Test score: 0.7990394337714863
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[107]:</div>
+<div class="prompt input_prompt">In&nbsp;[65]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">lightgbm</span> <span class="k">as</span> <span class="nn">lgb</span>
-<span class="n">lgb_model</span> <span class="o">=</span> <span class="n">lgb</span><span class="o">.</span><span class="n">LGBMClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span><span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
+<span class="n">lgb_model</span> <span class="o">=</span> <span class="n">lgb</span><span class="o">.</span><span class="n">LGBMClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
 <span class="n">lgb_model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span><span class="n">y_test</span><span class="p">)</span>
 </pre></div>
 
@@ -15104,13 +14542,13 @@ Test score: 0.7990394337714863
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[107]:</div>
+    <div class="prompt output_prompt">Out[65]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>0.8063700707785642</pre>
+<pre>0.8106673407482305</pre>
 </div>
 
 </div>
